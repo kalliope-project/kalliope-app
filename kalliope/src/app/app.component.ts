@@ -4,9 +4,12 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
+import { KalliopeService } from './services/kalliope.service'
+
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [KalliopeService]
 })
 export class MyApp {
   rootPage = TabsPage;
