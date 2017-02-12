@@ -17,6 +17,7 @@ export class HomePage {
 
   ngOnInit(){
     console.log("ngOnInit on ran ....");
+    this.getSynapse();
   }
 
   getSynapse(){
