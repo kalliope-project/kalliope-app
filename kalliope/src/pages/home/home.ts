@@ -15,15 +15,4 @@ export class HomePage {
 
   }
 
-  ngOnInit(){
-    console.log("ngOnInit on ran ....");
-    this.getSynapse();
-  }
-
-  getSynapse(){
-    this.kalliopeService.getSynapses().subscribe(response => {
-      console.log(response);
-    });
-  }
-
 }
