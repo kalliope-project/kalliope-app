@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
-
-import { KalliopeService } from '../../app/services/kalliope.service'
 
 @Component({
   selector: 'page-home',
@@ -10,8 +7,7 @@ import { KalliopeService } from '../../app/services/kalliope.service'
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController,
-              private kalliopeService: KalliopeService) {
+  constructor(public navCtrl: NavController) {
 
   }
 

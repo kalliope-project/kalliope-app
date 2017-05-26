@@ -1,9 +1,11 @@
+/**
+ * Created by monf on 26/05/17.
+ */
 import { Component } from '@angular/core';
-
 import { NavController } from 'ionic-angular';
 
 @Component({
-  selector: 'page-about',
+  selector: 'page-settingss',
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
@@ -13,3 +15,5 @@ export class SettingsPage {
   }
 
 }
+
+
