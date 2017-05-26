@@ -9,31 +9,30 @@ import 'rxjs/Rx';
 @Injectable()
 export class SynapsesService {
     http: any;
-    baseUrl: String;
-    user: String;
-    password: String;
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:5000/';
-        this.user = 'admin';
-        this.password = 'secret';
     }
 
-    getSynapses() {
+    getSynapses(ipAdress: string,
+                user: string,
+                password: string) {
         let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(this.user + ':' + this.password));
+        headers.append('Authorization', 'Basic ' + btoa(user + ':' + password));
         const options = new RequestOptions({headers: headers});
-        return this.http.get(this.baseUrl + "synapses", options)
+        return this.http.get('http://'+ipAdress + '/synapses', options)
             .map(res => res.json());
     }
 
-    runSynapse(synapseName: any) {
+    runSynapse(synapseName: any,
+               ipAdress: string,
+               user: string,
+               password: string) {
         let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(this.user + ':' + this.password));
+        headers.append('Authorization', 'Basic ' + btoa(user + ':' + password));
         const options = new RequestOptions({headers: headers});
-        return this.http.post(this.baseUrl + "synapses/start/id/" + synapseName, undefined, options)
-            .map(res => res.json());
+        return this.http.post('http://'+ipAdress +  '/synapses/start/id/' + synapseName, undefined, options)
+            .map(res => res.json())
     }
 
 }

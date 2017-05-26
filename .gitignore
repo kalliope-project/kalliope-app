@@ -22,6 +22,7 @@ node_modules/
 tmp/
 temp/
 hooks/
+www/
 platforms/
 plugins/
 plugins/android.json

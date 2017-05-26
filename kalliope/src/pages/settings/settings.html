@@ -7,10 +7,13 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-list>
-        <ion-item>
-            <ion-label>Kalliope IP</ion-label>
-            <ion-input type="text"></ion-input>
-        </ion-item>
-    </ion-list>
+    <form (submit)="setDefault()">
+        <ion-list>
+            <ion-item>
+                <ion-label>KalliopeCore IP</ion-label>
+                <ion-input [(ngModel)]="ipAdress" name="ipAdress" type="text"></ion-input>
+            </ion-item>
+            <button ion-button block type="sumbit">Save</button>
+        </ion-list>
+    </form>
 </ion-content>

@@ -10,10 +10,24 @@ import {NavController} from 'ionic-angular';
 })
 export class SettingsPage {
 
-    constructor(public navCtrl: NavController) {
+    ipAdress : string;
 
+    constructor(public navCtrl: NavController) {
+        this.getDefault();
     }
 
+    getDefault() {
+        if (localStorage.getItem('ipAdress') != null) {
+            this.ipAdress = localStorage.getItem('ipAdress');
+        } else {
+            this.ipAdress = 'localhost:5000';
+        }
+    }
+
+    setDefault() {
+        localStorage.setItem('ipAdress', this.ipAdress);
+        
+    }
 
 }
 
