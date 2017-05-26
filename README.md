@@ -40,6 +40,19 @@ or by using https:
 https://github.com/kalliope-project/kalliope-app.git
 ```
 
+#### Start kalliope Core
+
+Make Sure your [Kalliope Core](https://github.com/kalliope-project/kalliope) is running :
+
+Under your "Kalliope Core" directory:
+
+The __API__ and __CORS__ must be allowed in the kalliope Core "setting.yml" file.
+Then starts the Kalliope CORE :
+```bash
+kalliope start
+```
+
+
 #### run the application on your browser
 
 Under this fresh cloned repo, access the "kalliope" directory and run the ionic server :
