@@ -10,8 +10,16 @@
     <form (submit)="setDefault()">
         <ion-list>
             <ion-item>
-                <ion-label>KalliopeCore IP</ion-label>
+                <ion-label>IP</ion-label>
                 <ion-input [(ngModel)]="ipAdress" name="ipAdress" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Username</ion-label>
+                <ion-input [(ngModel)]="username" name="username" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Password</ion-label>
+                <ion-input [(ngModel)]="password" name="password" type="password"></ion-input>
             </ion-item>
             <button ion-button block type="sumbit">Save</button>
         </ion-list>

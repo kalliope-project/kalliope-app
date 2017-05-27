@@ -8,11 +8,13 @@
 
 <ion-content padding>
     <button ion-button full (click)="refreshPage()">Reload</button>
-    <ion-list>
-        <ion-item *ngFor="let synapse of synapses">
-            <button ion-button full large (click)="runSynapse(synapse.name)">
-                <h2>{{synapse.name}}</h2>
-            </button>
-        </ion-item>
-    </ion-list>
+    <div *ngIf="connexionOk">
+        <ion-list>
+            <ion-item *ngFor="let synapse of synapses">
+                <button ion-button full large (click)="runSynapse(synapse.name)">
+                    <h2>{{synapse.name}}</h2>
+                </button>
+            </ion-item>
+        </ion-list>
+    </div>
 </ion-content>

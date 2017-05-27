@@ -10,7 +10,10 @@ import {NavController} from 'ionic-angular';
 })
 export class SettingsPage {
 
-    ipAdress : string;
+    ipAdress : string = 'localhost:5000';
+    username : string = '';
+    password : string = '';
+
 
     constructor(public navCtrl: NavController) {
         this.getDefault();
@@ -19,13 +22,22 @@ export class SettingsPage {
     getDefault() {
         if (localStorage.getItem('ipAdress') != null) {
             this.ipAdress = localStorage.getItem('ipAdress');
-        } else {
-            this.ipAdress = 'localhost:5000';
+        }
+
+        if (localStorage.getItem('username') != null) {
+            this.username = localStorage.getItem('username');
+        }
+
+        if (localStorage.getItem('password') != null) {
+            this.password = localStorage.getItem('password');
         }
     }
 
     setDefault() {
         localStorage.setItem('ipAdress', this.ipAdress);
+        localStorage.setItem('username', this.username);
+        localStorage.setItem('password', this.password);
+
         
     }
 
