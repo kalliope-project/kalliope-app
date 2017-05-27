@@ -4,7 +4,6 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {SynapsesService} from './synapses.service'
-import {SettingsPage} from "../settings/settings";
 
 @Component({
     selector: 'page-synapses',
@@ -14,9 +13,9 @@ import {SettingsPage} from "../settings/settings";
 export class SynapsesPage {
 
     synapses: Array<string>;
-    ipAdress: string;
-    username: string;
-    password: string;
+    ipAdress: string = 'localhost:5000';
+    username: string = '';
+    password: string = '';
     connexionOk: boolean = false;
 
     constructor(public navCtrl: NavController,
@@ -27,42 +26,24 @@ export class SynapsesPage {
      * On loading the synapse page start loading synapses from the Kalliope Core.
      * */
     ngOnInit() {
-        this.getDefaults();
+        this.getSettings();
+        this.testConnection();
         this.getSynapse();
     }
 
     refreshPage() {
-        this.connexionOk = false;
-        this.getDefaults();
+        this.getSettings();
+        this.testConnection();
         this.getSynapse();
     }
 
     /*
      * Get the ipAdress, username and password values coming from the local storage.
      * */
-    getDefaults() {
-        if (localStorage.getItem('ipAdress') != null) {
-            this.ipAdress = localStorage.getItem('ipAdress');
-        } else {
-            console.log("You need to set up the Kalliope Core IP Adress");
-            this.navCtrl.push(SettingsPage);
-        }
-
-        if (localStorage.getItem('username') != null) {
-            this.username = localStorage.getItem('username');
-        } else {
-            console.log("You need to set up the username of the Kalliope Core API");
-            this.navCtrl.push(SettingsPage);
-        }
-
-        if (localStorage.getItem('password') != null) {
-            this.password = localStorage.getItem('password');
-        } else {
-            console.log("You need to set up the password of the Kalliope Core API");
-            this.navCtrl.push(SettingsPage);
-        }
-
-        this.connexionOk = true;
+    getSettings() {
+        this.ipAdress = localStorage.getItem('ipAdress');
+        this.password = localStorage.getItem('password');
+        this.username = localStorage.getItem('username');
     }
 
     /*
@@ -70,6 +51,27 @@ export class SynapsesPage {
     * Asynch Functionnals methods
     *
     * */
+
+
+    /*
+    * TODO : update it should be tested on version note on the getSynapses....
+    * */
+    testConnection() {
+        this.connexionOk = false;
+        this.synapseService.getSynapses(this.ipAdress, this.username, this.password)
+            .subscribe(
+                response => {
+                    this.connexionOk = true;
+                    console.log("[SynapsesPage] Connection OK, the Kalliope Version: " + JSON.stringify(response));
+                },
+                err => {
+                    console.log("[SynapsesPage] Error fetching the synapses list ! : "+ err);
+                    // this.navCtrl.push(SettingsPage);
+                    // TODO find a way to update the settings page because this navCtrl is a new instance
+                }
+            );
+    }
+
     getSynapse() {
         this.synapseService.getSynapses(this.ipAdress, this.username, this.password)
             .subscribe(

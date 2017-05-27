@@ -20,25 +20,15 @@ export class SettingsPage {
     }
 
     getDefault() {
-        if (localStorage.getItem('ipAdress') != null) {
-            this.ipAdress = localStorage.getItem('ipAdress');
-        }
-
-        if (localStorage.getItem('username') != null) {
-            this.username = localStorage.getItem('username');
-        }
-
-        if (localStorage.getItem('password') != null) {
-            this.password = localStorage.getItem('password');
-        }
+        this.ipAdress = localStorage.getItem('ipAdress');
+        this.username = localStorage.getItem('username');
+        this.password = localStorage.getItem('password');
     }
 
     setDefault() {
         localStorage.setItem('ipAdress', this.ipAdress);
         localStorage.setItem('username', this.username);
         localStorage.setItem('password', this.password);
-
-        
     }
 
 }

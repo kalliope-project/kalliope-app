@@ -15,10 +15,10 @@ export class SynapsesService {
     }
 
     getSynapses(ipAdress: string,
-                user: string,
+                username: string,
                 password: string) {
         let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(user + ':' + password));
+        headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
         const options = new RequestOptions({headers: headers});
         return this.http.get('http://'+ipAdress + '/synapses', options)
             .map(res => res.json());
@@ -26,13 +26,27 @@ export class SynapsesService {
 
     runSynapse(synapseName: any,
                ipAdress: string,
-               user: string,
+               username: string,
                password: string) {
         let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(user + ':' + password));
+        headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
         const options = new RequestOptions({headers: headers});
         return this.http.post('http://'+ipAdress +  '/synapses/start/id/' + synapseName, undefined, options)
             .map(res => res.json())
     }
 
+
+    /*
+    * note Kalliope does not need authentication to get the Version
+    * */
+    getVersion(ipAdress: string,
+               username: string,
+               password: string) {
+        console.log("Ici le getVersion : username ->"+username+", password ->"+password);
+        let headers = new Headers();
+        headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
+        const options = new RequestOptions({headers: headers});
+        return this.http.get('http://'+ipAdress + '/', options)
+            .map(res => res.json());
+    }
 }
