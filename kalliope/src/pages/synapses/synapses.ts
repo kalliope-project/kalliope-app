@@ -3,7 +3,7 @@
  */
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {SynapsesService} from '../../app/services/synapses.service'
+import {SynapsesService} from './synapses.service'
 import {SettingsPage} from "../settings/settings";
 
 @Component({
