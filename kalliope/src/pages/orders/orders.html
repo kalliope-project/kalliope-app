@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+<ion-fab right bottom>
+  <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+</ion-fab>
+
+<ion-card *ngFor="let order of orders">
+  <ion-card-content>
+      {{ order }}
+      <button ion-button icon-only  color="light">
+        <ion-icon name="build"></ion-icon>
+      </button>
+      <button ion-button icon-only>
+        <ion-icon name="play"></ion-icon>
+      </button>
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>

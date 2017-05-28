@@ -1,27 +1,32 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <ion-title>
-            Settings
-        </ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <form (submit)="setDefault()">
-        <ion-list>
-            <ion-item>
-                <ion-label>IP</ion-label>
-                <ion-input [(ngModel)]="ipAdress" name="ipAdress" type="text"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label>Username</ion-label>
-                <ion-input [(ngModel)]="username" name="username" type="text"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label>Password</ion-label>
-                <ion-input [(ngModel)]="password" name="password" type="password"></ion-input>
-            </ion-item>
-            <button ion-button block type="sumbit">Save</button>
-        </ion-list>
-    </form>
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>URL</ion-label>
+      <ion-input  [(ngModel)]="settings.url"  type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Username</ion-label>
+      <ion-input  [(ngModel)]="settings.username" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Password</ion-label>
+      <ion-input [(ngModel)]="settings.password" type="password"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+    <button ion-button block color="light" (click)="testConnection()">Test connection</button>
+    <button ion-button block>save</button>
 </ion-content>
+

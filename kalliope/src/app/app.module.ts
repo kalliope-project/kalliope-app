@@ -1,12 +1,13 @@
+import { SynapsesService } from './../pages/synapses/synapses.service';
+import { OrdersPage } from './../pages/orders/orders.component';
+import { SettingsService } from './../pages/settings/settings.service';
+import { SettingsPage } from './../pages/settings/settings.component';
 import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 
-import {HomePage} from '../pages/home/home';
-import {TabsPage} from '../pages/tabs/tabs';
 import {SynapsesPage} from '../pages/synapses/synapses'
-import {SettingsPage} from '../pages/settings/settings'
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -18,8 +19,7 @@ import {HttpModule} from '@angular/http';
         MyApp,
         SynapsesPage,
         SettingsPage,
-        HomePage,
-        TabsPage
+        OrdersPage,
     ],
     imports: [
         BrowserModule,
@@ -31,12 +31,13 @@ import {HttpModule} from '@angular/http';
         MyApp,
         SynapsesPage,
         SettingsPage,
-        HomePage,
-        TabsPage
+        OrdersPage,
     ],
     providers: [
         StatusBar,
         SplashScreen,
+        SettingsService,
+        SynapsesService,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })
