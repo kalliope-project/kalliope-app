@@ -1,3 +1,4 @@
+import { OrdersService } from './orders.service';
 import { SettingsPage } from './../settings/settings.component';
 import { SettingsService } from './../settings/settings.service';
 import { Settings } from './../settings/settings';
@@ -18,7 +19,8 @@ export class OrdersPage {
         public settingsService: SettingsService,
         public modalCtrl: ModalController,
         public menu: MenuController,
-        private app: App) {
+        private app: App,
+        private ordersService: OrdersService) {
 
         // get the nac controller used to switch pages
         this.nav = this.app.getActiveNav();
@@ -26,7 +28,7 @@ export class OrdersPage {
         menu.enable(true);
 
         // load orders
-        this.orders = ["please do order 66", "this is an order to run"];
+        this.orders = ["please do order 66", "this is an order to run", "Bonjour"];
 
         // load settings from storage
         this.settings = settingsService.getDefaultSettings();
@@ -36,6 +38,15 @@ export class OrdersPage {
             console.log("Settings loaded. Url: " + this.settings.url);
         }
 
+    }
+
+    executeOrder(order){
+        /**
+         * Execute the order on kalliope
+         */
+         this.ordersService.postOrder(order, this.settings).subscribe(
+                data  => console.log(data),
+                error => console.log(error));
     }
 
 }

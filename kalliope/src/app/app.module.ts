@@ -1,3 +1,4 @@
+import { OrdersService } from './../pages/orders/orders.service';
 import { SynapsesService } from './../pages/synapses/synapses.service';
 import { OrdersPage } from './../pages/orders/orders.component';
 import { SettingsService } from './../pages/settings/settings.service';
@@ -38,6 +39,7 @@ import {HttpModule} from '@angular/http';
         SplashScreen,
         SettingsService,
         SynapsesService,
+        OrdersService,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })
