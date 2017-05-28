@@ -25,6 +25,9 @@ export class MyApp {
             { title: 'Settings', component: SettingsPage }
         ];
 
+        // remove this in prod! for testing only in order to clean the local storage at every new load
+        // localStorage.clear();
+
     }
 
     initializeApp() {

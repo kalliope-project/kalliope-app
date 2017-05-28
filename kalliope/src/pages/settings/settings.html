@@ -26,7 +26,9 @@
 
   </ion-list>
 
-    <button ion-button block color="light" (click)="testConnection()">Test connection</button>
-    <button ion-button block>save</button>
+  <button *ngIf="!settingsOK" ion-button block (click)="testConnection()">Test connection</button>
+  <button *ngIf="settingsOK" ion-button block color="secondary" (click)="saveSettings()">Save</button>
+
+
 </ion-content>
 
