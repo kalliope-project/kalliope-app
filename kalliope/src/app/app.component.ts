@@ -1,3 +1,4 @@
+import { ChatPage } from './../pages/chat/chat.component';
 import { SynapsesPage } from './../pages/synapses/synapses';
 import { OrdersPage } from './../pages/orders/orders.component';
 import { SettingsPage } from './../pages/settings/settings.component';
@@ -22,6 +23,7 @@ export class MyApp {
         this.pages = [
             { title: 'Orders', component: OrdersPage },
             { title: 'Synapses', component: SynapsesPage },
+            { title: 'Chat', component: ChatPage },
             { title: 'Settings', component: SettingsPage }
         ];
 

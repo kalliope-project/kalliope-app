@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Chats</ion-title>
+        <ion-buttons end>
+        <button ion-button icon-only color="royal" (click)="cleanMessages()">
+            <ion-icon name="trash"></ion-icon>
+        </button>
+    </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card *ngFor="let chatMessage of chatMessages">
+        <ion-card-content>
+            <div class="card-title">
+                {{ chatMessage.sender }}
+            </div>
+            <p>
+                {{ chatMessage.message }}
+            </p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
