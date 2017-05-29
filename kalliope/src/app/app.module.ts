@@ -8,7 +8,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
 
-import {SynapsesPage} from '../pages/synapses/synapses'
+import {SynapsesPage} from '../pages/synapses/synapses.component'
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';

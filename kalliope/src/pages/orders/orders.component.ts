@@ -34,8 +34,15 @@ export class OrdersPage {
         this.settings = settingsService.getDefaultSettings();
         if (this.settings == null) {
             this.nav.setRoot(SettingsPage);
-        }else{
-            console.log("Settings loaded. Url: " + this.settings.url);
+        } else {
+            if ('url' in this.settings &&
+                'username' in this.settings &&
+                'password' in this.settings) {
+                console.log("Settings loaded. Url: " + this.settings.url);
+            }
+            else {
+                this.nav.setRoot(SettingsPage);
+            }
         }
 
     }

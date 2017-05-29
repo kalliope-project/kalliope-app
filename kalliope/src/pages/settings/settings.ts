@@ -1,7 +1,7 @@
 
 export class Settings {
     // url of kalliope api server
-    url: string = '';
+    url: string = 'localhost:5000';
     username: string = '';
     password: string = '';
 

@@ -6,6 +6,9 @@ import {Injectable} from '@angular/core';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 
+import {Settings} from "../settings/settings";
+import {Synapse} from "./synapse";
+
 @Injectable()
 export class SynapsesService {
     http: any;
@@ -14,39 +17,20 @@ export class SynapsesService {
         this.http = http;
     }
 
-    getSynapses(ipAdress: string,
-                username: string,
-                password: string) {
+    getSynapses(settings: Settings) {
         let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
+        headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
-        return this.http.get('http://'+ipAdress + '/synapses', options)
+        return this.http.get('http://'+settings.url + '/synapses', options)
             .map(res => res.json());
     }
 
-    runSynapse(synapseName: any,
-               ipAdress: string,
-               username: string,
-               password: string) {
+    runSynapse(synapse: Synapse,
+               settings:Settings) {
         let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
+        headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
-        return this.http.post('http://'+ipAdress +  '/synapses/start/id/' + synapseName, undefined, options)
+        return this.http.post('http://'+settings.url +  '/synapses/start/id/' + synapse.name, undefined, options)
             .map(res => res.json())
-    }
-
-
-    /*
-    * note Kalliope does not need authentication to get the Version
-    * */
-    getVersion(ipAdress: string,
-               username: string,
-               password: string) {
-        console.log("Ici le getVersion : username ->"+username+", password ->"+password);
-        let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(username + ':' + password));
-        const options = new RequestOptions({headers: headers});
-        return this.http.get('http://'+ipAdress + '/', options)
-            .map(res => res.json());
     }
 }

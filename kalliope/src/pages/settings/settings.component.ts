@@ -1,15 +1,14 @@
 import { OrdersPage } from './../orders/orders.component';
 import { SettingsService } from './settings.service';
 import { Settings } from './settings';
-import {Component, ViewChild} from '@angular/core';
-import { App, LoadingController, Nav, NavController, ToastController } from 'ionic-angular';
+import {Component} from '@angular/core';
+import { App, LoadingController, NavController, ToastController } from 'ionic-angular';
 
 @Component({
     selector: 'page-settings',
     templateUrl: 'settings.html'
 })
 export class SettingsPage {
-    // @ViewChild(Nav) nav: Nav;
     settings: Settings;
     loader;
     settingsOK: Boolean = false;
@@ -33,29 +32,21 @@ export class SettingsPage {
         this.loader = this.loadingCtrl.create({
             content: "Please wait..."
         });
-
     }
+
     testConnection() {
         console.log("Testing connection with URL: " + this.settings.url)
 
         this.loader.present();
-        // hard coded settings for testing
-        let testing_settings = new Settings();
-        testing_settings.username = "admin";
-        testing_settings.password = "secret";
-        testing_settings.url = "192.168.0.12:5000"
-        this.settings = testing_settings
-
         this.SettingsService.getVersion(this.settings)
             .subscribe(
                 data  => this.connectionSuccess(data),
                 error => this.connectonFailled(error));
-
     }
 
     connectionSuccess(data) {
         console.log("Connection to Kalliope API server OK");
-        console.log(data);
+        console.log("The datas : "+data);
         this.loader.dismiss();
         this.presentToast("Kalliope version: " + data["Kalliope version"]);
         this.settingsOK = true;

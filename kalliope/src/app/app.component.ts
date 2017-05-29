@@ -1,4 +1,4 @@
-import { SynapsesPage } from './../pages/synapses/synapses';
+import { SynapsesPage } from '../pages/synapses/synapses.component';
 import { OrdersPage } from './../pages/orders/orders.component';
 import { SettingsPage } from './../pages/settings/settings.component';
 import {Component, ViewChild} from '@angular/core';
