@@ -1,3 +1,4 @@
+import { NewOrderPage } from './../pages/NewOrder/NewOrder.component';
 import { ChatService } from './../pages/chat/chat.service';
 import { ChatPage } from './../pages/chat/chat.component';
 import { OrdersService } from './../pages/orders/orders.service';
@@ -23,7 +24,8 @@ import {HttpModule} from '@angular/http';
         SynapsesPage,
         SettingsPage,
         OrdersPage,
-        ChatPage
+        ChatPage,
+        NewOrderPage
     ],
     imports: [
         BrowserModule,
@@ -36,7 +38,8 @@ import {HttpModule} from '@angular/http';
         SynapsesPage,
         SettingsPage,
         OrdersPage,
-        ChatPage
+        ChatPage,
+        NewOrderPage
     ],
     providers: [
         StatusBar,

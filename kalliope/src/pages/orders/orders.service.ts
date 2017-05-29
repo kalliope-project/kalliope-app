@@ -36,22 +36,15 @@ export class OrdersService {
 
         return data;
     }
-// {
-//   "matched_synapses": [
-//     {
-//       "matched_order": "Bonjour",
-//       "neuron_module_list": [
-//         {
-//           "generated_message": "Bonjour monsieur",
-//           "neuron_name": "Say"
-//         }
-//       ],
-//       "synapse_name": "say-hello-fr"
-//     }
-//   ],
-//   "status": "complete",
-//   "user_order": "Bonjour"
-// }
+
+    saveOrders(orders: Array<string>){
+        return localStorage.setItem('orders', JSON.stringify(orders));
+    }
+
+    loadOrders(): Array<string>{
+        return JSON.parse(localStorage.getItem('orders'));
+    }
+
     responseToObject(jsonData){
         /**
          * Convert a JSON response from kalliope API into a OrderResponse object

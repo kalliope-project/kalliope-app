@@ -1,3 +1,4 @@
+import { NewOrderPage } from './../NewOrder/NewOrder.component';
 import { ChatPage } from './../chat/chat.component';
 import { OrdersService } from './orders.service';
 import { SettingsPage } from './../settings/settings.component';
@@ -30,7 +31,7 @@ export class OrdersPage {
         menu.enable(true);
 
         // load orders
-        this.orders = ["please do order 66", "this is an order to run", "Bonjour"];
+        this.refreshOrders();
 
         // load settings from storage
         this.settings = settingsService.getDefaultSettings();
@@ -73,6 +74,19 @@ export class OrdersPage {
         this.nav.setRoot(ChatPage, {
             orderResponse: orderResponse
         });
+    }
+
+    addNewOrder(){
+        let modalNewOrder = this.modalCtrl.create(NewOrderPage);
+        modalNewOrder.present();
+        modalNewOrder.onDidDismiss(data => this.refreshOrders())
+    }
+
+    refreshOrders(){
+        this.orders = this.ordersService.loadOrders()
+        if (this.orders == null){
+            this.orders = [];
+        }
     }
 
 
