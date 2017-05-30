@@ -9,21 +9,19 @@
 
 <ion-content padding>
 
-<ion-fab right bottom>
+  <ion-fab right bottom>
     <button ion-fab color="secondary" (click)="addNewOrder()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
-<ion-card *ngFor="let order of orders">
-  <ion-card-content>
-      {{ order }}
-      <button ion-button icon-only  color="light">
-        <ion-icon name="build"></ion-icon>
+  <ion-card *ngFor="let order of orders">
+
+    <ion-list>
+      <button ion-item (click)="presentActionSheet(order)">
+        {{ order }}
       </button>
-      <button ion-button icon-only (click)="executeOrder(order)">
-        <ion-icon name="play"></ion-icon>
-      </button>
-  </ion-card-content>
-</ion-card>
+    </ion-list>
+
+  </ion-card>
 
 
 </ion-content>

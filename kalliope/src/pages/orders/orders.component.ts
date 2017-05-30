@@ -5,7 +5,16 @@ import { SettingsPage } from './../settings/settings.component';
 import { SettingsService } from './../settings/settings.service';
 import { Settings } from './../settings/settings';
 import {Component, ViewChild} from '@angular/core';
-import { MenuController, ModalController, Nav, NavController, App, ToastController } from 'ionic-angular';
+import {
+    ActionSheetController,
+    App,
+    MenuController,
+    ModalController,
+    Nav,
+    NavController,
+    ToastController,
+    LoadingController
+} from 'ionic-angular';
 
 @Component({
     selector: 'page-orders',
@@ -13,8 +22,9 @@ import { MenuController, ModalController, Nav, NavController, App, ToastControll
 })
 export class OrdersPage {
     settings: Settings;
-    orders: String[];
+    orders: string[];
     nav: NavController;
+    loader;
 
     constructor(
         public navCtrl: NavController,
@@ -23,7 +33,9 @@ export class OrdersPage {
         public menu: MenuController,
         private app: App,
         private ordersService: OrdersService,
-        public toastCtrl: ToastController) {
+        public toastCtrl: ToastController,
+        public actionSheetCtrl: ActionSheetController,
+        public loadingCtrl: LoadingController) {
 
         // get the nac controller used to switch pages
         this.nav = this.app.getActiveNav();
@@ -41,15 +53,25 @@ export class OrdersPage {
             console.log("Settings loaded. Url: " + this.settings.url);
         }
 
+        // prepare loader
+        this.loader = this.loadingCtrl.create({
+            content: "Please wait...",
+            duration: 3000
+        });
+
     }
 
     executeOrder(order){
         /**
          * Execute the order on kalliope
          */
-         this.ordersService.postOrder(order, this.settings).subscribe(
-                orderResponse  => this.addToChatPage(orderResponse),
-                error => this.handleError(error));
+        // start waiting gif
+        this.loader.present();
+
+        // execute the order
+        this.ordersService.postOrder(order, this.settings).subscribe(
+            orderResponse  => this.addToChatPage(orderResponse),
+            error => this.handleError(error));
     }
 
     handleError(error){
@@ -71,6 +93,8 @@ export class OrdersPage {
          * Add the received response to the chat page
          */
         console.log(orderResponse.userOrder);
+        // stop loading
+        this.loader.dismiss();
         this.nav.setRoot(ChatPage, {
             orderResponse: orderResponse
         });
@@ -87,6 +111,58 @@ export class OrdersPage {
         if (this.orders == null){
             this.orders = [];
         }
+    }
+
+    presentActionSheet(order) {
+        let actionSheet = this.actionSheetCtrl.create({
+            title: order,
+            buttons: [
+                {
+                    text: 'Play',
+                    icon: 'play',
+                    handler: () => {
+                        this.executeOrder(order);
+                    }
+                },
+                {
+                    text: 'Edit',
+                    icon: 'hammer',
+                    handler: () => {
+                        console.log('Edit clicked');
+                    }
+                },
+                {
+                    text: 'Delete',
+                    role: 'destructive',
+                    icon: 'trash',
+                    handler: () => {
+                        this.deleteOrder(order);
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel', // will always sort to be on the bottom
+                    icon: 'close',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                }
+
+            ]
+        });
+        actionSheet.present();
+
+    }
+
+    deleteOrder(order){
+        // delete the order
+        var index = this.orders.indexOf(order, 0);
+        if (index > -1) {
+            this.orders.splice(index, 1);
+        }
+        // save the new list
+        this.ordersService.saveOrders(this.orders);
+
     }
 
 
