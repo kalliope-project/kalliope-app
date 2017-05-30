@@ -61,7 +61,7 @@ export class OrdersPage {
 
     }
 
-    executeOrder(order){
+    executeOrder(order) {
         /**
          * Execute the order on kalliope
          */
@@ -70,7 +70,7 @@ export class OrdersPage {
 
         // execute the order
         this.ordersService.postOrder(order, this.settings).subscribe(
-            orderResponse  => this.addToChatPage(orderResponse),
+            orderResponse => this.addToChatPage(orderResponse),
             error => this.handleError(error));
     }
 
@@ -128,7 +128,7 @@ export class OrdersPage {
                     text: 'Edit',
                     icon: 'hammer',
                     handler: () => {
-                        console.log('Edit clicked');
+                        this.updateOrder(order);
                     }
                 },
                 {
@@ -163,6 +163,12 @@ export class OrdersPage {
         // save the new list
         this.ordersService.saveOrders(this.orders);
 
+    }
+
+    updateOrder(order){
+        let modalNewOrder = this.modalCtrl.create(NewOrderPage, {orderToUpdate: order});
+        modalNewOrder.present();
+        modalNewOrder.onDidDismiss(data => this.refreshOrders())
     }
 
 
