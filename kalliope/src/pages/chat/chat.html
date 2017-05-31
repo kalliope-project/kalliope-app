@@ -1,23 +1,25 @@
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
+    <ion-toolbar color="green_material">
+        <ion-buttons start>
+            <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
+        </ion-buttons>
         <ion-title>Chats</ion-title>
         <ion-buttons end>
-        <button ion-button icon-only color="royal" (click)="cleanMessages()">
-            <ion-icon name="trash"></ion-icon>
-        </button>
-    </ion-buttons>
-    </ion-navbar>
+            <button ion-button icon-only color="royal" (click)="cleanMessages()">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="main_color" padding>
     <ion-card *ngFor="let chatMessage of chatMessages">
         <ion-card-content>
-            <div class="card-title">
+            <ion-card-title color="green_material">
                 {{ chatMessage.sender }}
-            </div>
+            </ion-card-title>
             <p>
                 {{ chatMessage.message }}
             </p>
@@ -29,7 +31,7 @@
     <ion-toolbar>
         <ion-input [(ngModel)]="newMessage" placeholder="Chat here"></ion-input>
         <ion-buttons end>
-        <button ion-button icon-right color="royal" (click)="sendMessage()">
+        <button ion-button icon-right color="green_material" (click)="sendMessage()">
             Send
             <ion-icon name="send"></ion-icon>
         </button>
