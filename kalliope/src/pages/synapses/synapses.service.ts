@@ -8,7 +8,6 @@ import 'rxjs/Rx';
 
 import {Settings} from "../settings/settings";
 import {Synapse} from "./synapse";
-import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class SynapsesService {
