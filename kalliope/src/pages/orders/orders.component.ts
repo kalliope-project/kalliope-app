@@ -4,13 +4,12 @@ import { OrdersService } from './orders.service';
 import { SettingsPage } from './../settings/settings.component';
 import { SettingsService } from './../settings/settings.service';
 import { Settings } from './../settings/settings';
-import {Component, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {
     ActionSheetController,
     App,
     MenuController,
     ModalController,
-    Nav,
     NavController,
     ToastController,
     LoadingController
@@ -40,24 +39,8 @@ export class OrdersPage {
         // get the nac controller used to switch pages
         this.nav = this.app.getActiveNav();
 
-        menu.enable(true);
-
         // load orders
         this.refreshOrders();
-
-        // load settings from storage
-        this.settings = settingsService.getDefaultSettings();
-        if (this.settings == null) {
-            this.nav.setRoot(SettingsPage);
-        }else{
-            console.log("Settings loaded. Url: " + this.settings.url);
-        }
-
-        // prepare loader
-        this.loader = this.loadingCtrl.create({
-            content: "Please wait...",
-            duration: 3000
-        });
 
     }
 
@@ -65,38 +48,8 @@ export class OrdersPage {
         /**
          * Execute the order on kalliope
          */
-        // start waiting gif
-        this.loader.present();
-
-        // execute the order
-        this.ordersService.postOrder(order, this.settings).subscribe(
-            orderResponse => this.addToChatPage(orderResponse),
-            error => this.handleError(error));
-    }
-
-    handleError(error){
-        this.presentToast(error);
-        console.log(error);
-    }
-
-    presentToast(message_to_print) {
-        let toast = this.toastCtrl.create({
-            message: message_to_print,
-            duration: 3000,
-            position: 'bottom'
-        });
-        toast.present();
-    }
-
-    addToChatPage(orderResponse){
-        /**
-         * Add the received response to the chat page
-         */
-        console.log(orderResponse.userOrder);
-        // stop loading
-        this.loader.dismiss();
         this.nav.setRoot(ChatPage, {
-            orderResponse: orderResponse
+            orderFromOrderPage: order
         });
     }
 
