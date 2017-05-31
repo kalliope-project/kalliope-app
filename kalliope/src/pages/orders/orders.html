@@ -1,29 +1,27 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Orders</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="green_material">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Orders</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="main_color" padding>
 
-<ion-fab right bottom>
-  <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
-</ion-fab>
+  <ion-fab right bottom>
+    <button ion-fab color="green_material" (click)="addNewOrder()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 
-<ion-card *ngFor="let order of orders">
-  <ion-card-content>
-      {{ order }}
-      <button ion-button icon-only  color="light">
-        <ion-icon name="build"></ion-icon>
+  <ion-card *ngFor="let order of orders">
+
+    <ion-list>
+      <button ion-item (click)="presentActionSheet(order)">
+        {{ order }}
       </button>
-      <button ion-button icon-only (click)="executeOrder(order)">
-        <ion-icon name="play"></ion-icon>
-      </button>
-  </ion-card-content>
-</ion-card>
+    </ion-list>
+
+  </ion-card>
 
 
 </ion-content>
