@@ -1,13 +1,13 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Settings</ion-title>
-  </ion-navbar>
+  <ion-toolbar color="green_material">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Settings</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="main_color" padding>
   <ion-list>
     <ion-item>
       <ion-label stacked>URL</ion-label>
@@ -26,7 +26,7 @@
 
   </ion-list>
 
-  <button *ngIf="!settingsOK" ion-button block (click)="testConnection()">Test connection</button>
+  <button *ngIf="!settingsOK" ion-button block color="green_material" (click)="testConnection()">Test connection</button>
   <button *ngIf="settingsOK" ion-button block color="secondary" (click)="saveSettings()">Save</button>
 
 
