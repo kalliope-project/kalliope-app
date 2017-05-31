@@ -12,5 +12,9 @@ export class Synapse {
 
     constructor(public name:string) {
     }
+
+    toString(): string {
+        return "Synapse : name -> "+this.name;
+    }
 }
 

@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 
 import {Settings} from "../settings/settings";
 import {Synapse} from "./synapse";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class SynapsesService {
@@ -17,12 +18,28 @@ export class SynapsesService {
         this.http = http;
     }
 
+
+    JSONToSynapse(responseJSON: any): Array<Synapse> {
+        let synapses : Array<Synapse> = [];
+        if ('synapses' in responseJSON) {
+            let synapsesJSON = responseJSON.synapses;
+            for (var i = 0; i < synapsesJSON.length; i++) {
+                if ('name' in synapsesJSON[i]) {
+                    var synapse = new Synapse(synapsesJSON[i]['name']);
+                    synapses.push(synapse);
+                }
+            }
+        }
+        return synapses;
+    }
+
     getSynapses(settings: Settings) {
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
         return this.http.get('http://'+settings.url + '/synapses', options)
-            .map(res => res.json());
+            .map(res => this.JSONToSynapse(res.json()))
+
     }
 
     runSynapse(synapse: Synapse,

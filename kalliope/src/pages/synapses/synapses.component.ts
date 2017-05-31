@@ -28,38 +28,28 @@ export class SynapsesPage {
     }
 
     ngOnInit() {
-        console.log('ICI');
         this.getSynapse();
     }
 
-    JSONToSynapse(synapsesJSON: any) {
-        for (var i=0; i< synapsesJSON.length; i++) {
-            if ('name' in synapsesJSON[i]) {
-                var synapse = new Synapse(synapsesJSON[i]['name']);
-                this.synapses.push(synapse);
-            }
-        }
-    }
-
     getSynapse() {
-        this.synapseService.getSynapses(this.settings)
-            .subscribe(
-                response => {
-                    console.log("[SynapsesPage] fetched synapses list : " + JSON.stringify(response.synapses));
-                    this.JSONToSynapse(response.synapses);
-                },
-                err => {
-                    console.log("[SynapsesPage] Error fetching the synapses list ! : "+ err);
-                    this.synapses = [];
-                }
-            );
+        this.synapseService.getSynapses(this.settings).subscribe(
+            response => {
+                console.log("[SynapsesPage] fetched synapses list : " + JSON.stringify(response));
+                this.synapses = response;
+            },
+            err => {
+                console.log("[SynapsesPage] Error fetching the synapses list ! : "+ err);
+                this.synapses = [];
+            }
+        );
     }
 
     runSynapse(synapse) {
         this.synapseService.runSynapse(synapse, this.settings)
-            .subscribe(response => {
-                console.log("[SynapsesPage] Response from running synapse : " + JSON.stringify(response));
-        });
+            .subscribe(
+                response => {
+                    console.log("[SynapsesPage] Response from running synapse : " + JSON.stringify(response));
+            })
     }
 }
 
