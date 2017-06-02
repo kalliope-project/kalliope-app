@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 
 import {Settings} from "../settings/settings";
 import {Synapse} from "./synapse";
+import {Order} from "./order";
 
 @Injectable()
 export class SynapsesService {
@@ -22,9 +23,19 @@ export class SynapsesService {
         let synapses : Array<Synapse> = [];
         if ('synapses' in responseJSON) {
             let synapsesJSON = responseJSON.synapses;
-            for (var i = 0; i < synapsesJSON.length; i++) {
-                if ('name' in synapsesJSON[i]) {
-                    var synapse = new Synapse(synapsesJSON[i]['name']);
+            for (let synap of synapsesJSON) {
+                if ('name' in synap) {
+                    let synapseName = synap['name'];
+                    let synapseOrdersList: Array<Order> = [];
+                    if ('signals' in synap) {
+                        for (let signal of synap['signals']){
+                            if ('order' in signal) {
+                                let order = new Order(signal['order']);
+                                synapseOrdersList.push(order);
+                            }
+                        }
+                    }
+                    let synapse = new Synapse(synapseName, synapseOrdersList);
                     synapses.push(synapse);
                 }
             }
@@ -46,7 +57,16 @@ export class SynapsesService {
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
-        return this.http.post('http://'+settings.url +  '/synapses/start/id/' + synapse.name, undefined, options)
+
+
+        let param_dict = {}
+        // for (let order of synapse.orders) {
+        //     param_dict[order.name] = order.value;
+        // }
+        console.log('coucou le param_dict : '+ JSON.stringify(param_dict));
+        let body = JSON.stringify(param_dict); // Stringify payload
+
+        return this.http.post('http://'+settings.url +  '/synapses/start/id/' + synapse.name, body, options)
             .map(res => res.json())
     }
 }
