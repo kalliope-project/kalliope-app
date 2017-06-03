@@ -26,16 +26,15 @@ export class SynapsesService {
             for (let synap of synapsesJSON) {
                 if ('name' in synap) {
                     let synapseName = synap['name'];
-                    let synapseOrdersList: Array<Order> = [];
+                    let synapseOrder: Order;
                     if ('signals' in synap) {
                         for (let signal of synap['signals']){
                             if ('order' in signal) {
-                                let order = new Order(signal['order']);
-                                synapseOrdersList.push(order);
+                                synapseOrder = new Order(signal['order']);
                             }
                         }
                     }
-                    let synapse = new Synapse(synapseName, synapseOrdersList);
+                    let synapse = new Synapse(synapseName, synapseOrder);
                     synapses.push(synapse);
                 }
             }
@@ -58,15 +57,14 @@ export class SynapsesService {
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
 
-
-        let param_dict = {}
-        // for (let order of synapse.orders) {
-        //     param_dict[order.name] = order.value;
+        // TODO kalliope Core v0.4.4 -> API does not handle Param POST !!
+        // let param_dict = {}
+        // for (let param of synapse.order.params) {
+        //     param_dict[param.name] = param.value;
         // }
-        console.log('coucou le param_dict : '+ JSON.stringify(param_dict));
-        let body = JSON.stringify(param_dict); // Stringify payload
+        // let body = JSON.stringify(param_dict); // Stringify payload
 
-        return this.http.post('http://'+settings.url +  '/synapses/start/id/' + synapse.name, body, options)
+        return this.http.post('http://'+settings.url +  '/synapses/start/id/' + synapse.name, undefined, options)
             .map(res => res.json())
     }
 }
