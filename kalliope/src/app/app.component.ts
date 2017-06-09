@@ -1,7 +1,9 @@
+import {VoicePage} from "../pages/voice/voice.component";
 import { SynapsesPage } from '../pages/synapses/synapses.component';
 import { ChatPage } from './../pages/chat/chat.component';
 import { OrdersPage } from './../pages/orders/orders.component';
 import { SettingsPage } from './../pages/settings/settings.component';
+
 import {Component, ViewChild} from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
@@ -21,6 +23,7 @@ export class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
+            { title: 'Voice', component: VoicePage },
             { title: 'Orders', component: OrdersPage },
             { title: 'Synapses', component: SynapsesPage },
             { title: 'Chat', component: ChatPage },

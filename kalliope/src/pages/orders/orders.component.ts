@@ -22,7 +22,6 @@ export class OrdersPage {
     settings: Settings;
     orders: string[];
     nav: NavController;
-    loader;
 
     constructor(
         public navCtrl: NavController,

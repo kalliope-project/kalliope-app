@@ -17,10 +17,14 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
 import {HttpModule} from '@angular/http';
+import {VoicePage} from "../pages/voice/voice.component";
+
+import {MediaCapture, CaptureAudioOptions, CaptureError, MediaFile} from '@ionic-native/media-capture';
 
 @NgModule({
     declarations: [
         MyApp,
+        VoicePage,
         SynapsesPage,
         SettingsPage,
         OrdersPage,
@@ -35,6 +39,7 @@ import {HttpModule} from '@angular/http';
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
+        VoicePage,
         SynapsesPage,
         SettingsPage,
         OrdersPage,
@@ -48,6 +53,7 @@ import {HttpModule} from '@angular/http';
         SynapsesService,
         OrdersService,
         ChatService,
+        MediaCapture,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })
