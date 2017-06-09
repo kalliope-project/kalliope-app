@@ -3,7 +3,6 @@ import { SettingsService } from './../settings/settings.service';
 import { Settings } from './../settings/settings';
 import { OrdersService } from './../orders/orders.service';
 import { ChatService } from './chat.service';
-import { OrderResponse } from './../../models/orderResponse';
 import { ChatMessage } from './../../models/ChatMessage';
 import {Component} from '@angular/core';
 import { NavController, LoadingController, ToastController } from 'ionic-angular';
