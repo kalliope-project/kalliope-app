@@ -8,7 +8,7 @@ import 'rxjs/Rx';
 
 import {Settings} from "../settings/settings";
 import {Synapse} from "./synapse";
-import {Observable} from "rxjs/Observable";
+import {Order} from "./order";
 
 @Injectable()
 export class SynapsesService {
@@ -23,9 +23,18 @@ export class SynapsesService {
         let synapses : Array<Synapse> = [];
         if ('synapses' in responseJSON) {
             let synapsesJSON = responseJSON.synapses;
-            for (var i = 0; i < synapsesJSON.length; i++) {
-                if ('name' in synapsesJSON[i]) {
-                    var synapse = new Synapse(synapsesJSON[i]['name']);
+            for (let synap of synapsesJSON) {
+                if ('name' in synap) {
+                    let synapseName = synap['name'];
+                    let synapseOrder: Order;
+                    if ('signals' in synap) {
+                        for (let signal of synap['signals']){
+                            if ('order' in signal) {
+                                synapseOrder = new Order(signal['order']);
+                            }
+                        }
+                    }
+                    let synapse = new Synapse(synapseName, synapseOrder);
                     synapses.push(synapse);
                 }
             }
@@ -47,6 +56,14 @@ export class SynapsesService {
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
+
+        // TODO kalliope Core v0.4.4 -> API does not handle Param POST !!
+        // let param_dict = {}
+        // for (let param of synapse.order.params) {
+        //     param_dict[param.name] = param.value;
+        // }
+        // let body = JSON.stringify(param_dict); // Stringify payload
+
         return this.http.post('http://'+settings.url +  '/synapses/start/id/' + synapse.name, undefined, options)
             .map(res => res.json())
     }

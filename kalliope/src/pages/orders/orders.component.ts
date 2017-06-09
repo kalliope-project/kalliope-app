@@ -1,7 +1,6 @@
 import { NewOrderPage } from './../NewOrder/NewOrder.component';
 import { ChatPage } from './../chat/chat.component';
 import { OrdersService } from './orders.service';
-import { SettingsPage } from './../settings/settings.component';
 import { SettingsService } from './../settings/settings.service';
 import { Settings } from './../settings/settings';
 import {Component} from '@angular/core';

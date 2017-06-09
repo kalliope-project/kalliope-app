@@ -1,6 +1,4 @@
-/**
- * Created by monf on 26/05/17.
- */
+
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {SynapsesService} from './synapses.service'
@@ -9,6 +7,7 @@ import {SynapsesService} from './synapses.service'
 import { SettingsService } from './../settings/settings.service';
 import { Settings } from './../settings/settings';
 import {Synapse} from "./synapse";
+import {Order} from "./order";
 
 @Component({
     selector: 'page-synapses',
@@ -19,6 +18,7 @@ export class SynapsesPage {
 
     synapses: Array<Synapse> = [];
     settings: Settings;
+    selectedOrder:Order;
 
     constructor(public navCtrl: NavController,
                 private synapseService: SynapsesService,

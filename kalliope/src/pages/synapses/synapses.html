@@ -1,18 +1,24 @@
 <ion-header>
-  <ion-navbar>
+  <ion-toolbar color="green_material">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Synapses</ion-title>
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list>
-        <ion-item *ngFor="let synapse of synapses">
-            <button ion-button full large (click)="runSynapse(synapse)">
-                <h2>{{synapse.name}}</h2>
-            </button>
-        </ion-item>
-    </ion-list>
+<ion-content class="main_color" padding>
+
+    <div *ngFor="let synapse of synapses">
+        <ion-card *ngIf="synapse.order.params.length == 0">
+            <ion-card-header>
+                <!--Displaying only synapses without params because API does not handle POST with params !-->
+                <button ion-button clear item-right icon-only (click)="runSynapse(synapse)">
+                    {{synapse.name}}
+                    <ion-icon name="play"></ion-icon>
+                </button>
+            </ion-card-header>
+        </ion-card>
+    </div>
+
 </ion-content>
