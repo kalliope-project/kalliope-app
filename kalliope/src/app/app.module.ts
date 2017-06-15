@@ -19,7 +19,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {HttpModule} from '@angular/http';
 import {VoicePage} from "../pages/voice/voice.component";
 
-import {MediaCapture, CaptureAudioOptions, CaptureError, MediaFile} from '@ionic-native/media-capture';
+import {MediaCapture} from '@ionic-native/media-capture';
 import {VoiceService} from "../pages/voice/voice.service";
 
 @NgModule({

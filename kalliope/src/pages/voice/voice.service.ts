@@ -2,7 +2,7 @@ import { Settings } from './../settings/settings';
 import 'rxjs/Rx';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+// import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class VoiceService {
