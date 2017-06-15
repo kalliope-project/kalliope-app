@@ -15,7 +15,7 @@ export class OrdersService {
     }
 
     postOrder(order: string, settings: Settings): Observable <OrderResponse>{
-        console.log("[OrdersService] call getVersion with URL: " + settings.url + ",user: " + settings.username, ",pass:" + settings.password);
+        console.log("[OrdersService] call postOrder with URL: " + settings.url + ",user: " + settings.username, ",pass:" + settings.password);
 
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));

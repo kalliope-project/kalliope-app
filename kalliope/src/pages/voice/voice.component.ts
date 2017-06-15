@@ -2,7 +2,11 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 
-import {MediaCapture, CaptureAudioOptions, CaptureError, MediaFile} from '@ionic-native/media-capture';
+import {MediaCapture, /*CaptureAudioOptions,*/ CaptureError, MediaFile} from '@ionic-native/media-capture';
+import {VoiceService} from "./voice.service";
+import {SettingsService} from "../settings/settings.service";
+import {Settings} from "../settings/settings";
+import {SettingsPage} from "../settings/settings.component";
 
 @Component({
     selector: 'page-synapses',
@@ -11,9 +15,20 @@ import {MediaCapture, CaptureAudioOptions, CaptureError, MediaFile} from '@ionic
 
 export class VoicePage {
 
-    constructor(public navCtrl: NavController,
-                private mediaCapture: MediaCapture) {
+    settings: Settings;
 
+    constructor(public navCtrl: NavController,
+                private mediaCapture: MediaCapture,
+                private voiceService: VoiceService,
+                public settingsService: SettingsService,) {
+
+        // load settings from storage
+        this.settings = settingsService.getDefaultSettings();
+        if (this.settings == null) {
+            this.navCtrl.setRoot(SettingsPage);
+        }else{
+            console.log("Settings loaded. Url: " + this.settings.url);
+        }
     }
 
     ngOnInit() {
@@ -24,7 +39,10 @@ export class VoicePage {
     recordVoice() {
         this.mediaCapture.captureAudio()
             .then(
-                (data: MediaFile[]) => console.log(data),
+                (data: MediaFile[]) => {
+                    this.voiceService.postVoice(data, this.settings)
+                        .subscribe(orderResponse => console.log('orderResponse => '+orderResponse));
+                },
                 (err: CaptureError) => console.log(err)
             );
     }

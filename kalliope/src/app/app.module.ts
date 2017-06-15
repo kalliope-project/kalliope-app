@@ -20,6 +20,7 @@ import {HttpModule} from '@angular/http';
 import {VoicePage} from "../pages/voice/voice.component";
 
 import {MediaCapture, CaptureAudioOptions, CaptureError, MediaFile} from '@ionic-native/media-capture';
+import {VoiceService} from "../pages/voice/voice.service";
 
 @NgModule({
     declarations: [
@@ -51,6 +52,7 @@ import {MediaCapture, CaptureAudioOptions, CaptureError, MediaFile} from '@ionic
         SplashScreen,
         SettingsService,
         SynapsesService,
+        VoiceService,
         OrdersService,
         ChatService,
         MediaCapture,
