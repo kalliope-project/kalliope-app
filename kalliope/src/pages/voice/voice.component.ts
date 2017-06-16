@@ -7,6 +7,7 @@ import {VoiceService} from "./voice.service";
 import {SettingsService} from "../settings/settings.service";
 import {Settings} from "../settings/settings";
 import {SettingsPage} from "../settings/settings.component";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'page-synapses',
@@ -27,7 +28,7 @@ export class VoicePage {
         if (this.settings == null) {
             this.navCtrl.setRoot(SettingsPage);
         }else{
-            console.log("Settings loaded. Url: " + this.settings.url);
+            console.log("[VoicePage] Settings loaded. Url: " + this.settings.url);
         }
     }
 
@@ -40,8 +41,15 @@ export class VoicePage {
         this.mediaCapture.captureAudio()
             .then(
                 (data: MediaFile[]) => {
-                    this.voiceService.postVoice(data, this.settings)
-                        .subscribe(orderResponse => console.log('orderResponse => '+orderResponse));
+                    console.log('[recordVoice] the MediaFile size : '+ data.length);
+                    console.log('[recordVoice] the MediaFile first element : '+ data[0]);
+                    return this.voiceService.postVoice(data[0], this.settings)
+                        .catch((error) => {
+                            console.log('error: '+error.error);
+                            console.log('status: '+error.status);
+                            Observable.throw(error)
+                        });
+                        //.subscribe(orderResponse => console.log('orderResponse => '+orderResponse));
                 },
                 (err: CaptureError) => console.log(err)
             );

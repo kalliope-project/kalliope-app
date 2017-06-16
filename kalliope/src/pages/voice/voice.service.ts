@@ -1,32 +1,31 @@
 import { Settings } from './../settings/settings';
 import 'rxjs/Rx';
-import {Http, Headers, RequestOptions} from '@angular/http';
+// import {Http, Headers, RequestOptions} from '@angular/http';
+import { HTTP } from '@ionic-native/http';
 import { Injectable } from '@angular/core';
-// import { Observable } from 'rxjs/Observable';
+import {MediaFile} from "@ionic-native/media-capture";
 
 @Injectable()
 export class VoiceService {
 
-    constructor(private httpService: Http) {
+    constructor(private httpService: HTTP) {
 
     }
 
-    postVoice(voiceFile: any, settings: Settings)/*: Observable <VoiceResponse> */ {
-        console.log("[VoiceService] call postVocie with URL: " + settings.url + ",user: " + settings.username, ",pass:" + settings.password);
+    postVoice(voiceFile: MediaFile, settings: Settings) {
+        console.log("[VoiceService] call postVocie with URL: " + settings.url + ",user: " + settings.username +",pass:" + settings.password);
+        console.log("[VoiceService] call postVocie with FIle: " + voiceFile.toString());
+        console.log("[VoiceService] call postVocie with voiceFile.type: " + voiceFile.type);
+        console.log("[VoiceService] call postVocie with voiceFile.fullpath: " + voiceFile.fullPath);
 
-        let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
-        headers.append('Content-Type', 'multipart/form-data');
-        headers.append('Accept', 'application/json');
-
-        const options = new RequestOptions({
-            headers: headers
-        });
+        this.httpService.useBasicAuth(settings.username, settings.password);
+        this.httpService.setHeader("Content-Type", "multipart/form-data");
+        // let headers = new Headers();
+        // headers.set('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
+        // headers.set("Content-Type", "multipart/form-data");
 
         let url_to_call: string = "http://" + settings.url + "/synapses/start/order";
-        let data =  this.httpService.post(url_to_call, voiceFile, options).map(res => res.json());
-
+        let data =  this.httpService.uploadFile(url_to_call, {}, {}, voiceFile.fullPath, 'file');
         return data;
     }
-
 }
