@@ -20,6 +20,7 @@ import {HttpModule} from '@angular/http';
 import {VoicePage} from "../pages/voice/voice.component";
 
 import {MediaCapture} from '@ionic-native/media-capture';
+import { HTTP } from '@ionic-native/http';;
 import {VoiceService} from "../pages/voice/voice.service";
 
 @NgModule({
@@ -56,6 +57,7 @@ import {VoiceService} from "../pages/voice/voice.service";
         OrdersService,
         ChatService,
         MediaCapture,
+        HTTP,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })
