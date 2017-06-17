@@ -1,8 +1,8 @@
-import { NewOrderPage } from './../NewOrder/NewOrder.component';
-import { ChatPage } from './../chat/chat.component';
-import { OrdersService } from './orders.service';
-import { SettingsService } from './../settings/settings.service';
-import { Settings } from './../settings/settings';
+import {NewOrderPage} from './../NewOrder/NewOrder.component';
+import {ChatPage} from './../chat/chat.component';
+import {OrdersService} from './orders.service';
+import {SettingsService} from './../settings/settings.service';
+import {Settings} from './../settings/settings';
 import {Component} from '@angular/core';
 import {
     ActionSheetController,
@@ -23,23 +23,21 @@ export class OrdersPage {
     orders: string[];
     nav: NavController;
 
-    constructor(
-        public navCtrl: NavController,
-        public settingsService: SettingsService,
-        public modalCtrl: ModalController,
-        public menu: MenuController,
-        private app: App,
-        private ordersService: OrdersService,
-        public toastCtrl: ToastController,
-        public actionSheetCtrl: ActionSheetController,
-        public loadingCtrl: LoadingController) {
+    constructor(public navCtrl: NavController,
+                public settingsService: SettingsService,
+                public modalCtrl: ModalController,
+                public menu: MenuController,
+                private app: App,
+                private ordersService: OrdersService,
+                public toastCtrl: ToastController,
+                public actionSheetCtrl: ActionSheetController,
+                public loadingCtrl: LoadingController) {
 
         // get the nac controller used to switch pages
         this.nav = this.app.getActiveNav();
 
         // load orders
         this.refreshOrders();
-
     }
 
     executeOrder(order) {
@@ -51,15 +49,15 @@ export class OrdersPage {
         });
     }
 
-    addNewOrder(){
+    addNewOrder() {
         let modalNewOrder = this.modalCtrl.create(NewOrderPage);
         modalNewOrder.present();
         modalNewOrder.onDidDismiss(data => this.refreshOrders())
     }
 
-    refreshOrders(){
+    refreshOrders() {
         this.orders = this.ordersService.loadOrders()
-        if (this.orders == null){
+        if (this.orders == null) {
             this.orders = [];
         }
     }
@@ -105,7 +103,7 @@ export class OrdersPage {
 
     }
 
-    deleteOrder(order){
+    deleteOrder(order) {
         // delete the order
         var index = this.orders.indexOf(order, 0);
         if (index > -1) {
@@ -113,10 +111,9 @@ export class OrdersPage {
         }
         // save the new list
         this.ordersService.saveOrders(this.orders);
-
     }
 
-    updateOrder(order){
+    updateOrder(order) {
         let modalNewOrder = this.modalCtrl.create(NewOrderPage, {orderToUpdate: order});
         modalNewOrder.present();
         modalNewOrder.onDidDismiss(data => this.refreshOrders())

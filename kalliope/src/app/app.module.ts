@@ -1,32 +1,33 @@
-import { NewOrderPage } from './../pages/NewOrder/NewOrder.component';
-import { ChatService } from './../pages/chat/chat.service';
-import { ChatPage } from './../pages/chat/chat.component';
-import { OrdersService } from './../pages/orders/orders.service';
-import { SynapsesService } from './../pages/synapses/synapses.service';
-import { OrdersPage } from './../pages/orders/orders.component';
-import { SettingsService } from './../pages/settings/settings.service';
-import { SettingsPage } from './../pages/settings/settings.component';
+// Core
 import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
-
-import {SynapsesPage} from '../pages/synapses/synapses.component'
-
+import {HttpModule} from '@angular/http';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
-import {HttpModule} from '@angular/http';
-import {VoicePage} from "../pages/voice/voice.component";
+// Pages
+import {NewOrderPage} from './../pages/NewOrder/NewOrder.component';
+import {OrdersPage} from './../pages/orders/orders.component';
+import {ChatPage} from './../pages/chat/chat.component';
+import {SettingsPage} from './../pages/settings/settings.component';
+import {SynapsesPage} from '../pages/synapses/synapses.component'
 
+// Services
+import {OrdersService} from './../pages/orders/orders.service';
+import {ChatService} from './../pages/chat/chat.service';
+import {SynapsesService} from './../pages/synapses/synapses.service';
+import {SettingsService} from './../pages/settings/settings.service';
+import {VoiceService} from "../pages/chat/voice.service";
+
+// ionic Cordova plugins
 import {MediaCapture} from '@ionic-native/media-capture';
-import { HTTP } from '@ionic-native/http';;
-import {VoiceService} from "../pages/voice/voice.service";
+import {HTTP} from '@ionic-native/http';
 
 @NgModule({
     declarations: [
         MyApp,
-        VoicePage,
         SynapsesPage,
         SettingsPage,
         OrdersPage,
@@ -41,7 +42,6 @@ import {VoiceService} from "../pages/voice/voice.service";
     bootstrap: [IonicApp],
     entryComponents: [
         MyApp,
-        VoicePage,
         SynapsesPage,
         SettingsPage,
         OrdersPage,

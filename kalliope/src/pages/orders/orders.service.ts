@@ -71,11 +71,8 @@ export class OrdersService {
 
             matchedSynapses.push(matchedSynapse)
         }
-
         orderResponse.matchedSynapses = matchedSynapses;
         return orderResponse;
-
-
     }
 
 }

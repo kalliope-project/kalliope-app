@@ -1,6 +1,6 @@
-import { OrdersService } from './../orders/orders.service';
-import { NavController, ViewController, NavParams } from 'ionic-angular';
-import { Component } from '@angular/core';
+import {OrdersService} from './../orders/orders.service';
+import {NavController, ViewController, NavParams} from 'ionic-angular';
+import {Component} from '@angular/core';
 
 
 @Component({
@@ -15,24 +15,24 @@ export class NewOrderPage {
     buttonText: string;
 
     constructor(public navCtrl: NavController, public viewCtrl: ViewController,
-    private ordersService: OrdersService, private params: NavParams){
+                private ordersService: OrdersService, private params: NavParams) {
 
         // if we have received an order to update, place it into he view
         this.orderToUpdate = params.get('orderToUpdate');
-        if (this.orderToUpdate != null){
+        if (this.orderToUpdate != null) {
             this.newOrder = this.orderToUpdate;
             this.updateCall = true;
         }
 
         // load current orders
         this.currentOrders = this.ordersService.loadOrders();
-        if (this.currentOrders == null){
+        if (this.currentOrders == null) {
             this.currentOrders = [];
         }
 
         // test inside the button
         this.buttonText = "Add"
-        if (this.updateCall){
+        if (this.updateCall) {
             this.buttonText = "Update"
         }
 
@@ -42,13 +42,13 @@ export class NewOrderPage {
         this.viewCtrl.dismiss();
     }
 
-    saveOrder(){
+    saveOrder() {
         console.log("[NewOrderPage] Saving new order " + this.newOrder)
-        if (this.updateCall){
+        if (this.updateCall) {
             console.log("update")
             // this is an update of an existing order
             this.updateOrder(this.newOrder, this.orderToUpdate);
-        }else{
+        } else {
             this.currentOrders.push(this.newOrder);
             this.ordersService.saveOrders(this.currentOrders);
         }
@@ -56,7 +56,7 @@ export class NewOrderPage {
         this.dismiss();
     }
 
-    updateOrder(newOrder, oldOrder){
+    updateOrder(newOrder, oldOrder) {
         // delete the order
         var index = this.currentOrders.indexOf(oldOrder, 0);
         if (index > -1) {

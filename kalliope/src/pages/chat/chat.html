@@ -30,9 +30,11 @@
         <ion-input [(ngModel)]="newMessage" placeholder="Chat here"></ion-input>
         <ion-buttons end>
         <button ion-button icon-right color="green_material" (click)="sendMessage()">
-            Send
             <ion-icon name="send"></ion-icon>
         </button>
+            <button ion-button icon-only icon-right color="green_material" (click)="recordVoice()">
+                <ion-icon name="mic"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-toolbar>
 </ion-footer>

@@ -1,5 +1,5 @@
-import { ChatMessage } from './../../models/ChatMessage';
-import { Injectable } from '@angular/core';
+import {ChatMessage} from './../../models/ChatMessage';
+import {Injectable} from '@angular/core';
 
 
 @Injectable()
@@ -13,7 +13,7 @@ export class ChatService {
         return localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
     }
 
-    loadeChatMessages():Array<ChatMessage>{
+    loadeChatMessages(): Array<ChatMessage> {
         return JSON.parse(localStorage.getItem('chatMessages'));
     }
 }
