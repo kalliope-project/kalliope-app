@@ -8,8 +8,8 @@ import {Component} from '@angular/core';
 import {NavController, LoadingController, ToastController} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {CaptureError, MediaCapture, MediaFile} from "@ionic-native/media-capture";
-import {Observable} from "rxjs/Observable";
 import {VoiceService} from "./voice.service";
+import {OrderResponse} from "../../models/orderResponse";
 
 @Component({
     selector: 'page-chat',
@@ -66,14 +66,15 @@ export class ChatPage {
     }
 
     loadNewMessage(orderResponse, myOrder) {
-
+        console.log("[ChatPage] loadNewMessage: OrderResponse -> "+JSON.stringify(orderResponse));
+        console.log("[ChatPage] loadNewMessage: myOrder -> "+ myOrder);
         // add the user order
         let myMessage = new ChatMessage();
         myMessage.sender = "Me";
         if (myOrder !== undefined) {
             myMessage.message = myOrder;
         } else { // myOrder is undefined
-            myMessage.message = orderResponse.user_order;
+            myMessage.message = orderResponse.userOrder;
         }
         this.chatMessages.push(myMessage);
 
@@ -90,22 +91,27 @@ export class ChatPage {
         this.chatService.saveChatMessages(this.chatMessages);
     }
 
-    cleanMessages() {
-        this.chatMessages = [];
-        this.chatService.saveChatMessages(this.chatMessages);
+    // Loader management
+    startLoader() {
+        // prepare loader
+        this.loader = this.loadingCtrl.create({
+            content: "Please wait...",
+            duration: 3000
+        });
+
+        // start waiting gif
+        this.loader.present();
+    }
+
+    stopLoader() {
+        // stop the loader
+        this.loader.dismiss();
     }
 
     sendMessage() {
         if (this.newMessage != null) {
-            // prepare loader
-            this.loader = this.loadingCtrl.create({
-                content: "Please wait...",
-                duration: 3000
-            });
-
-            // start waiting gif
-            this.loader.present();
-
+            //start the loader
+            this.startLoader();
             // execute the order
             this.ordersService.postOrder(this.newMessage, this.settings).subscribe(
                 orderResponse => this.processOrderResponse(orderResponse, this.newMessage),
@@ -113,6 +119,7 @@ export class ChatPage {
         }
     }
 
+    // Screen
     handleError(error) {
         this.presentToast(error);
         console.log(error);
@@ -127,9 +134,14 @@ export class ChatPage {
         toast.present();
     }
 
+    cleanMessages() {
+        this.chatMessages = [];
+        this.chatService.saveChatMessages(this.chatMessages);
+    }
+
+    // Start Process
     processOrderResponse(orderResponse, sentMessage) {
-        // stop the loader
-        this.loader.dismiss();
+        this.stopLoader();
         // clean the input
         this.newMessage = "";
         // reload the list with the response
@@ -141,14 +153,20 @@ export class ChatPage {
         this.mediaCapture.captureAudio()
             .then(
                 (data: MediaFile[]) => {
+                    this.startLoader();
                     return this.voiceService.postVoice(data[0], this.settings)
                         .catch((error) => {
                             console.log('[ChatPage] recordVoice: error -> ' + error.error);
-                            console.log('[ChatPage] recordVoice: status -> ' + error.status);
-                            Observable.throw(error);
+                            this.handleError(error);
+                            this.stopLoader();
                         })
-                        .then(orderResponse => this.loadNewMessage(orderResponse, undefined));
-                    //.subscribe(orderResponse => console.log('orderResponse => '+orderResponse));
+                        .then(data => {
+                            console.log('[ChatPage] recordVoice: raw data -> '+ JSON.stringify(data));
+                            let orderResponse = OrderResponse.responseToObject(JSON.parse(data['data']));
+                            console.log('[ChatPage] recordVoice: orderResponse -> '+ JSON.stringify(orderResponse));
+                            this.loadNewMessage(orderResponse, undefined);
+                            this.stopLoader();
+                        });
                 },
                 (err: CaptureError) => console.log(err)
             );
