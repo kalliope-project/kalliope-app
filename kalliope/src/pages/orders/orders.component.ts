@@ -14,6 +14,10 @@ import {
     LoadingController
 } from 'ionic-angular';
 
+/**
+ * Component and Behaviour of the Order page
+ * @class OrdersPage
+ */
 @Component({
     selector: 'page-orders',
     templateUrl: 'orders.html'
@@ -23,6 +27,18 @@ export class OrdersPage {
     orders: string[];
     nav: NavController;
 
+    /**
+     * @constructor
+     * @param public navCtrl {NavController}
+     * @param public settingsService {SettingsService} The service to handle settings
+     * @param public modalCtrl {ModalController} Controller to manage the Modal
+     * @param public menu {MenuController} Controller to manage the Menu
+     * @param private app {App}
+     * @param private ordersService {OrdersService} Service for orders
+     * @param public toastCtrl {ToastController} Controller to manage Toast
+     * @param public actionSheetCtrl {ActionSheetController} Controller to manage ActionSheet
+     * @param public loadingCtrl {LoadingController} Controller to manage Loading
+     */
     constructor(public navCtrl: NavController,
                 public settingsService: SettingsService,
                 public modalCtrl: ModalController,
@@ -40,7 +56,11 @@ export class OrdersPage {
         this.refreshOrders();
     }
 
-    executeOrder(order) {
+    /**
+     * Execute the given order
+     * @param order {string} the order to execute.
+     */
+    executeOrder(order: string) {
         /**
          * Execute the order on kalliope
          */
@@ -49,12 +69,18 @@ export class OrdersPage {
         });
     }
 
+    /**
+     * Add a new order into the orders list.
+     */
     addNewOrder() {
         let modalNewOrder = this.modalCtrl.create(NewOrderPage);
         modalNewOrder.present();
         modalNewOrder.onDidDismiss(data => this.refreshOrders())
     }
 
+    /**
+     * Refresh the orders list.
+     */
     refreshOrders() {
         this.orders = this.ordersService.loadOrders()
         if (this.orders == null) {
@@ -62,7 +88,11 @@ export class OrdersPage {
         }
     }
 
-    presentActionSheet(order) {
+    /**
+     * UI Component to let the user 'Play, Edit, Delete, Cancel' a given order.
+     * @param order {string} the given order.
+     */
+    presentActionSheet(order: string) {
         let actionSheet = this.actionSheetCtrl.create({
             title: order,
             buttons: [
@@ -103,7 +133,11 @@ export class OrdersPage {
 
     }
 
-    deleteOrder(order) {
+    /**
+     * Delete an order.
+     * @param order {string} the given order to delete
+     */
+    deleteOrder(order: string) {
         // delete the order
         var index = this.orders.indexOf(order, 0);
         if (index > -1) {
@@ -113,7 +147,11 @@ export class OrdersPage {
         this.ordersService.saveOrders(this.orders);
     }
 
-    updateOrder(order) {
+    /**
+     * Update an order
+     * @param order {string} the given order to update.
+     */
+    updateOrder(order: string) {
         let modalNewOrder = this.modalCtrl.create(NewOrderPage, {orderToUpdate: order});
         modalNewOrder.present();
         modalNewOrder.onDidDismiss(data => this.refreshOrders())

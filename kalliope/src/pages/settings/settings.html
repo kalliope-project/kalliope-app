@@ -1,33 +1,34 @@
 <ion-header>
-  <ion-toolbar color="green_material">
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Settings</ion-title>
-  </ion-toolbar>
+    <ion-toolbar color="green_material">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Settings</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content class="main_color" padding>
-  <ion-list>
-    <ion-item>
-      <ion-label stacked>URL</ion-label>
-      <ion-input  [(ngModel)]="settings.url"  type="text"></ion-input>
-    </ion-item>
+    <ion-list>
+        <ion-item>
+            <ion-label stacked>URL</ion-label>
+            <ion-input [(ngModel)]="settings.url" type="text"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Username</ion-label>
-      <ion-input  [(ngModel)]="settings.username" type="text"></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label stacked>Username</ion-label>
+            <ion-input [(ngModel)]="settings.username" type="text"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Password</ion-label>
-      <ion-input [(ngModel)]="settings.password" type="password"></ion-input>
-    </ion-item>
+        <ion-item>
+            <ion-label stacked>Password</ion-label>
+            <ion-input [(ngModel)]="settings.password" type="password"></ion-input>
+        </ion-item>
 
-  </ion-list>
+    </ion-list>
 
-  <button *ngIf="!settingsOK" ion-button block color="green_material" (click)="testConnection()">Test connection</button>
-  <button *ngIf="settingsOK" ion-button block color="secondary" (click)="saveSettings()">Save</button>
+    <button *ngIf="!settingsOK" ion-button block color="green_material" (click)="testConnection()">Test connection
+    </button>
+    <button *ngIf="settingsOK" ion-button block color="secondary" (click)="saveSettings()">Save</button>
 
 
 </ion-content>

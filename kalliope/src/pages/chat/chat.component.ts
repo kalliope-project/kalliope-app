@@ -11,6 +11,9 @@ import {CaptureError, MediaCapture, MediaFile} from "@ionic-native/media-capture
 import {VoiceService} from "./voice.service";
 import {OrderResponse} from "../../models/orderResponse";
 
+/**
+ * @class ChatPage: Components and behaviour Handlers of the Chat page.
+ * */
 @Component({
     selector: 'page-chat',
     templateUrl: 'chat.html'
@@ -24,7 +27,20 @@ export class ChatPage {
     settings: Settings;
     nav: NavController;
 
-    /** Constructor */
+    /**
+     * Chat Page constructor
+     * @constructor
+     * @param public navCtrl {NavController}
+     * @param private navParams {NavParams}
+     * @param private ordersService {OrdersService} the service managing the orders
+     * @param public loadingCtrl {LoadingController} the controller to provide the Loading component
+     * @param public toastCtrl {ToastController} the controller to provide the toast component
+     * @param private mediaCapture {MediaCapture} the service to manage the media (audio) capture. (Cordova plugin)
+     * @param public settingsService {SettingsService} the service managing the settings
+     * @param private voiceService {VoiceService} the service managing the captured voice (audio)
+     * @param private chatService {ChatService} the service managing the chat
+     *
+     */
     constructor(public navCtrl: NavController,
                 private navParams: NavParams,
                 private ordersService: OrdersService,
@@ -36,7 +52,7 @@ export class ChatPage {
                 private chatService: ChatService) {
 
         // load the default chatMessages
-        this.chatMessages = chatService.loadeChatMessages();
+        this.chatMessages = chatService.loadChatMessages();
         if (this.chatMessages == null) {
             // no chat message yet. start a new list
             this.chatMessages = [];
@@ -50,24 +66,21 @@ export class ChatPage {
             console.log("Settings loaded. Url: " + this.settings.url);
         }
 
-        // let orderResponse: OrderResponse = navParams.get('orderResponse');
-        // // myOrder is the order from the user
-        // let myOrder: string = navParams.get('myOrder');
-        // if (orderResponse != null){
-        //     this.loadNewMessage(orderResponse, myOrder);
-        // }
-
         let orderFromOrderPage = navParams.get('orderFromOrderPage');
         if (orderFromOrderPage != null) {    // we received an order to process
             this.newMessage = orderFromOrderPage;
             this.sendMessage();
         }
-
     }
 
-    loadNewMessage(orderResponse, myOrder) {
-        console.log("[ChatPage] loadNewMessage: OrderResponse -> "+JSON.stringify(orderResponse));
-        console.log("[ChatPage] loadNewMessage: myOrder -> "+ myOrder);
+    /**
+     * Display the User ("Me") and Kalliope interactions into the chat page.
+     * @param orderResponse {OrderResponse} the OrderResponse comming back from the kalliopeCore.
+     * @param myOrder {string} the order provided by the user, undefined if user recorded an audio order.
+     */
+    loadNewMessage(orderResponse: OrderResponse, myOrder: string) {
+        console.log("[ChatPage] loadNewMessage: OrderResponse -> " + JSON.stringify(orderResponse));
+        console.log("[ChatPage] loadNewMessage: myOrder -> " + myOrder);
         // add the user order
         let myMessage = new ChatMessage();
         myMessage.sender = "Me";
@@ -91,7 +104,11 @@ export class ChatPage {
         this.chatService.saveChatMessages(this.chatMessages);
     }
 
-    // Loader management
+    // Loader management ---------------------------
+
+    /**
+     * Using the {LoadingCtrl} display a waiting message during 3000ms.
+     */
     startLoader() {
         // prepare loader
         this.loader = this.loadingCtrl.create({
@@ -103,11 +120,17 @@ export class ChatPage {
         this.loader.present();
     }
 
+    /**
+     * Stopping the {LoadingCtrl} previously started by the 'startLoader' method
+     */
     stopLoader() {
         // stop the loader
         this.loader.dismiss();
     }
 
+    /**
+     * Send the message provided by the user.
+     */
     sendMessage() {
         if (this.newMessage != null) {
             //start the loader
@@ -119,13 +142,21 @@ export class ChatPage {
         }
     }
 
-    // Screen
-    handleError(error) {
+    // Screen ---------------------------
+    /**
+     * Display a provided error using the {ToastController}
+     * @param error {string} the error to display
+     */
+    handleError(error: string) {
         this.presentToast(error);
         console.log(error);
     }
 
-    presentToast(message_to_print) {
+    /**
+     * Displays the message at the bottom of the screen for 3000ms.
+     * @param message_to_print {string} the message to display
+     */
+    presentToast(message_to_print: string) {
         let toast = this.toastCtrl.create({
             message: message_to_print,
             duration: 3000,
@@ -134,13 +165,22 @@ export class ChatPage {
         toast.present();
     }
 
+    /**
+     * Remove all displayed messages from the chat page.
+     */
     cleanMessages() {
         this.chatMessages = [];
         this.chatService.saveChatMessages(this.chatMessages);
     }
 
-    // Start Process
-    processOrderResponse(orderResponse, sentMessage) {
+    // Start Process ---------------------------
+
+    /**
+     * Processing the OrderResponse message provided by the Kalliope Core API.
+     * @param orderResponse {OrderResponse} the OrderResponse provided by Kalliope Core
+     * @param sentMessage {string} the message written by the user
+     */
+    processOrderResponse(orderResponse: OrderResponse, sentMessage: string) {
         this.stopLoader();
         // clean the input
         this.newMessage = "";
@@ -148,7 +188,10 @@ export class ChatPage {
         this.loadNewMessage(orderResponse, sentMessage);
     }
 
-
+    /**
+     * Method to record the voice with the native mobile recorder.
+     * Using the cordova plugin mediaCapture
+     */
     recordVoice() {
         this.mediaCapture.captureAudio()
             .then(
@@ -161,9 +204,9 @@ export class ChatPage {
                             this.stopLoader();
                         })
                         .then(data => {
-                            console.log('[ChatPage] recordVoice: raw data -> '+ JSON.stringify(data));
+                            console.log('[ChatPage] recordVoice: raw data -> ' + JSON.stringify(data));
                             let orderResponse = OrderResponse.responseToObject(JSON.parse(data['data']));
-                            console.log('[ChatPage] recordVoice: orderResponse -> '+ JSON.stringify(orderResponse));
+                            console.log('[ChatPage] recordVoice: orderResponse -> ' + JSON.stringify(orderResponse));
                             this.loadNewMessage(orderResponse, undefined);
                             this.stopLoader();
                         });
