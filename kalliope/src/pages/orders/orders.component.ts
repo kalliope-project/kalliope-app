@@ -1,9 +1,8 @@
-import { NewOrderPage } from './../NewOrder/NewOrder.component';
-import { ChatPage } from './../chat/chat.component';
-import { OrdersService } from './orders.service';
-import { SettingsPage } from './../settings/settings.component';
-import { SettingsService } from './../settings/settings.service';
-import { Settings } from './../settings/settings';
+import {NewOrderPage} from './../NewOrder/NewOrder.component';
+import {ChatPage} from './../chat/chat.component';
+import {OrdersService} from './orders.service';
+import {SettingsService} from './../settings/settings.service';
+import {Settings} from './../settings/settings';
 import {Component} from '@angular/core';
 import {
     ActionSheetController,
@@ -15,6 +14,10 @@ import {
     LoadingController
 } from 'ionic-angular';
 
+/**
+ * Component and Behaviour of the Order page
+ * @class OrdersPage
+ */
 @Component({
     selector: 'page-orders',
     templateUrl: 'orders.html'
@@ -23,28 +26,41 @@ export class OrdersPage {
     settings: Settings;
     orders: string[];
     nav: NavController;
-    loader;
 
-    constructor(
-        public navCtrl: NavController,
-        public settingsService: SettingsService,
-        public modalCtrl: ModalController,
-        public menu: MenuController,
-        private app: App,
-        private ordersService: OrdersService,
-        public toastCtrl: ToastController,
-        public actionSheetCtrl: ActionSheetController,
-        public loadingCtrl: LoadingController) {
+    /**
+     * @constructor
+     * @param public navCtrl {NavController}
+     * @param public settingsService {SettingsService} The service to handle settings
+     * @param public modalCtrl {ModalController} Controller to manage the Modal
+     * @param public menu {MenuController} Controller to manage the Menu
+     * @param private app {App}
+     * @param private ordersService {OrdersService} Service for orders
+     * @param public toastCtrl {ToastController} Controller to manage Toast
+     * @param public actionSheetCtrl {ActionSheetController} Controller to manage ActionSheet
+     * @param public loadingCtrl {LoadingController} Controller to manage Loading
+     */
+    constructor(public navCtrl: NavController,
+                public settingsService: SettingsService,
+                public modalCtrl: ModalController,
+                public menu: MenuController,
+                private app: App,
+                private ordersService: OrdersService,
+                public toastCtrl: ToastController,
+                public actionSheetCtrl: ActionSheetController,
+                public loadingCtrl: LoadingController) {
 
         // get the nac controller used to switch pages
         this.nav = this.app.getActiveNav();
 
         // load orders
         this.refreshOrders();
-
     }
 
-    executeOrder(order) {
+    /**
+     * Execute the given order
+     * @param order {string} the order to execute.
+     */
+    executeOrder(order: string) {
         /**
          * Execute the order on kalliope
          */
@@ -53,20 +69,30 @@ export class OrdersPage {
         });
     }
 
-    addNewOrder(){
+    /**
+     * Add a new order into the orders list.
+     */
+    addNewOrder() {
         let modalNewOrder = this.modalCtrl.create(NewOrderPage);
         modalNewOrder.present();
         modalNewOrder.onDidDismiss(data => this.refreshOrders())
     }
 
-    refreshOrders(){
+    /**
+     * Refresh the orders list.
+     */
+    refreshOrders() {
         this.orders = this.ordersService.loadOrders()
-        if (this.orders == null){
+        if (this.orders == null) {
             this.orders = [];
         }
     }
 
-    presentActionSheet(order) {
+    /**
+     * UI Component to let the user 'Play, Edit, Delete, Cancel' a given order.
+     * @param order {string} the given order.
+     */
+    presentActionSheet(order: string) {
         let actionSheet = this.actionSheetCtrl.create({
             title: order,
             buttons: [
@@ -107,7 +133,11 @@ export class OrdersPage {
 
     }
 
-    deleteOrder(order){
+    /**
+     * Delete an order.
+     * @param order {string} the given order to delete
+     */
+    deleteOrder(order: string) {
         // delete the order
         var index = this.orders.indexOf(order, 0);
         if (index > -1) {
@@ -115,10 +145,13 @@ export class OrdersPage {
         }
         // save the new list
         this.ordersService.saveOrders(this.orders);
-
     }
 
-    updateOrder(order){
+    /**
+     * Update an order
+     * @param order {string} the given order to update.
+     */
+    updateOrder(order: string) {
         let modalNewOrder = this.modalCtrl.create(NewOrderPage, {orderToUpdate: order});
         modalNewOrder.present();
         modalNewOrder.onDidDismiss(data => this.refreshOrders())

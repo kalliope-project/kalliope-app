@@ -1,14 +1,19 @@
-import { SettingsPage } from './../settings/settings.component';
-import { SettingsService } from './../settings/settings.service';
-import { Settings } from './../settings/settings';
-import { OrdersService } from './../orders/orders.service';
-import { ChatService } from './chat.service';
-import { OrderResponse } from './../../models/orderResponse';
-import { ChatMessage } from './../../models/ChatMessage';
+import {SettingsPage} from './../settings/settings.component';
+import {SettingsService} from './../settings/settings.service';
+import {Settings} from './../settings/settings';
+import {OrdersService} from './../orders/orders.service';
+import {ChatService} from './chat.service';
+import {ChatMessage} from './../../models/ChatMessage';
 import {Component} from '@angular/core';
-import { NavController, LoadingController, ToastController } from 'ionic-angular';
-import { NavParams } from 'ionic-angular';
+import {NavController, LoadingController, ToastController} from 'ionic-angular';
+import {NavParams} from 'ionic-angular';
+import {CaptureError, MediaCapture, MediaFile} from "@ionic-native/media-capture";
+import {VoiceService} from "./voice.service";
+import {OrderResponse} from "../../models/orderResponse";
 
+/**
+ * @class ChatPage: Components and behaviour Handlers of the Chat page.
+ * */
 @Component({
     selector: 'page-chat',
     templateUrl: 'chat.html'
@@ -22,56 +27,72 @@ export class ChatPage {
     settings: Settings;
     nav: NavController;
 
-    /** Constructor */
-    constructor(
-        public navCtrl: NavController,
-        private navParams: NavParams,
-        private ordersService: OrdersService,
-        public loadingCtrl: LoadingController,
-        public toastCtrl: ToastController,
-        public settingsService: SettingsService,
-        private chatService: ChatService){
+    /**
+     * Chat Page constructor
+     * @constructor
+     * @param public navCtrl {NavController}
+     * @param private navParams {NavParams}
+     * @param private ordersService {OrdersService} the service managing the orders
+     * @param public loadingCtrl {LoadingController} the controller to provide the Loading component
+     * @param public toastCtrl {ToastController} the controller to provide the toast component
+     * @param private mediaCapture {MediaCapture} the service to manage the media (audio) capture. (Cordova plugin)
+     * @param public settingsService {SettingsService} the service managing the settings
+     * @param private voiceService {VoiceService} the service managing the captured voice (audio)
+     * @param private chatService {ChatService} the service managing the chat
+     *
+     */
+    constructor(public navCtrl: NavController,
+                private navParams: NavParams,
+                private ordersService: OrdersService,
+                public loadingCtrl: LoadingController,
+                public toastCtrl: ToastController,
+                private mediaCapture: MediaCapture,
+                public settingsService: SettingsService,
+                private voiceService: VoiceService,
+                private chatService: ChatService) {
 
         // load the default chatMessages
-        this.chatMessages = chatService.loadeChatMessages();
-        if (this.chatMessages == null){
+        this.chatMessages = chatService.loadChatMessages();
+        if (this.chatMessages == null) {
             // no chat message yet. start a new list
-            this.chatMessages= [];
+            this.chatMessages = [];
         }
 
         // load settings from storage
         this.settings = settingsService.getDefaultSettings();
         if (this.settings == null) {
             this.nav.setRoot(SettingsPage);
-        }else{
+        } else {
             console.log("Settings loaded. Url: " + this.settings.url);
         }
 
-        // let orderResponse: OrderResponse = navParams.get('orderResponse');
-        // // myOrder is the order from the user
-        // let myOrder: string = navParams.get('myOrder');
-        // if (orderResponse != null){
-        //     this.loadNewMessage(orderResponse, myOrder);
-        // }
-
         let orderFromOrderPage = navParams.get('orderFromOrderPage');
-        if (orderFromOrderPage != null){    // we received an order to process
+        if (orderFromOrderPage != null) {    // we received an order to process
             this.newMessage = orderFromOrderPage;
             this.sendMessage();
         }
-
     }
 
-    loadNewMessage(orderResponse, myOrder){
+    /**
+     * Display the User ("Me") and Kalliope interactions into the chat page.
+     * @param orderResponse {OrderResponse} the OrderResponse comming back from the kalliopeCore.
+     * @param myOrder {string} the order provided by the user, undefined if user recorded an audio order.
+     */
+    loadNewMessage(orderResponse: OrderResponse, myOrder: string) {
+        console.log("[ChatPage] loadNewMessage: OrderResponse -> " + JSON.stringify(orderResponse));
+        console.log("[ChatPage] loadNewMessage: myOrder -> " + myOrder);
         // add the user order
-        let myChatMessage = new ChatMessage();
-        myChatMessage.sender = "Me";
-        myChatMessage.message = myOrder;
-        this.chatMessages.push(myChatMessage);
+        let myMessage = new ChatMessage();
+        myMessage.sender = "Me";
+        if (myOrder !== undefined) {
+            myMessage.message = myOrder;
+        } else { // myOrder is undefined
+            myMessage.message = orderResponse.userOrder;
+        }
+        this.chatMessages.push(myMessage);
 
         // add each generated answer
         for (let matchedSynapse of orderResponse.matchedSynapses) {
-
             for (let neuronModule of matchedSynapse.neuronModuleList) {
                 let chatMessage = new ChatMessage();
                 chatMessage.sender = "Kalliope";
@@ -81,39 +102,61 @@ export class ChatPage {
         }
         // save the new chatMessage list
         this.chatService.saveChatMessages(this.chatMessages);
-
     }
 
-    cleanMessages(){
-        this.chatMessages= [];
-        this.chatService.saveChatMessages(this.chatMessages);
+    // Loader management ---------------------------
+
+    /**
+     * Using the {LoadingCtrl} display a waiting message during 3000ms.
+     */
+    startLoader() {
+        // prepare loader
+        this.loader = this.loadingCtrl.create({
+            content: "Please wait...",
+            duration: 3000
+        });
+
+        // start waiting gif
+        this.loader.present();
     }
 
-    sendMessage(){
-        if (this.newMessage != null){
-            // prepare loader
-            this.loader = this.loadingCtrl.create({
-                content: "Please wait...",
-                duration: 3000
-            });
+    /**
+     * Stopping the {LoadingCtrl} previously started by the 'startLoader' method
+     */
+    stopLoader() {
+        // stop the loader
+        this.loader.dismiss();
+    }
 
-            // start waiting gif
-            this.loader.present();
-
+    /**
+     * Send the message provided by the user.
+     */
+    sendMessage() {
+        if (this.newMessage != null) {
+            //start the loader
+            this.startLoader();
             // execute the order
             this.ordersService.postOrder(this.newMessage, this.settings).subscribe(
                 orderResponse => this.processOrderResponse(orderResponse, this.newMessage),
                 error => this.handleError(error));
         }
-
     }
 
-    handleError(error){
+    // Screen ---------------------------
+    /**
+     * Display a provided error using the {ToastController}
+     * @param error {string} the error to display
+     */
+    handleError(error: string) {
         this.presentToast(error);
         console.log(error);
     }
 
-    presentToast(message_to_print) {
+    /**
+     * Displays the message at the bottom of the screen for 3000ms.
+     * @param message_to_print {string} the message to display
+     */
+    presentToast(message_to_print: string) {
         let toast = this.toastCtrl.create({
             message: message_to_print,
             duration: 3000,
@@ -122,14 +165,54 @@ export class ChatPage {
         toast.present();
     }
 
-    processOrderResponse(orderResponse, sentMessage){
-        // stop the loader
-        this.loader.dismiss();
+    /**
+     * Remove all displayed messages from the chat page.
+     */
+    cleanMessages() {
+        this.chatMessages = [];
+        this.chatService.saveChatMessages(this.chatMessages);
+    }
+
+    // Start Process ---------------------------
+
+    /**
+     * Processing the OrderResponse message provided by the Kalliope Core API.
+     * @param orderResponse {OrderResponse} the OrderResponse provided by Kalliope Core
+     * @param sentMessage {string} the message written by the user
+     */
+    processOrderResponse(orderResponse: OrderResponse, sentMessage: string) {
+        this.stopLoader();
         // clean the input
         this.newMessage = "";
-        // relaod the list with the response
+        // reload the list with the response
         this.loadNewMessage(orderResponse, sentMessage);
     }
 
+    /**
+     * Method to record the voice with the native mobile recorder.
+     * Using the cordova plugin mediaCapture
+     */
+    recordVoice() {
+        this.mediaCapture.captureAudio()
+            .then(
+                (data: MediaFile[]) => {
+                    this.startLoader();
+                    return this.voiceService.postVoice(data[0], this.settings)
+                        .catch((error) => {
+                            console.log('[ChatPage] recordVoice: error -> ' + error.error);
+                            this.handleError(error);
+                            this.stopLoader();
+                        })
+                        .then(data => {
+                            console.log('[ChatPage] recordVoice: raw data -> ' + JSON.stringify(data));
+                            let orderResponse = OrderResponse.responseToObject(JSON.parse(data['data']));
+                            console.log('[ChatPage] recordVoice: orderResponse -> ' + JSON.stringify(orderResponse));
+                            this.loadNewMessage(orderResponse, undefined);
+                            this.stopLoader();
+                        });
+                },
+                (err: CaptureError) => console.log(err)
+            );
+    }
 
 }

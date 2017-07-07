@@ -1,9 +1,10 @@
-import { SynapsesPage } from '../pages/synapses/synapses.component';
-import { ChatPage } from './../pages/chat/chat.component';
-import { OrdersPage } from './../pages/orders/orders.component';
-import { SettingsPage } from './../pages/settings/settings.component';
+import {SynapsesPage} from '../pages/synapses/synapses.component';
+import {ChatPage} from './../pages/chat/chat.component';
+import {OrdersPage} from './../pages/orders/orders.component';
+import {SettingsPage} from './../pages/settings/settings.component';
+
 import {Component, ViewChild} from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import {Nav, Platform} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 
@@ -13,18 +14,18 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 export class MyApp {
 
     @ViewChild(Nav) nav: Nav;
-    rootPage: any = OrdersPage;
-    pages: Array<{title: string, component: any}>
+    rootPage: any = ChatPage;
+    pages: Array<{ title: string, component: any }>
 
     constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
 
         // used for an example of ngFor and navigation
         this.pages = [
-            { title: 'Orders', component: OrdersPage },
-            { title: 'Synapses', component: SynapsesPage },
-            { title: 'Chat', component: ChatPage },
-            { title: 'Settings', component: SettingsPage }
+            {title: 'Chat', component: ChatPage},
+            {title: 'Orders', component: OrdersPage},
+            {title: 'Synapses', component: SynapsesPage},
+            {title: 'Settings', component: SettingsPage}
         ];
 
         // remove this in prod! for testing only in order to clean the local storage at every new load

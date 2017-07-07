@@ -1,10 +1,8 @@
 <ion-header>
     <ion-toolbar color="green_material">
-        <ion-buttons start>
-            <button ion-button menuToggle>
+        <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        </ion-buttons>
         <ion-title>Chats</ion-title>
         <ion-buttons end>
             <button ion-button icon-only color="royal" (click)="cleanMessages()">
@@ -31,10 +29,12 @@
     <ion-toolbar>
         <ion-input [(ngModel)]="newMessage" placeholder="Chat here"></ion-input>
         <ion-buttons end>
-        <button ion-button icon-right color="green_material" (click)="sendMessage()">
-            Send
-            <ion-icon name="send"></ion-icon>
-        </button>
+            <button ion-button icon-right color="green_material" (click)="sendMessage()">
+                <ion-icon name="send"></ion-icon>
+            </button>
+            <button ion-button icon-only icon-right color="green_material" (click)="recordVoice()">
+                <ion-icon name="mic"></ion-icon>
+            </button>
         </ion-buttons>
     </ion-toolbar>
 </ion-footer>

@@ -1,4 +1,7 @@
-
+/**
+ * The model class corresponding to the Settings.
+ * @class Settings
+ */
 export class Settings {
     // url of kalliope api server
     url: string = 'localhost:5000';
