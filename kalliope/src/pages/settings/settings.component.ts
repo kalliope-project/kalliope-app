@@ -41,9 +41,8 @@ export class SettingsPage {
             this.settings = new Settings();
         }
 
-        this.loader = this.loadingCtrl.create({
-            content: "Please wait..."
-        });
+        // prepare a loader for waiting durring the connection
+        this.createLoader();
     }
 
     /**
@@ -67,7 +66,7 @@ export class SettingsPage {
         console.log("[SettingsPage] connectionSuccess: Connection to Kalliope API server OK");
         console.log("[SettingsPage] connectionSuccess: The datas -> " + data);
         this.loader.dismiss();
-        this.presentToast("[SettingsPage] connectionSuccess: Kalliope version ->" + data["Kalliope version"]);
+        this.presentToast("Connection Success: Kalliope version ->" + data["Kalliope version"]);
         this.settingsOK = true;
     }
 
@@ -77,6 +76,9 @@ export class SettingsPage {
      */
     connectonFailled(error: string) {
         console.log("[SettingsPage] connectonFailled: error -> " + error);
+        this.loader.dismiss();
+        this.presentToast("Connection failled: " + error);
+        this.createLoader();
     }
 
     // TODO Refactoring the following method already exist
@@ -99,6 +101,15 @@ export class SettingsPage {
     saveSettings() {
         this.SettingsService.setDefaultSettings(this.settings);
         this.nav.setRoot(OrdersPage);
+    }
+
+    /**
+     * Prepare a loader object
+     */
+    createLoader(){
+        this.loader = this.loadingCtrl.create({
+            content: "Please wait..."
+        });
     }
 
 }
