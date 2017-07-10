@@ -51,6 +51,9 @@ export class ChatPage {
                 private voiceService: VoiceService,
                 private chatService: ChatService) {
 
+        // debug line
+        // chatService.clearStorage();
+
         // load the default chatMessages
         this.chatMessages = chatService.loadChatMessages();
         if (this.chatMessages == null) {
@@ -61,7 +64,7 @@ export class ChatPage {
         // load settings from storage
         this.settings = settingsService.getDefaultSettings();
         if (this.settings == null) {
-            this.nav.setRoot(SettingsPage);
+            this.navCtrl.setRoot(SettingsPage);
         } else {
             console.log("Settings loaded. Url: " + this.settings.url);
         }

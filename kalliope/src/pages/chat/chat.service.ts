@@ -30,4 +30,14 @@ export class ChatService {
     loadChatMessages(): Array<ChatMessage> {
         return JSON.parse(localStorage.getItem('chatMessages'));
     }
+
+    /**
+     * clear the whole local storage
+     * Used for debug
+     */
+    clearStorage(){
+    	localStorage.clear();
+		console.log('all keys are cleared');
+
+    }
 }

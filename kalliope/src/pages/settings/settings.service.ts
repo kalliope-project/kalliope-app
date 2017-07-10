@@ -37,7 +37,8 @@ export class SettingsService {
 
         let url_to_call: string = "http://" + settings.url + "/";
         return this.httpService.get(url_to_call, options)
-            .map(res => res.json());
+                                .map(res => res.json())
+                                .timeout(5000) ;
 
     }
 
