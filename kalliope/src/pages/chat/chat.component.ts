@@ -1,3 +1,4 @@
+import { Bubble } from './bubble/bubble.component';
 import {SettingsPage} from './../settings/settings.component';
 import {SettingsService} from './../settings/settings.service';
 import {Settings} from './../settings/settings';
@@ -86,7 +87,7 @@ export class ChatPage {
         console.log("[ChatPage] loadNewMessage: myOrder -> " + myOrder);
         // add the user order
         let myMessage = new ChatMessage();
-        myMessage.sender = "Me";
+        myMessage.sender = "me";
         if (myOrder !== undefined) {
             myMessage.message = myOrder;
         } else { // myOrder is undefined
@@ -98,7 +99,7 @@ export class ChatPage {
         for (let matchedSynapse of orderResponse.matchedSynapses) {
             for (let neuronModule of matchedSynapse.neuronModuleList) {
                 let chatMessage = new ChatMessage();
-                chatMessage.sender = "Kalliope";
+                chatMessage.sender = "you";
                 chatMessage.message = neuronModule.generatedMessage;
                 this.chatMessages.push(chatMessage)
             }
