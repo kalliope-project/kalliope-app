@@ -1,3 +1,4 @@
+import { ChatMessage } from './../models/ChatMessage';
 // Core
 import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
@@ -12,7 +13,8 @@ import {NewOrderPage} from './../pages/NewOrder/NewOrder.component';
 import {OrdersPage} from './../pages/orders/orders.component';
 import {ChatPage} from './../pages/chat/chat.component';
 import {SettingsPage} from './../pages/settings/settings.component';
-import {SynapsesPage} from '../pages/synapses/synapses.component'
+import {SynapsesPage} from '../pages/synapses/synapses.component';
+import { Bubble } from './../pages/chat/bubble/bubble.component';
 
 // Services
 import {OrdersService} from './../pages/orders/orders.service';
@@ -32,7 +34,8 @@ import {HTTP} from '@ionic-native/http';
         SettingsPage,
         OrdersPage,
         ChatPage,
-        NewOrderPage
+        NewOrderPage,
+        Bubble
     ],
     imports: [
         BrowserModule,

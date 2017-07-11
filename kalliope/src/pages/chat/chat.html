@@ -13,16 +13,9 @@
 </ion-header>
 
 <ion-content class="main_color" padding>
-    <ion-card *ngFor="let chatMessage of chatMessages">
-        <ion-card-content>
-            <ion-card-title color="green_material">
-                {{ chatMessage.sender }}
-            </ion-card-title>
-            <p>
-                {{ chatMessage.message }}
-            </p>
-        </ion-card-content>
-    </ion-card>
+    <div *ngFor="let chatMessage of chatMessages" >
+        <chat-bubble [chatMessage]="chatMessage"></chat-bubble>
+    </div>
 </ion-content>
 
 <ion-footer>
