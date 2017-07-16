@@ -30,18 +30,18 @@
         <icon density="xhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
         <icon density="xxhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
         <icon density="xxxhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="land-ldpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="land-mdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="land-hdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="land-xhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="land-xxhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="land-xxxhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="port-ldpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="port-mdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="port-hdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="port-xhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="port-xxhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
-        <splash density="port-xxxhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
+        <splash density="land-ldpi" src="resources/splash.png" />
+        <splash density="land-mdpi" src="resources/splash.png" />
+        <splash density="land-hdpi" src="resources/splash.png" />
+        <splash density="land-xhdpi" src="resources/splash.png" />
+        <splash density="land-xxhdpi" src="resources/splash.png" />
+        <splash density="land-xxxhdpi" src="resources/splash.png" />
+        <splash density="port-ldpi" src="resources/splash.png" />
+        <splash density="port-mdpi" src="resources/splash.png" />
+        <splash density="port-hdpi" src="resources/splash.png" />
+        <splash density="port-xhdpi" src="resources/splash.png" />
+        <splash density="port-xxhdpi" src="resources/splash.png" />
+        <splash density="port-xxxhdpi" src="resources/splash.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -64,18 +64,18 @@
         <icon height="29" src="resources/ios/kalliope_brain/Default~iphone.png" width="29" />
         <icon height="58" src="resources/ios/kalliope_brain/Default~iphone.png" width="58" />
         <icon height="87" src="resources/ios/kalliope_brain/Default~iphone.png" width="87" />
-        <splash height="1136" src="resources/ios/kalliope_brain/Default~iphone.png" width="640" />
-        <splash height="1334" src="resources/ios/kalliope_brain/Default~iphone.png" width="750" />
-        <splash height="2208" src="resources/ios/kalliope_brain/Default~iphone.png" width="1242" />
-        <splash height="1242" src="resources/ios/kalliope_brain/Default~iphone.png" width="2208" />
-        <splash height="1536" src="resources/ios/kalliope_brain/Default~iphone.png" width="2048" />
-        <splash height="2048" src="resources/ios/kalliope_brain/Default~iphone.png" width="2732" />
-        <splash height="768" src="resources/ios/kalliope_brain/Default~iphone.png" width="1024" />
-        <splash height="2048" src="resources/ios/kalliope_brain/Default~iphone.png" width="1536" />
-        <splash height="2732" src="resources/ios/kalliope_brain/Default~iphone.png" width="2048" />
-        <splash height="1024" src="resources/ios/kalliope_brain/Default~iphone.png" width="768" />
-        <splash height="960" src="resources/ios/kalliope_brain/Default~iphone.png" width="640" />
-        <splash height="480" src="resources/ios/kalliope_brain/Default~iphone.png" width="320" />
+        <splash height="1136" src="resources/splash.png" width="640" />
+        <splash height="1334" src="resources/splash.png" width="750" />
+        <splash height="2208" src="resources/splash.png" width="1242" />
+        <splash height="1242" src="resources/splash.png" width="2208" />
+        <splash height="1536" src="resources/splash.png" width="2048" />
+        <splash height="2048" src="resources/splash.png" width="2732" />
+        <splash height="768" src="resources/splash.png" width="1024" />
+        <splash height="2048" src="resources/splash.png" width="1536" />
+        <splash height="2732" src="resources/splash.png" width="2048" />
+        <splash height="1024" src="resources/splash.png" width="768" />
+        <splash height="960" src="resources/splash.png" width="640" />
+        <splash height="480" src="resources/splash.png" width="320" />
     </platform>
     <engine name="android" spec="^6.2.3" />
     <plugin name="cordova-plugin-console" spec="^1.0.7" />
