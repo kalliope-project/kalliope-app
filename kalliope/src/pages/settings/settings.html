@@ -8,27 +8,45 @@
 </ion-header>
 
 <ion-content class="main_color" padding>
-    <ion-list>
-        <ion-item>
-            <ion-label stacked>URL</ion-label>
-            <ion-input [(ngModel)]="settings.url" type="text"></ion-input>
-        </ion-item>
+    <ion-card>
+        <ion-card-header>
+            Kalliope server
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item>
+                    <ion-label stacked>URL</ion-label>
+                    <ion-input [(ngModel)]="settings.url" type="text"></ion-input>
+                </ion-item>
 
-        <ion-item>
-            <ion-label stacked>Username</ion-label>
-            <ion-input [(ngModel)]="settings.username" type="text"></ion-input>
-        </ion-item>
+                <ion-item>
+                    <ion-label stacked>Username</ion-label>
+                    <ion-input [(ngModel)]="settings.username" type="text"></ion-input>
+                </ion-item>
 
-        <ion-item>
-            <ion-label stacked>Password</ion-label>
-            <ion-input [(ngModel)]="settings.password" type="password"></ion-input>
-        </ion-item>
+                <ion-item>
+                    <ion-label stacked>Password</ion-label>
+                    <ion-input [(ngModel)]="settings.password" type="password"></ion-input>
+                </ion-item>
+            </ion-list>
+            <button *ngIf="!settingsOK" ion-button block color="green_material" (click)="testConnection()">Test connection
+            </button>
+            <button *ngIf="settingsOK" ion-button block color="secondary" (click)="saveSettings()">Save</button>
+        </ion-card-content>
+    </ion-card>
 
-    </ion-list>
+    <ion-card>
+        <ion-card-header>
+            Options
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item>
+                <ion-label>No voice <ion-badge color="green_material" (click)="showInfoNoVoice()">?</ion-badge></ion-label>
+                <ion-toggle color="green_material" [(ngModel)]="settings.noVoice" (ionChange)="settingsUpdated()"></ion-toggle>
+            </ion-item>
+        </ion-card-content>
+    </ion-card>
 
-    <button *ngIf="!settingsOK" ion-button block color="green_material" (click)="testConnection()">Test connection
-    </button>
-    <button *ngIf="settingsOK" ion-button block color="secondary" (click)="saveSettings()">Save</button>
 
 
 </ion-content>

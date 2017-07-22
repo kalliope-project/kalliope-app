@@ -27,7 +27,10 @@ export class OrdersService {
      * @return {Observable<OrderResponse>} The OrderResponse provided by the Kalliope Core.
      */
     postOrder(order: string, settings: Settings): Observable<OrderResponse> {
-        console.log("[OrdersService] call postOrder with URL: " + settings.url + ",user: " + settings.username, ",pass:" + settings.password);
+        console.log("[OrdersService] call postOrder with URL: " + settings.url
+        + ",user: " + settings.username,
+        ",pass:" + settings.password,
+        ",no_voice:" + settings.noVoice);
 
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
@@ -38,7 +41,8 @@ export class OrdersService {
         });
 
         let order_dict = {
-            "order": order
+            "order": order,
+            "no_voice": settings.noVoice
         }
 
         let body = JSON.stringify(order_dict); // Stringify payload

@@ -8,6 +8,9 @@ export class Settings {
     username: string = '';
     password: string = '';
 
+    // no_voice flag to mute kalliope
+    noVoice: Boolean = false;
+
     constructor(values: Object = {}) {
         Object.assign(this, values);
     }

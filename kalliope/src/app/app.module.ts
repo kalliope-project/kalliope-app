@@ -1,4 +1,3 @@
-import { ChatMessage } from './../models/ChatMessage';
 // Core
 import {NgModule, ErrorHandler} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
