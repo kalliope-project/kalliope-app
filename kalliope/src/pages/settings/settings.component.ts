@@ -112,6 +112,27 @@ export class SettingsPage {
         });
     }
 
+    /**
+     * Show a toast to explain what is the no voice flag
+     */
+    showInfoNoVoice(){
+        let toast = this.toastCtrl.create({
+            message: "If true, Kalliope will be muted on the server side",
+            duration: 5000,
+            position: 'bottom'
+        });
+        toast.present();
+    }
+
+    /**
+     * A setting has been updated from the client page, save the new status
+     */
+    settingsUpdated(){
+        console.log("[SettingsPage] settings updated");
+        this.SettingsService.setDefaultSettings(this.settings);
+
+    }
+
 }
 
 

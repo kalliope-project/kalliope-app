@@ -1,4 +1,3 @@
-import { Bubble } from './bubble/bubble.component';
 import {SettingsPage} from './../settings/settings.component';
 import {SettingsService} from './../settings/settings.service';
 import {Settings} from './../settings/settings';
