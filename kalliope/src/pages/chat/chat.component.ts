@@ -214,8 +214,18 @@ export class ChatPage {
                             this.stopLoader();
                         });
                 },
-                (err: CaptureError) => console.log(err)
+                (err: CaptureError) => this.handleErrorFromRecordVoice(err)
             );
+    }
+
+    handleErrorFromRecordVoice(err: CaptureError){
+        console.log('[ChatPage] handleErrorFromRecordVoice: ' + err);
+        const errorNoActivityFound = "No Activity found to handle Intent";
+        let errortoString : String = err.toString()
+        console.log("[ChatPage] err.code: " + errortoString);
+        if (errortoString.includes(errorNoActivityFound)){
+            this.handleError("You need a voice recorder application");
+        }
     }
 
 }

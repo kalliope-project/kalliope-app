@@ -3,9 +3,9 @@
 The Ionic app code for [Kalliope](https://github.com/kalliope-project/kalliope)
 
 
-### Installation
+## Installation
 
-#### NodeJs
+### NodeJs
 First install nodejs.
 We suggest to use the [node version manager](https://github.com/creationix/nvm#installation)
 
@@ -20,7 +20,7 @@ nvm current
 >>> v7.10.0
 ```
 
-#### ionic & Cordova
+### ionic & Cordova
 
 The application is based on [Ionic(and cordova)](http://ionicframework.com/docs/intro/installation/)
 
@@ -28,7 +28,7 @@ The application is based on [Ionic(and cordova)](http://ionicframework.com/docs/
 npm install -g ionic cordova
 ```
 
-#### clone the kalliope-app repo
+### clone the kalliope-app repo
 
 Clone this repo:
 
@@ -40,7 +40,7 @@ or by using https:
 https://github.com/kalliope-project/kalliope-app.git
 ```
 
-#### Start kalliope Core
+### Start kalliope Core
 
 Make Sure your [Kalliope Core](https://github.com/kalliope-project/kalliope) is running :
 
@@ -53,23 +53,32 @@ kalliope start
 ```
 
 
-#### run the application on your browser
+### run the application on your browser
 
 Under this fresh cloned repo, access the "kalliope" directory and run the ionic server :
 
 ```bash
-ionic serve
+ionic serve -b
 ```
 On a fresh install the applciation dependencies will be installed as well using npm.
- 
+
 The application is now running and accessible using your browser : "http://localhost:8100"
 
 
 
-### Builds
+## Builds/run for mobile device
 
-#### Android
-- TODO
+### Android
 
-#### iOS
+Run the app on Android device directly
+```
+ionic cordova run android -c
+```
+
+Create an APK
+```
+ionic cordova build android --release
+```
+
+### iOS
 - TODO
