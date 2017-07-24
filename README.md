@@ -2,6 +2,9 @@
 
 The Ionic app code for [Kalliope](https://github.com/kalliope-project/kalliope)
 
+<p align="center">
+    <img src="images/kalliope_app_presentation.png">
+</p>
 
 ## Installation
 
