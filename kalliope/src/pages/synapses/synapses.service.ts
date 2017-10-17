@@ -38,8 +38,10 @@ export class SynapsesService {
                     let synapseOrder: Order;
                     if ('signals' in synap) {
                         for (let signal of synap['signals']) {
-                            if ('order' in signal) {
-                                synapseOrder = new Order(signal['order']);
+                            if ('name' in signal) {
+                                if ('order' === signal.name) {
+                                    synapseOrder = new Order(signal.name, signal.parameters);
+                                }
                             }
                         }
                     }
@@ -78,7 +80,7 @@ export class SynapsesService {
 
         // TODO kalliope Core v0.4.4 -> API does not handle Param POST !!
         // let param_dict = {}
-        // for (let param of synapse.order.params) {
+        // for (let param of synapse.signal.params) {
         //     param_dict[param.name] = param.value;
         // }
         // let body = JSON.stringify(param_dict); // Stringify payload
