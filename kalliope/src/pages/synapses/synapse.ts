@@ -16,10 +16,10 @@ export class Synapse {
     /**
      * @constructor
      * @param name {string} the name of the Synapse
-     * @param order {Order} the Order corresponding
+     * @param signal {Order} the Order corresponding
      */
     constructor(public name: string,
-                public order: Order) {
+                public signal: Order) {
 
     }
 
@@ -29,7 +29,7 @@ export class Synapse {
      */
     toString(): string {
         return "Synapse : name -> " + this.name +
-            ", order -> " + this.order;
+            ", signal -> " + this.signal;
     }
 }
 
