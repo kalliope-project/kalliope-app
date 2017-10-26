@@ -34,19 +34,16 @@ export class SynapsesService {
             let synapsesJSON = responseJSON['synapses'];
             for (let synap of synapsesJSON) {
                 if ('name' in synap) {
-                    let synapseName = synap['name'];
-                    let synapseOrder: Order;
                     if ('signals' in synap) {
                         for (let signal of synap['signals']) {
                             if ('name' in signal) {
                                 if ('order' === signal.name) {
-                                    synapseOrder = new Order(signal.name, signal.parameters);
+                                    let synapseOrder = new Order(signal.name, signal.parameters);
+                                    synapses.push(new Synapse(synap['name'], synapseOrder));
                                 }
                             }
                         }
                     }
-                    let synapse = new Synapse(synapseName, synapseOrder);
-                    synapses.push(synapse);
                 }
             }
         }
