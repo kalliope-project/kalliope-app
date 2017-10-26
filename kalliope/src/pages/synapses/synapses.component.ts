@@ -3,7 +3,7 @@ import {NavController} from 'ionic-angular';
 import {SynapsesService} from './synapses.service';
 import {SettingsService} from './../settings/settings.service';
 import {Settings} from './../settings/settings';
-import {Synapse} from "./synapse";
+import {Synapse} from "../../models/synapse";
 
 /**
  * UI Component and Behaviour for the Synapse page
@@ -50,6 +50,10 @@ export class SynapsesPage {
             }
         );
     }
+
+    /*
+    * TODO select only Order synapses
+    * */
 
     /**
      * Run a synapse calling the Kalliope Core API
