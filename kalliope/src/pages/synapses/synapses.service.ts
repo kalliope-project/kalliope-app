@@ -3,9 +3,10 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 
 import {Settings} from "../settings/settings";
-import {Synapse} from "./synapse";
-import {Order} from "./order";
+import {Synapse} from "../../models/synapse";
+import {Order} from "../../models/order";
 import {Observable} from "rxjs/Observable";
+import {Signal} from "../../models/Signal";
 
 /**
  * Service to manage the Synapse operations using the Kalliope Core API
@@ -38,8 +39,7 @@ export class SynapsesService {
                         for (let signal of synap['signals']) {
                             if ('name' in signal) {
                                 if ('order' === signal.name) {
-                                    let synapseOrder = new Order(signal.name, signal.parameters);
-                                    synapses.push(new Synapse(synap['name'], synapseOrder));
+                                    synapses.push(new Synapse(synap['name'], new Order(signal.parameters)));
                                 }
                             }
                         }
