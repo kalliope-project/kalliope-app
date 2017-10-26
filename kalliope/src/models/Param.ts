@@ -10,7 +10,7 @@ export class Param {
      * @param value {string} the value of the param
      */
     constructor(public name: string,
-                public value: string = '') {
+                public value: any = '') {
     }
 
     /**
