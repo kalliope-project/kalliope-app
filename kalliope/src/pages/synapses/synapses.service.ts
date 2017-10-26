@@ -8,6 +8,8 @@ import {Order} from "../../models/Order";
 import {Observable} from "rxjs/Observable";
 import {Signal} from "../../models/Signal";
 import {Geolocation} from "../../models/Geolocation";
+import {Param} from "../../models/Param";
+import {Serialization} from "../../serialization/Serialization";
 
 /**
  * Service to manage the Synapse operations using the Kalliope Core API
@@ -26,35 +28,6 @@ export class SynapsesService {
     }
 
     /**
-     * Serialization from a Javascript Object to a Synapse model
-     * @param responseJSON {Object} the Javascript Object
-     * @return {Array<Synapse>} the list of Synapse
-     */
-    JSONToSynapse(responseJSON: Object): Array<Synapse> {
-        let synapses: Array<Synapse> = [];
-        if ('synapses' in responseJSON) {
-            let synapsesJSON = responseJSON['synapses'];
-            for (let synap of synapsesJSON) {
-                if ('name' in synap) {
-                    if ('signals' in synap) {
-                        for (let signal of synap['signals']) {
-                            if ('name' in signal) {
-                                if ('order' === signal.name) {
-                                    synapses.push(new Synapse(synap['name'], new Order(signal.parameters)));
-                                }
-                                if ('geolocation' == signal.name) {
-                                    synapses.push(new Synapse(synap['name'], new Geolocation(signal.name, signal.parameters)))
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return synapses;
-    }
-
-    /**
      * Access the Kalliope Core API to get the list of synapses (/synapses).
      * @param settings {Settings} the settings to access the Kalliope Core API
      * @return {Observable<Array<Synapse>>}
@@ -64,7 +37,7 @@ export class SynapsesService {
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
         return this.http.get('http://' + settings.url + '/synapses', options)
-            .map(res => this.JSONToSynapse(res.json()))
+            .map(res => Serialization.JSONToSynapse(res.json()))
     }
 
     /**
