@@ -1,28 +1,31 @@
 import {Param} from "./param";
+import {Signal} from "./Signal";
 
 /**
  * The model class corresponding to the Order
  * @class Order
  */
-export class Order {
+export class Order extends Signal {
 
     /*
      * Attributes :
-     * public name:string
-     * public param: Array<Param>
+     * protected name:string
+     * protected param: Array<Param>
      *
      * */
+    protected name;
+    protected params;
+    protected value;
+
 
     /**
      * @constructor
      * @param value {string} the order value
      * @param params {Array<Param>} the list of Param
      */
-    constructor(public value: string,
-                public params: Array<Param> = []) {
-
-        this.params = this._getParamBetweenBracketsList(this.value);
-
+    constructor(value: string) {
+        super("Order", Order._getParamBetweenBracketsList(value));
+        this.value = value;
     }
 
     /**
@@ -31,7 +34,7 @@ export class Order {
      * @return {Array} the list of Param
      * @private
      */
-    _getParamBetweenBracketsList(sentence: string): Array<Param> {
+    static _getParamBetweenBracketsList(sentence: string): Array<Param> {
         let regexp = new RegExp(/((?:{{\s*)[\w\.]+(?:\s*}}))/g);
         let paramBetweenBracketsList = [];
         let matchingWordList = sentence.match(regexp);
@@ -41,6 +44,7 @@ export class Order {
                 .map(b => new Param(b));
         }
         return paramBetweenBracketsList;
+
     }
 
     /**
