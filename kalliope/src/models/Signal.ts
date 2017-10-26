@@ -12,7 +12,7 @@ export abstract class Signal {
      * @param value {string} the order value
      * @param params {Array<Param>} the list of Param
      */
-    constructor(public name: string, protected params: Array<Param>) {
+    constructor(public name: string, public params: Array<Param>) {
         this.name = name;
         this.params = params;
     }

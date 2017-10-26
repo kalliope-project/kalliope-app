@@ -14,8 +14,11 @@ export class Geolocation extends Signal {
      *
      * */
     public name: string;
-    protected params: Array<Param>;
+    public params: Array<Param>;
 
+    protected latitude: Param;
+    protected longitude: Param;
+    protected radius: Param;
 
     /**
      * @constructor
@@ -24,6 +27,21 @@ export class Geolocation extends Signal {
      */
     constructor(name: string, params: Array<Param>) {
         super(name, params);
+        this.latitude = Geolocation._getLatitude(params);
+        this.longitude = Geolocation._getLongitude(params);
+        this.radius = Geolocation._getRadius(params);
+    }
+
+    private static _getLatitude(params: Array<Param>): Param {
+        return params.find(p => p.name == 'latitude');
+    }
+
+    private static _getLongitude(params: Array<Param>): Param {
+        return params.find(p => p.name == 'longitude');
+    }
+
+    private static _getRadius(params: Array<Param>): Param {
+        return params.find(p => p.name == 'radius');
     }
 }
 

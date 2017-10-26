@@ -14,7 +14,7 @@ export class Order extends Signal {
      *
      * */
     public name;
-    protected params;
+    public params;
     protected value;
 
 
@@ -23,8 +23,9 @@ export class Order extends Signal {
      * @param value {string} the order value
      * @param params {Array<Param>} the list of Param
      */
-    constructor(value: string) {
-        super("order", Order._getParamBetweenBracketsList(value));
+    constructor(value: string, params: Array<Param>) {
+        let extractedParams: Array<Param> = Order._getParamBetweenBracketsList(value);
+        super("order", params.concat(extractedParams));
         this.value = value;
     }
 
