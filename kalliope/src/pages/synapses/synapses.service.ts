@@ -3,10 +3,11 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/Rx';
 
 import {Settings} from "../settings/settings";
-import {Synapse} from "../../models/synapse";
-import {Order} from "../../models/order";
+import {Synapse} from "../../models/Synapse";
+import {Order} from "../../models/Order";
 import {Observable} from "rxjs/Observable";
 import {Signal} from "../../models/Signal";
+import {Geolocation} from "../../models/Geolocation";
 
 /**
  * Service to manage the Synapse operations using the Kalliope Core API
@@ -40,6 +41,9 @@ export class SynapsesService {
                             if ('name' in signal) {
                                 if ('order' === signal.name) {
                                     synapses.push(new Synapse(synap['name'], new Order(signal.parameters)));
+                                }
+                                if ('geolocation' == signal.name) {
+                                    synapses.push(new Synapse(synap['name'], new Geolocation(signal.name, signal.parameters)))
                                 }
                             }
                         }

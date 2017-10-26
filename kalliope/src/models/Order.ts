@@ -1,4 +1,4 @@
-import {Param} from "./param";
+import {Param} from "./Param";
 import {Signal} from "./Signal";
 
 /**
@@ -13,7 +13,7 @@ export class Order extends Signal {
      * protected param: Array<Param>
      *
      * */
-    protected name;
+    public name;
     protected params;
     protected value;
 
@@ -24,7 +24,7 @@ export class Order extends Signal {
      * @param params {Array<Param>} the list of Param
      */
     constructor(value: string) {
-        super("Order", Order._getParamBetweenBracketsList(value));
+        super("order", Order._getParamBetweenBracketsList(value));
         this.value = value;
     }
 
