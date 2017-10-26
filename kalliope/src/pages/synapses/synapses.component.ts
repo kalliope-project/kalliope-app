@@ -3,7 +3,7 @@ import {NavController} from 'ionic-angular';
 import {SynapsesService} from './synapses.service';
 import {SettingsService} from './../settings/settings.service';
 import {Settings} from './../settings/settings';
-import {Synapse} from "../../models/synapse";
+import {Synapse} from "../../models/Synapse";
 
 /**
  * UI Component and Behaviour for the Synapse page
@@ -32,20 +32,21 @@ export class SynapsesPage {
     }
 
     ngOnInit() {
-        this.getSynapse();
+        this.getOrderSynapses();
     }
 
     /**
      * Retrieve the list of sysnapse from the Kalliope Core API
      */
-    getSynapse() {
-        this.synapseService.getSynapses(this.settings).subscribe(
+    getOrderSynapses() {
+        return this.synapseService.getSynapses(this.settings).subscribe(
             response => {
-                console.log("[SynapsesPage] getSynapse: fetched synapses list -> " + JSON.stringify(response));
-                this.synapses = response;
+                let reponseOrder = response.filter(synapse => synapse.signal.name == 'order');
+                console.log("[SynapsesPage] getOrderSynapses: fetched synapses list -> " + JSON.stringify(reponseOrder));
+                this.synapses = reponseOrder;
             },
             err => {
-                console.log("[SynapsesPage] getSynapse: Error fetching the synapses list ! -> " + err);
+                console.log("[SynapsesPage] getOrderSynapses: Error fetching the synapses list ! -> " + err);
                 this.synapses = [];
             }
         );

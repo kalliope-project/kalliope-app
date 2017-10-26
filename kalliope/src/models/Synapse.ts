@@ -1,4 +1,5 @@
-import {Order} from "./order";
+import {Order} from "./Order";
+import {Signal} from "./Signal";
 
 /**
  * The model Class
@@ -19,7 +20,7 @@ export class Synapse {
      * @param signal {any} the Order corresponding
      */
     constructor(public name: string,
-                public signal: any) {
+                public signal: Signal) {
 
     }
 
