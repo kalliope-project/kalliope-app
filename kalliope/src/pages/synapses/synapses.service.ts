@@ -4,11 +4,7 @@ import 'rxjs/Rx';
 
 import {Settings} from "../settings/settings";
 import {Synapse} from "../../models/Synapse";
-import {Order} from "../../models/Order";
 import {Observable} from "rxjs/Observable";
-import {Signal} from "../../models/Signal";
-import {Geolocation} from "../../models/Geolocation";
-import {Param} from "../../models/Param";
 import {Serialization} from "../../serialization/Serialization";
 
 /**
