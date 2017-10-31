@@ -36,10 +36,7 @@ export module Serialization {
                                     synapses.push(
                                         new Synapse(
                                             synap['name'],
-                                            new Geolocation(
-                                                signal.name,
-                                                Serialization._getArrayParamFromObjectParameters(signal.parameters)
-                                            )
+                                            new Geolocation(signal.name, Serialization._getArrayParamFromObjectParameters(signal.parameters))
                                         )
                                     )
                                 }
