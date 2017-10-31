@@ -2,7 +2,6 @@ import {Param} from "./Param";
 import {Signal} from "./Signal";
 
 import { Geofence } from '@ionic-native/geofence';
-import {Transition} from "ionic-angular";
 
 /**
  * The model class corresponding to the Order
@@ -23,7 +22,7 @@ export class Geolocation extends Signal {
 
     /**
      * @constructor
-     * @param name {string} the order name
+     * @param name {string} the geolocation name
      * @param params {Array<Param>} the list of Param
      */
     constructor(name: string, params: Array<Param>) {
@@ -35,6 +34,8 @@ export class Geolocation extends Signal {
             (err) => console.log(err)
         );
         this.addGeofence();
+        this.geofence.onTransitionReceived().forEach(geo => console.log('[] Geofence transition detected :' + this.name)
+        );
     }
 
     public _getLatitude(): number {

@@ -124,6 +124,19 @@ export class SettingsPage {
         toast.present();
     }
 
+    /*
+    * Show a toast to explain what is the geolocation flag.
+    * */
+    showInfoGeolocation(){
+        let toast = this.toastCtrl.create({
+            message: "If true, the application will manage geolocation signals from the kalliope brain",
+            duration: 5000,
+            position: 'bottom'
+        });
+        toast.present();
+    }
+
+
     /**
      * A setting has been updated from the client page, save the new status
      */
