@@ -9,7 +9,7 @@ export abstract class Signal {
 
     /**
      * @constructor
-     * @param value {string} the order value
+     * @param name {string} the  name/type of the Signal
      * @param params {Array<Param>} the list of Param
      */
     constructor(public name: string, public params: Array<Param>) {
@@ -22,7 +22,7 @@ export abstract class Signal {
      * @return {string} The string corresponding to the order
      */
     toString(): string {
-        return "Name: "+this.name+", params -> "+this.params;
+        return "Name/Type: "+this.name+", params -> "+this.params;
     }
 
 }
