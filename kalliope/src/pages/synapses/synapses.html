@@ -13,6 +13,7 @@
         <ion-card *ngIf="synapse.signal.params.length == 0">
             <ion-card-header>
                 <!--Displaying only synapses without params because API does not handle POST with params !-->
+                <!--Otherwise use : <ion-card *ngIf="synapse.signal.constructor.name == 'Order'">-->
                 <button ion-button clear item-right icon-only (click)="runSynapse(synapse)">
                     {{synapse.name}}
                     <ion-icon name="play"></ion-icon>
