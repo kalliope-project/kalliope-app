@@ -10,6 +10,8 @@ export class Settings {
 
     // no_voice flag to mute kalliope
     noVoice: Boolean = false;
+    // geolocation flag to manage geolocation signals from kalliope brain
+    geolocation: Boolean = false;
 
     constructor(values: Object = {}) {
         Object.assign(this, values);
