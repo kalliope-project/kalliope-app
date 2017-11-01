@@ -58,4 +58,26 @@ export class SynapsesService {
         return this.http.post('http://' + settings.url + '/synapses/start/id/' + synapse.name, undefined, options)
             .map(res => res.json())
     }
+
+    /**
+     * Run a synapse by name from using the Kalliope Core API (/synapses/start/id/)
+     * @param synapseName {string} the synapse name to run
+     * @param settings {Settings} the settings to access the Kalliope Core API
+     * @return {Observable<array<Synapse>>}
+     */
+    runSynapseByName(synapseName: string,
+               settings: Settings): Observable<Array<Synapse>> {
+        let headers = new Headers();
+        headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
+        const options = new RequestOptions({headers: headers});
+        // TODO kalliope Core v0.4.4 -> API does not handle Param POST !!
+        // let param_dict = {}
+        // for (let param of synapse.signal.params) {
+        //     param_dict[param.name] = param.value;
+        // }
+        // let body = JSON.stringify(param_dict); // Stringify payload
+
+        return this.http.post('http://' + settings.url + '/synapses/start/id/' + synapseName, undefined, options)
+            .map(res => res.json())
+    }
 }
