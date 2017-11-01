@@ -43,9 +43,6 @@ export class SynapsesPage {
 
     ngOnInit() {
         this.getSynapsesToDisplay();
-        // if (this.settings.geolocation) {
-        //     //this.initGeolocationSynapses();
-        // }
     }
 
     /**
@@ -57,6 +54,10 @@ export class SynapsesPage {
                 let synapsesToDisplay = response.filter(syn => SynapsesPage.selectSynapseToDisplay(this.settings, syn));
                 console.log("[SynapsesPage] getSynapsesToDisplay: fetched synapses list -> " + JSON.stringify(synapsesToDisplay));
                 this.synapsesToDisplay = synapsesToDisplay;
+
+                if (this.settings.geolocation) {
+                    this.initGeolocationSynapses();
+                }
             },
             err => {
                 console.log("[SynapsesPage] getSynapsesToDisplay: Error fetching the synapses list ! -> " + err);
@@ -65,7 +66,7 @@ export class SynapsesPage {
         );
     }
 
-    /*TODO manage geolocation properly */
+    /*TODO manage  geolocation in other tab */
     private static selectSynapseToDisplay(settings: Settings, synapse: Synapse)  {
         if (settings.geolocation) {
             return synapse.signal.name == 'order' || synapse.signal.name == 'geolocation';
@@ -74,26 +75,28 @@ export class SynapsesPage {
     }
 
     private initGeolocationSynapses() {
-        this.synapsesToDisplay.filter(syn => syn.signal.name == 'geolocation').forEach(this.initGeolocationTrigger)
+        this.synapsesToDisplay.filter(syn => syn.signal.name == 'geolocation').forEach(this.initGeolocationTrigger.bind(this))
     }
 
     private initGeolocationTrigger(geolocationSynapse: Synapse) {
         // casting signal to geolocation
         let geolocation: Geolocation = geolocationSynapse.signal as Geolocation;
         let fence = {
-            id: geolocation.name, //any unique ID
+            id: geolocationSynapse.name, //any unique ID
             latitude: geolocation._getLatitude(), //center of geofence radius
             longitude: geolocation._getLongitude(),
             radius: geolocation._getRadius(), //radius to edge of geofence in meters
             transitionType: 1 // TransitionType.ENTER
-        }
+        };
 
         this.geofence.addOrUpdate(fence).then(
             () => console.log('[Geolocation] Geofence ' + geolocation.name + ' added'),
             (err) => console.log('[Geolocation] Geofence ' + geolocation.name + ' failed to add')
         );
 
-        this.geofence.onTransitionReceived().forEach(geo => console.log('Geofence transition detected :' + geo.toString()));
+        this.geofence.onTransitionReceived().forEach(function(geofences) {
+            geofences.forEach(geo => this.runSynapseByName(geo.id))
+        }.bind(this));
     }
 
 
@@ -106,6 +109,19 @@ export class SynapsesPage {
             .subscribe(
                 response => {
                     console.log("[SynapsesPage] runSynapse: Response from running synapse -> " + JSON.stringify(response));
+                })
+    }
+
+    /**
+     * Run a synapse by its name.
+     * (usefull in case of geolocation when we don't have access to the full Synapse.)
+     * @param synapse {Synapse}
+     */
+    runSynapseByName(synapseName: string) {
+        this.synapseService.runSynapseByName(synapseName, this.settings)
+            .subscribe(
+                response => {
+                    console.log("[SynapsesPage] runSynapseByName: Response from running synapse -> " + JSON.stringify(response));
                 })
     }
 
