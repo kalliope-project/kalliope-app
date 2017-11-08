@@ -1,5 +1,5 @@
 import {OrdersService} from './../orders/orders.service';
-import {NavController, ViewController, NavParams} from 'ionic-angular';
+import {ViewController, NavParams} from 'ionic-angular';
 import {Component} from '@angular/core';
 
 /**
@@ -26,8 +26,7 @@ export class NewOrderPage {
      * @param private ordersService {OrderService} Manage orders related services.
      * @param private params {NavParams}
      */
-    constructor(public navCtrl: NavController,
-                public viewCtrl: ViewController,
+    constructor(public viewCtrl: ViewController,
                 private ordersService: OrdersService,
                 private params: NavParams) {
 

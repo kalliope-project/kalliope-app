@@ -1,4 +1,3 @@
-import {Order} from "./Order";
 import {Signal} from "./Signal";
 
 /**

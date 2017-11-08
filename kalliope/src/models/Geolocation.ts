@@ -1,8 +1,6 @@
 import {Param} from "./Param";
 import {Signal} from "./Signal";
 
-import { Geofence } from '@ionic-native/geofence';
-
 /**
  * The model class corresponding to the Order
  * @class Order
