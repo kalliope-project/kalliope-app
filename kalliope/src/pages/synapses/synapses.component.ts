@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController, ToastController} from 'ionic-angular';
 import {SynapsesService} from './synapses.service';
 import {SettingsService} from './../settings/settings.service';
 import {Settings} from './../settings/settings';
@@ -7,7 +7,6 @@ import {Synapse} from "../../models/Synapse";
 import {Geofence} from "@ionic-native/geofence";
 import {Geolocation} from "../../models/Geolocation";
 import {ChatPage} from "../chat/chat.component";
-import {OrderResponse} from "../../models/orderResponse";
 
 /**
  * UI Component and Behaviour for the Synapse page
@@ -30,6 +29,7 @@ export class SynapsesPage {
      * @param public settingsService {SettingsService} Service to manage the settings
      */
     constructor(public navCtrl: NavController,
+                public toastCtrl: ToastController,
                 private synapseService: SynapsesService,
                 public settingsService: SettingsService) {
 
@@ -78,6 +78,7 @@ export class SynapsesPage {
     }
 
     private initGeolocationSynapses() {
+        this.presentToast("Loading Geolocation Signals!");
         this.synapsesToDisplay.filter(syn => syn.signal.name == 'geolocation').forEach(this.initGeolocationTrigger.bind(this))
     }
 
@@ -128,6 +129,19 @@ export class SynapsesPage {
                 geofence: geofence
             });
         }.bind(this));
+    }
+
+    /**
+     * Displays the message at the bottom of the screen for 3000ms.
+     * @param message_to_print {string} the message to display
+     */
+    presentToast(message_to_print: string) {
+        let toast = this.toastCtrl.create({
+            message: message_to_print,
+            duration: 3000,
+            position: 'bottom'
+        });
+        toast.present();
     }
 
 }

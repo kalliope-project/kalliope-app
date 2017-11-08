@@ -20,6 +20,13 @@
                 </button>
             </ion-card-header>
         </ion-card>
+        <ion-card *ngIf="synapse.signal.name == 'geolocation'">
+            <ion-card-header>
+                <button ion-button clear>
+                    {{synapse.name}}
+                </button>
+            </ion-card-header>
+        </ion-card>
     </div>
 
 </ion-content>
