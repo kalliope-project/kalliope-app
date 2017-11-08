@@ -49,7 +49,7 @@ export class OrdersPage {
                 public actionSheetCtrl: ActionSheetController,
                 public loadingCtrl: LoadingController) {
 
-        // get the nac controller used to switch pages
+        // get the nav controller used to switch pages
         this.nav = this.app.getActiveNav();
 
         // load orders

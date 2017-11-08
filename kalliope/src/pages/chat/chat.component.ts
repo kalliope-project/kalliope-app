@@ -74,11 +74,18 @@ export class ChatPage {
             this.newMessage = orderFromOrderPage;
             this.sendMessage();
         }
+
+        let responseFromGeolocation = navParams.get('responseFromGeolocation');
+        if (responseFromGeolocation != null) {
+            let geofence = navParams.get('geofence');
+            let myOrder: string = "***Geolocation signal*** "+geofence.id+" --> [latitude: "+ geofence.latitude+ ", longitude: "+geofence.longitude + ", radius: "+ geofence.radius+"]"
+            this.loadNewMessage(responseFromGeolocation, myOrder);
+        }
     }
 
     /**
      * Display the User ("Me") and Kalliope interactions into the chat page.
-     * @param orderResponse {OrderResponse} the OrderResponse comming back from the kalliopeCore.
+     * @param orderResponse {OrderResponse} the OrderResponse coming back from the kalliopeCore.
      * @param myOrder {string} the order provided by the user, undefined if user recorded an audio order.
      */
     loadNewMessage(orderResponse: OrderResponse, myOrder: string) {
