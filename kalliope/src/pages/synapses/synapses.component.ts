@@ -6,6 +6,8 @@ import {Settings} from './../settings/settings';
 import {Synapse} from "../../models/Synapse";
 import {Geofence} from "@ionic-native/geofence";
 import {Geolocation} from "../../models/Geolocation";
+import {ChatPage} from "../chat/chat.component";
+import {OrderResponse} from "../../models/orderResponse";
 
 /**
  * UI Component and Behaviour for the Synapse page
@@ -30,6 +32,7 @@ export class SynapsesPage {
     constructor(public navCtrl: NavController,
                 private synapseService: SynapsesService,
                 public settingsService: SettingsService) {
+
         this.settings = settingsService.getDefaultSettings();
         if (this.settings.geolocation) {
             // initialize the geofence
@@ -90,13 +93,13 @@ export class SynapsesPage {
         };
 
         this.geofence.addOrUpdate(fence).then(
-            () => console.log('[Geolocation] Geofence ' + geolocation.name + ' added'),
-            (err) => console.log('[Geolocation] Geofence ' + geolocation.name + ' failed to add')
+            () => console.log('[Geolocation] Geofence ' + geolocationSynapse.name + ' added'),
+            (err) => console.log('[Geolocation] Geofence ' + geolocationSynapse.name + ' failed to add')
         );
 
-        this.geofence.onTransitionReceived().forEach(function(geofences) {
-            geofences.forEach(geo => this.runSynapseByName(geo.id))
-        }.bind(this));
+        this.geofence.onTransitionReceived()
+            .forEach(function(geofences) {geofences.forEach(geo => this.raiseGeolocationSynapse(geo))}.bind(this))
+            .catch(err => console.log('[Geolocation] Geofence '+ geolocationSynapse.name +' transition not set'));
     }
 
 
@@ -113,18 +116,19 @@ export class SynapsesPage {
     }
 
     /**
-     * Run a synapse by its name.
+     * Run a synapse by its geofence geolocation.
      * (usefull in case of geolocation when we don't have access to the full Synapse.)
-     * @param synapse {Synapse}
+     * @param geofence {FenceObject}
      */
-    runSynapseByName(synapseName: string) {
-        this.synapseService.runSynapseByName(synapseName, this.settings)
-            .subscribe(
-                response => {
-                    console.log("[SynapsesPage] runSynapseByName: Response from running synapse -> " + JSON.stringify(response));
-                })
+    raiseGeolocationSynapse(geofence) {
+        this.synapseService.runSynapseByName(geofence.id, this.settings).subscribe(function (response) {
+            console.log("[SynapsesPage] raiseGeolocationSynapse: Response from running synapse -> " + JSON.stringify(response));
+            this.navCtrl.setRoot(ChatPage, {
+                responseFromGeolocation: response,
+                geofence: geofence
+            });
+        }.bind(this));
     }
-
 
 }
 
