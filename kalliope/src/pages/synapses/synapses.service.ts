@@ -23,6 +23,7 @@ export class SynapsesService {
     settings: Settings;
     synapses: Array<Synapse>;
     geofenceToLaunch: Subject<any> = new Subject<any>();
+    subscritionDone: boolean = false; // True if synapse has already subscribed to geofence event.
 
     /**
      * @constructor
@@ -39,8 +40,10 @@ export class SynapsesService {
             this.geofence = new Geofence();
             this.geofence.initialize().then(
                 function (initStatus) {
-                console.log("[SynapsesService] Geofence init status : "+initStatus);
-                this.initGeolocationSynapses(synapses);
+                    console.log("[SynapsesService] Geofence init status : "+initStatus);
+                    this.initGeolocationSynapses(synapses);
+                    this.geofence.onNotificationClicked().then(notificationData =>
+                        console.log("App opened from Geo Notification!", notificationData));
             }.bind(this),
                 err => console.log("[SynapsesService] Geofence fail to init : "+ err));
         }
@@ -54,13 +57,7 @@ export class SynapsesService {
     private initGeolocationTrigger(geolocationSynapse: Synapse) {
         // casting signal to geolocation
         let geolocation: Geolocation = geolocationSynapse.signal as Geolocation;
-        let fence = {
-            id: geolocationSynapse.name, //any unique ID
-            latitude: geolocation._getLatitude(), //center of geofence radius
-            longitude: geolocation._getLongitude(),
-            radius: geolocation._getRadius(), //radius to edge of geofence in meters
-            transitionType: 1 // TransitionType.ENTER
-        };
+        let fence = this.buildGeofence(geolocationSynapse.name, geolocation);
 
         this.geofence.addOrUpdate(fence).then(
             () => console.log('[Geolocation] Geofence ' + geolocationSynapse.name + ' added'),
@@ -72,6 +69,21 @@ export class SynapsesService {
         }.bind(this));
     }
 
+    private buildGeofence(synapseName: string, geolocation: Geolocation) {
+        return {
+            id: synapseName, //any unique ID
+            latitude: geolocation._getLatitude(), //center of geofence radius
+            longitude: geolocation._getLongitude(),
+            radius: geolocation._getRadius(), //radius to edge of geofence in meters
+            transitionType: 1, // TransitionType.ENTER
+            notification: { //notification settings
+                id: synapseName, //any unique ID
+                title: "You crossed a " + synapseName, //notification title
+                text: "[latitude -> " + geolocation._getLatitude() + ", longitude -> " + geolocation._getLongitude() + "]", //notification body
+                openAppOnClick: true //open app when notification is tapped
+            }
+        }
+    }
 
     /**
      * Access the Kalliope Core API to get the list of synapses (/synapses).

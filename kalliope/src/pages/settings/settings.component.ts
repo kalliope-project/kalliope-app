@@ -136,14 +136,12 @@ export class SettingsPage {
         toast.present();
     }
 
-
     /**
      * A setting has been updated from the client page, save the new status
      */
     settingsUpdated(){
         console.log("[SettingsPage] settings updated");
         this.SettingsService.setDefaultSettings(this.settings);
-
     }
 
 }
