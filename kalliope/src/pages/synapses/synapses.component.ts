@@ -47,12 +47,7 @@ export class SynapsesPage {
 
     ngOnInit() {
         this.presentToast("Loading synapses ...");
-        this.synapsesToDisplay = this.getSynapsesToDisplay();
-    }
-
-    ngOnDestroy() {
-        //prevent memory leak when component destroyed
-        this._geofenceSubscribtion.unsubscribe();
+        this.getSynapsesToDisplay();
     }
 
 
@@ -75,22 +70,20 @@ export class SynapsesPage {
      * Retrieve the list of sysnapse from the Kalliope Core API
      */
     getSynapsesToDisplay() {
-        if (!this.synapseService.synapses == null ) {
-            return this.synapseService.synapses.filter(syn => SynapsesPage.selectSynapseToDisplay(this.settings, syn));
-        } else {
-            this.synapseService.getSynapses(this.settings).subscribe(response => {
-                    if (this.settings.geolocation) {
-                        this.synapseService.setGeofence(response);
-                    }
-                    this.synapsesToDisplay = response.filter(syn => SynapsesPage.selectSynapseToDisplay(this.settings, syn));
-                    console.log("[SynapsesPage] getSynapsesToDisplay: fetched synapses list -> " + JSON.stringify(this.synapsesToDisplay));
-                },
-                err => {
-                    console.log("[SynapsesPage] getSynapsesToDisplay: Error fetching the synapses list ! -> " + err);
-                    this.synapsesToDisplay = [];
+
+        this.synapseService.getSynapses(this.settings).subscribe(response => {
+                if (this.settings.geolocation) {
+                    this.synapseService.setGeofence(response);
                 }
-            );
-        }
+                this.synapsesToDisplay = response.filter(syn => SynapsesPage.selectSynapseToDisplay(this.settings, syn));
+                console.log("[SynapsesPage] getSynapsesToDisplay: fetched synapses list -> " + JSON.stringify(this.synapsesToDisplay));
+            },
+            err => {
+                console.log("[SynapsesPage] getSynapsesToDisplay: Error fetching the synapses list ! -> " + err);
+                this.synapsesToDisplay = [];
+            }
+        );
+
     }
 
     private static selectSynapseToDisplay(settings: Settings, synapse: Synapse): boolean {
