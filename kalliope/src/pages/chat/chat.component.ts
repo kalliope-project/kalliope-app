@@ -78,7 +78,7 @@ export class ChatPage {
         let responseFromGeolocation = navParams.get('responseFromGeolocation');
         if (responseFromGeolocation != null) {
             let geofence = navParams.get('geofence');
-            let myOrder: string = "***Geolocation signal*** "+geofence.id+" --> [latitude: "+ geofence.latitude+ ", longitude: "+geofence.longitude + ", radius: "+ geofence.radius+"]"
+            let myOrder: string = new Date().toLocaleString()+" ***Geolocation signal*** "+geofence.id+" --> [latitude: "+ geofence.latitude+ ", longitude: "+geofence.longitude + ", radius: "+ geofence.radius+"]"
             this.loadNewMessage(responseFromGeolocation, myOrder);
         }
     }

@@ -39,16 +39,20 @@ export class SynapsesPage {
                 private synapseService: SynapsesService) {
         this.settings = settingsService.getDefaultSettings();
         this.geofence = this.synapseService.geofence;
-        this._geofenceSubscribtion = this.synapseService.geofenceToLaunch.subscribe(
-            geo => this.raiseGeolocationSynapse(geo)
-        ,
-            err => console.log("[SynapsesPage] Fail to raise the geolocation Synapse :"+ err));
+        if (!this.synapseService.subscritionDone) {
+            this.synapseService.subscritionDone = true;
+            this._geofenceSubscribtion = this.synapseService.geofenceToLaunch.subscribe(
+                geo => this.raiseGeolocationSynapse(geo)
+                ,
+                err => console.log("[SynapsesPage] Fail to raise the geolocation Synapse :"+ err));
+        }
     }
 
     ngOnInit() {
         this.presentToast("Loading synapses ...");
         this.getSynapsesToDisplay();
     }
+
 
 
     /**
