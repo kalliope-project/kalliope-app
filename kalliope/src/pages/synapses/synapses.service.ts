@@ -7,6 +7,10 @@ import {Synapse} from "../../models/Synapse";
 import {Observable} from "rxjs/Observable";
 import {Serialization} from "../../serialization/Serialization";
 import {OrderResponse} from "../../models/orderResponse";
+import {Geofence} from "@ionic-native/geofence";
+import {SettingsService} from "../settings/settings.service";
+import {Geolocation} from "../../models/Geolocation";
+import {Subject} from "rxjs/Subject";
 
 /**
  * Service to manage the Synapse operations using the Kalliope Core API
@@ -15,14 +19,59 @@ import {OrderResponse} from "../../models/orderResponse";
 @Injectable()
 export class SynapsesService {
     http: any;
+    geofence: Geofence;
+    settings: Settings;
+    synapses: Array<Synapse>;
+    geofenceToLaunch: Subject<any> = new Subject<any>();
 
     /**
      * @constructor
      * @param http {Http}
      */
-    constructor(http: Http) {
+    constructor(http: Http,
+                public settingsService: SettingsService) {
+        this.settings = settingsService.getDefaultSettings();
         this.http = http;
     }
+
+    setGeofence(synapses: Array<Synapse>) {
+        if (this.geofence == null) {
+            this.geofence = new Geofence();
+            this.geofence.initialize().then(
+                function (initStatus) {
+                console.log("[SynapsesService] Geofence init status : "+initStatus);
+                this.initGeolocationSynapses(synapses);
+            }.bind(this),
+                err => console.log("[SynapsesService] Geofence fail to init : "+ err));
+        }
+    }
+
+
+    private initGeolocationSynapses(synapses: Array<Synapse>) {
+        synapses.filter(syn => syn.signal.name == 'geolocation').forEach(this.initGeolocationTrigger.bind(this))
+    }
+
+    private initGeolocationTrigger(geolocationSynapse: Synapse) {
+        // casting signal to geolocation
+        let geolocation: Geolocation = geolocationSynapse.signal as Geolocation;
+        let fence = {
+            id: geolocationSynapse.name, //any unique ID
+            latitude: geolocation._getLatitude(), //center of geofence radius
+            longitude: geolocation._getLongitude(),
+            radius: geolocation._getRadius(), //radius to edge of geofence in meters
+            transitionType: 1 // TransitionType.ENTER
+        };
+
+        this.geofence.addOrUpdate(fence).then(
+            () => console.log('[Geolocation] Geofence ' + geolocationSynapse.name + ' added'),
+            (err) => console.log('[Geolocation] Geofence ' + geolocationSynapse.name + ' failed to add')
+        );
+
+        this.geofence.onTransitionReceived().forEach(function(geofences) {
+            geofences.forEach(geo => this.geofenceToLaunch.next(geo))
+        }.bind(this));
+    }
+
 
     /**
      * Access the Kalliope Core API to get the list of synapses (/synapses).
