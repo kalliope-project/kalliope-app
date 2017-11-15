@@ -22,7 +22,7 @@
         </ion-card>
         <ion-card *ngIf="synapse.signal.name == 'geolocation'">
             <ion-card-header>
-                <button ion-button clear>
+                <button ion-button clear item-right icon-only (click)="displayGeolocation(synapse)">
                     {{synapse.name}}
                 </button>
             </ion-card-header>
