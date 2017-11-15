@@ -14,6 +14,7 @@ import {ChatPage} from './../pages/chat/chat.component';
 import {SettingsPage} from './../pages/settings/settings.component';
 import {SynapsesPage} from '../pages/synapses/synapses.component';
 import { Bubble } from './../pages/chat/bubble/bubble.component';
+import {GeolocationPage} from "../pages/synapses/geolocation.component";
 
 // Services
 import {OrdersService} from './../pages/orders/orders.service';
@@ -34,7 +35,8 @@ import {HTTP} from '@ionic-native/http';
         OrdersPage,
         ChatPage,
         NewOrderPage,
-        Bubble
+        Bubble,
+        GeolocationPage
     ],
     imports: [
         BrowserModule,
@@ -48,7 +50,8 @@ import {HTTP} from '@ionic-native/http';
         SettingsPage,
         OrdersPage,
         ChatPage,
-        NewOrderPage
+        NewOrderPage,
+        GeolocationPage
     ],
     providers: [
         StatusBar,

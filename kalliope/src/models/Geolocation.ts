@@ -33,7 +33,7 @@ export class Geolocation extends Signal {
         return this.params.find(p => p.name == 'longitude').value;
     }
 
-    public _getRadius(): any {
+    public _getRadius(): number {
         return this.params.find(p => p.name == 'radius').value;
     }
 }
