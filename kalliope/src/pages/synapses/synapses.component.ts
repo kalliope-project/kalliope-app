@@ -7,6 +7,7 @@ import {Geofence} from "@ionic-native/geofence";
 import {SettingsService} from "../settings/settings.service";
 import {Subscription} from "rxjs/Subscription";
 import {ChatPage} from "../chat/chat.component";
+import {GeolocationPage} from "./geolocation.component";
 
 /**
  * UI Component and Behaviour for the Synapse page
@@ -107,6 +108,12 @@ export class SynapsesPage {
             .subscribe(response => {
                     console.log("[SynapsesPage] runSynapse: Response from running synapse -> " + JSON.stringify(response));
             })
+    }
+
+    displayGeolocation(synapse: Synapse) {
+        this.navCtrl.setRoot(GeolocationPage, {
+            geofenceSynapse: synapse.signal
+        });
     }
 
 
