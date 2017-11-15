@@ -71,11 +71,12 @@ export class GeolocationPage {
     loadMap() {
         this.map = Leaflet
             .map("map")
-            .setView(this.latLng, 13)
-            .on("click", this.onMapClicked.bind(this))
+            .on("click", this.onMapClicked.bind(this));
 
-        Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png")
-            .addTo(this.map);
+        this.map.locate({setView: true, maxZoom: 16});
+        this.map.on('locationfound', this.onLocationFound.bind(this));
+
+        Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
 
         this.circle = Leaflet.circle(this.latLng, this.radius).addTo(this.map);
     }
@@ -87,6 +88,15 @@ export class GeolocationPage {
     onMarkerPositionChanged(e) {
         const latlng = e.target.getLatLng();
         this.latLng = latlng;
+    }
+
+    onLocationFound(e) {
+        var radius = e.accuracy / 2;
+
+        Leaflet.marker(e.latlng).addTo(this.map)
+            .bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+        Leaflet.circle(e.latlng, radius).addTo(this.map);
     }
 }
 
