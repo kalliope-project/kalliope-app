@@ -43,8 +43,7 @@ export class SynapsesPage {
         if (!this.synapseService.subscritionDone) {
             this.synapseService.subscritionDone = true;
             this._geofenceSubscribtion = this.synapseService.geofenceToLaunch.subscribe(
-                geo => this.raiseGeolocationSynapse(geo)
-                ,
+                geo => this.raiseGeolocationSynapse(geo),
                 err => console.log("[SynapsesPage] Fail to raise the geolocation Synapse :"+ err));
         }
     }
