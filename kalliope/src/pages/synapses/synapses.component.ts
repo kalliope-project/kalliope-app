@@ -112,7 +112,7 @@ export class SynapsesPage {
 
     displayGeolocation(synapse: Synapse) {
         this.navCtrl.setRoot(GeolocationPage, {
-            geofenceSynapse: synapse.signal
+            geofenceSynapse: synapse
         });
     }
 
