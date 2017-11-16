@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
-import {MenuController, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {Settings} from './../settings/settings';
-import {SettingsService} from "../settings/settings.service";
 import {Geolocation} from "../../models/Geolocation";
 import * as Leaflet from "leaflet";
+import { Meta } from '@angular/platform-browser';
+import {Synapse} from "../../models/Synapse";
 
 /**
  * UI Component and Behaviour for the Synapse page
@@ -16,11 +17,13 @@ import * as Leaflet from "leaflet";
 export class GeolocationPage {
 
     settings: Settings;
-    private geolocationSignal: Geolocation; //TODO pass the synapse not just the signal
+    private geolocationSignal: Geolocation;
+    private geolocationSynapse: Synapse;
     private _radius: number;
     private _latLng: any;
     private circle: any;
     private map: any;
+    private marker: any;
 
 
     /*TODO manage  geolocation in synapse page within a tab */
@@ -33,22 +36,17 @@ export class GeolocationPage {
      */
     constructor(public navCtrl: NavController,
                 navParams: NavParams,
-                private settingsService: SettingsService,
-                private menu: MenuController) {
-        this.settings = settingsService.getDefaultSettings();
-        this.geolocationSignal = navParams.get("geofenceSynapse");
+                private meta: Meta) {
+        this.meta.addTag({ name:"viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" });
+        this.geolocationSynapse = navParams.get("geofenceSynapse");
+        this.geolocationSignal = this.geolocationSynapse.signal as Geolocation;
         this._radius = this.geolocationSignal._getRadius();
         this._latLng = Leaflet.latLng(this.geolocationSignal._getLatitude(), this.geolocationSignal._getLongitude());
     }
 
-
-    ionViewDidLoad() {
-        this.menu.enable(false);
-        // workaround map is not correctly displayed
-        // maybe this should be done in some other event
-        setTimeout(this.loadMap.bind(this), 1000);
+    ngOnInit() {
+        this.loadMap();
     }
-
 
     get radius() {
         return this._radius;
@@ -69,34 +67,32 @@ export class GeolocationPage {
     }
 
     loadMap() {
-        this.map = Leaflet
-            .map("map")
-            .on("click", this.onMapClicked.bind(this));
 
-        this.map.locate({setView: true, maxZoom: 16});
+        this.map = Leaflet.map("map");
+
+        this.circle = Leaflet.circle(this.latLng, {
+            radius:this.radius,
+            color: '#009688',
+            fillColor: '#009688',
+            fillOpacity: 0.3})
+            .bindPopup(String(this.geolocationSynapse.name)) // todo why this bindpopup does not work ?! :(
+            .addTo(this.map);
+
+        this.map.locate({setView: true, maxZoom: 18});
         this.map.on('locationfound', this.onLocationFound.bind(this));
 
         Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
-
-        this.circle = Leaflet.circle(this.latLng, this.radius).addTo(this.map);
     }
 
-    onMapClicked(e) {
-        this.latLng = e.latlng;
-    }
-
-    onMarkerPositionChanged(e) {
-        const latlng = e.target.getLatLng();
-        this.latLng = latlng;
-    }
 
     onLocationFound(e) {
-        var radius = e.accuracy / 2;
-
-        Leaflet.marker(e.latlng).addTo(this.map)
-            .bindPopup("You are within " + radius + " meters from this point").openPopup();
-
-        Leaflet.circle(e.latlng, radius).addTo(this.map);
+        var icon = Leaflet.icon({
+            iconUrl: "assets/marker/kalliopeBrain.png",
+            shadowUrl: "assets/marker/marker-shadow.png",
+            iconSize:     [100, 100], // size of the icon
+            shadowSize:   [50, 64], // size of the shadow
+        });
+        this.marker = Leaflet.marker(e.latlng, {icon: icon}).addTo(this.map).bindPopup("You");
     }
 }
 
