@@ -31,8 +31,8 @@ export class GeolocationPage {
     /**
      * @constructor
      * @param public navCtrl {NavController}
-     * @param private synapseService {SynapsesService} Service to manage the synapses operations
-     * @param public settingsService {SettingsService} Service to manage the settings
+     * @param private navParams {NavParams} Navigation parameters.
+     * @param public meta {Meta} Provide metadata.
      */
     constructor(public navCtrl: NavController,
                 navParams: NavParams,
@@ -83,7 +83,6 @@ export class GeolocationPage {
 
         Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
     }
-
 
     onLocationFound(e) {
         var icon = Leaflet.icon({
