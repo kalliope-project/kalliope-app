@@ -68,15 +68,25 @@ export class GeolocationPage {
 
     loadMap() {
 
-        this.map = Leaflet.map("map");
+        this.map = Leaflet.map("map", {
+            touchZoom: true,
+        });
 
         this.circle = Leaflet.circle(this.latLng, {
             radius:this.radius,
             color: '#009688',
             fillColor: '#009688',
             fillOpacity: 0.3})
-            .bindPopup(String(this.geolocationSynapse.name)) // todo why this bindpopup does not work ?! :(
-            .addTo(this.map);
+            .addTo(this.map); // bindpopup does not work as expected for this circle ! :(
+
+        var icon = Leaflet.icon({
+            iconUrl: "assets/marker/kalliopeBrain.png",
+            shadowUrl: "assets/marker/marker-shadow.png",
+            iconSize:     [100, 100], // size of the icon
+            shadowSize:   [50, 64], // size of the shadow
+        });
+
+        Leaflet.marker(this.latLng, {icon: icon}).addTo(this.map).bindPopup(String(this.geolocationSynapse.name));
 
         this.map.locate({setView: true, maxZoom: 18});
         this.map.on('locationfound', this.onLocationFound.bind(this));
@@ -86,10 +96,10 @@ export class GeolocationPage {
 
     onLocationFound(e) {
         var icon = Leaflet.icon({
-            iconUrl: "assets/marker/kalliopeBrain.png",
+            iconUrl: "assets/marker/user-marker.png",
             shadowUrl: "assets/marker/marker-shadow.png",
-            iconSize:     [100, 100], // size of the icon
-            shadowSize:   [50, 64], // size of the shadow
+            iconSize:     [50, 50], // size of the icon
+            shadowSize:   [30, 22], // size of the shadow
         });
         this.marker = Leaflet.marker(e.latlng, {icon: icon}).addTo(this.map).bindPopup("You");
     }
