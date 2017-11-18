@@ -10,19 +10,19 @@
 <ion-content class="main_color" padding>
 
     <div *ngFor="let synapse of synapsesToDisplay">
-        <ion-card *ngIf="synapse.signal.name == 'order'">
+        <ion-card *ngIf="synapse.signal.name == 'order'" class="synapse-ion-card">
             <ion-card-header>
                 <!--Displaying only synapses without params because API does not handle POST with params !-->
                 <!--Otherwise use : <ion-card *ngIf="synapse.signal.constructor.name == 'Order'">-->
-                <button ion-button clear item-right icon-only (click)="runSynapse(synapse)">
+                <button ion-button clear item-right icon-only (click)="runSynapse(synapse)" class="synapse">
                     {{synapse.name}}
                     <ion-icon name="play"></ion-icon>
                 </button>
             </ion-card-header>
         </ion-card>
-        <ion-card *ngIf="synapse.signal.name == 'geolocation'">
+        <ion-card *ngIf="synapse.signal.name == 'geolocation'" class="synapse-ion-card">
             <ion-card-header>
-                <button ion-button clear item-right icon-only (click)="displayGeolocation(synapse)">
+                <button ion-button clear item-right icon-only (click)="displayGeolocation(synapse)" class="synapse">
                     {{synapse.name}}
                     <ion-icon name="locate"></ion-icon>
                 </button>
@@ -31,3 +31,12 @@
     </div>
 
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-item>
+            <ion-label>Geolocation <ion-badge color="green_material" (click)="showInfoGeolocation()">?</ion-badge></ion-label>
+            <ion-toggle color="green_material" [(ngModel)]="settings.geolocation" (ionChange)="geolocationSettingsUpdated()"></ion-toggle>
+        </ion-item>
+    </ion-toolbar>
+</ion-footer>
