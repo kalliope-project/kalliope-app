@@ -49,7 +49,6 @@ export class SynapsesPage {
     }
 
     ngOnInit() {
-        this.presentToast("Loading synapses ...");
         this.getSynapsesToDisplay();
     }
 
@@ -123,10 +122,26 @@ export class SynapsesPage {
     presentToast(message_to_print: string) {
         let toast = this.toastCtrl.create({
             message: message_to_print,
-            duration: 3000,
+            duration: 5000,
             position: 'bottom'
         });
         toast.present();
+    }
+
+    /*
+    * Show a toast to explain what is the geolocation flag.
+    * */
+    showInfoGeolocation(){
+        this.presentToast("If true, the application will manage geolocation signals from the kalliope brain");
+    }
+
+    /**
+     * A setting has been updated from the client page, save the new status
+     */
+    geolocationSettingsUpdated(){
+        console.log("[SynapsesPage] setting geolocation updated");
+        this.getSynapsesToDisplay();
+        this.settingsService.setDefaultSettings(this.settings);
     }
 
 }
