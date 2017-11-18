@@ -29,14 +29,14 @@ export class SettingsPage {
      */
     constructor(public navCtrl: NavController,
                 public loadingCtrl: LoadingController,
-                private SettingsService: SettingsService,
+                private settingsService: SettingsService,
                 public toastCtrl: ToastController,
                 private app: App) {
 
         // get the nac controller used to switch pages
         this.nav = this.app.getActiveNav();
 
-        this.settings = this.SettingsService.getDefaultSettings();
+        this.settings = this.settingsService.getDefaultSettings();
         if (this.settings == null) {
             this.settings = new Settings();
         }
@@ -52,7 +52,7 @@ export class SettingsPage {
         console.log("[SettingsPage] testConnection: Testing connection with URL -> " + this.settings.url)
 
         this.loader.present();
-        this.SettingsService.getVersion(this.settings)
+        this.settingsService.getVersion(this.settings)
             .subscribe(
                 data => this.connectionSuccess(data),
                 error => this.connectonFailled(error));
@@ -99,7 +99,7 @@ export class SettingsPage {
      * Define and save the default settings.
      */
     saveSettings() {
-        this.SettingsService.setDefaultSettings(this.settings);
+        this.settingsService.setDefaultSettings(this.settings);
         this.nav.setRoot(OrdersPage);
     }
 
@@ -124,24 +124,12 @@ export class SettingsPage {
         toast.present();
     }
 
-    /*
-    * Show a toast to explain what is the geolocation flag.
-    * */
-    showInfoGeolocation(){
-        let toast = this.toastCtrl.create({
-            message: "If true, the application will manage geolocation signals from the kalliope brain",
-            duration: 5000,
-            position: 'bottom'
-        });
-        toast.present();
-    }
-
     /**
      * A setting has been updated from the client page, save the new status
      */
     settingsUpdated(){
         console.log("[SettingsPage] settings updated");
-        this.SettingsService.setDefaultSettings(this.settings);
+        this.settingsService.setDefaultSettings(this.settings);
     }
 
 }
