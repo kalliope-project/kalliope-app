@@ -64,6 +64,7 @@ export class ChatPage {
         // load settings from storage
         this.settings = settingsService.getDefaultSettings();
         if (this.settings == null) {
+            console.log("Settings not loaded. Redirect to settings page");
             this.navCtrl.setRoot(SettingsPage);
         } else {
             console.log("Settings loaded. Url: " + this.settings.url);

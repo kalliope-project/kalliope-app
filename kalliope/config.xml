@@ -3,7 +3,7 @@
     <name>Kalliope</name>
     <description>An awesome Ionic/Cordova app For The Kalliope Project</description>
     <author email="kalliope.project@gmail.com" href="https://kalliope-project.github.io/">Kalliope Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.0.12:8100" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />
     <allow-intent href="http://*/*" />
@@ -86,7 +86,7 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-media-capture" spec="^1.4.3" />
     <plugin name="cordova-plugin-http" spec="^1.2.0" />
-    <plugin name="cordova-plugin-geofence" spec="^0.7.0" />
     <plugin name="cordova-plugin-compat" spec="^1.2.0" />
-    <engine name="android" spec="~6.3.0" />
+    <plugin name="cordova-plugin-geofence" spec="^0.7.0" />
+    <engine name="android" spec="6.3.0" />
 </widget>

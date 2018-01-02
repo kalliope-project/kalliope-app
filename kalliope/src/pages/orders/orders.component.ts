@@ -1,3 +1,4 @@
+import { SettingsPage } from './../settings/settings.component';
 import {NewOrderPage} from './../NewOrder/NewOrder.component';
 import {ChatPage} from './../chat/chat.component';
 import {OrdersService} from './orders.service';
@@ -48,6 +49,15 @@ export class OrdersPage {
                 public toastCtrl: ToastController,
                 public actionSheetCtrl: ActionSheetController,
                 public loadingCtrl: LoadingController) {
+
+        // load settings from storage
+        this.settings = settingsService.getDefaultSettings();
+        if (this.settings == null) {
+            console.log("Settings not loaded. Redirect to settings page");
+            this.navCtrl.setRoot(SettingsPage);
+        } else {
+            console.log("Settings loaded. Url: " + this.settings.url);
+        }
 
         // get the nav controller used to switch pages
         this.nav = this.app.getActiveNav();
