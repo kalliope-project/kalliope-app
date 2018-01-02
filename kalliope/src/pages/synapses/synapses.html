@@ -32,7 +32,7 @@
 
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf=settings>
     <ion-toolbar>
         <ion-item>
             <ion-label>Geolocation <ion-badge color="green_material" (click)="showInfoGeolocation()">?</ion-badge></ion-label>
