@@ -1,3 +1,4 @@
+import { SettingsPage } from './../settings/settings.component';
 import {Component} from '@angular/core';
 import {NavController, ToastController} from 'ionic-angular';
 import {SynapsesService} from './synapses.service';
@@ -38,21 +39,29 @@ export class SynapsesPage {
                 public toastCtrl: ToastController,
                 private settingsService: SettingsService,
                 private synapseService: SynapsesService) {
+
+        // load settings from storage
         this.settings = settingsService.getDefaultSettings();
-        this.geofence = this.synapseService.geofence;
-        if (!this.synapseService.subscritionDone) {
-            this.synapseService.subscritionDone = true;
-            this._geofenceSubscribtion = this.synapseService.geofenceToLaunch.subscribe(
-                geo => this.raiseGeolocationSynapse(geo),
-                err => console.log("[SynapsesPage] Fail to raise the geolocation Synapse :"+ err));
+        if (this.settings == null) {
+            console.log("Settings not loaded. Redirect to settings page");
+            this.navCtrl.setRoot(SettingsPage);
+        } else {
+            console.log("Settings loaded. Url: " + this.settings.url);
+            this.geofence = this.synapseService.geofence;
+            if (!this.synapseService.subscritionDone) {
+                this.synapseService.subscritionDone = true;
+                this._geofenceSubscribtion = this.synapseService.geofenceToLaunch.subscribe(
+                    geo => this.raiseGeolocationSynapse(geo),
+                    err => console.log("[SynapsesPage] Fail to raise the geolocation Synapse :"+ err));
+            }
         }
     }
 
     ngOnInit() {
-        this.getSynapsesToDisplay();
+        if (this.settings != null) {
+            this.getSynapsesToDisplay();
+        }
     }
-
-
 
     /**
      * Run a synapse by its geofence geolocation.
@@ -73,8 +82,8 @@ export class SynapsesPage {
      * Retrieve the list of sysnapse from the Kalliope Core API
      */
     getSynapsesToDisplay() {
-
-        this.synapseService.getSynapses(this.settings).subscribe(response => {
+        if (this.settings != null){
+            this.synapseService.getSynapses(this.settings).subscribe(response => {
                 if (this.settings.geolocation) {
                     this.synapseService.setGeofence(response);
                 }
@@ -84,8 +93,8 @@ export class SynapsesPage {
             err => {
                 console.log("[SynapsesPage] getSynapsesToDisplay: Error fetching the synapses list ! -> " + err);
                 this.synapsesToDisplay = [];
-            }
-        );
+            });
+        }
 
     }
 
