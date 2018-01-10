@@ -38,17 +38,17 @@ export class SynapsesService {
     setGeofence(synapses: Array<Synapse>) {
         if (this.geofence == null) {
             this.geofence = new Geofence();
-            this.geofence.initialize().then(
-                function (initStatus) {
-                    console.log("[SynapsesService] Geofence init status : "+initStatus);
-                    this.initGeolocationSynapses(synapses);
-                    this.geofence.onNotificationClicked().then(notificationData =>
-                        console.log("App opened from Geo Notification!", notificationData));
-            }.bind(this),
-                err => console.log("[SynapsesService] Geofence fail to init : "+ err));
+            this.geofence.initialize().then((initStatus) => {
+                console.log("Geofence Plugin has been initialized", initStatus);            
+                this.initGeolocationSynapses(synapses); 
+                this.geofence.onNotificationClicked = function (notificationData) {
+                console.log("App opened from Geo Notification!", notificationData);
+                };
+            }).catch((error) => {
+                console.error(error);
+            });
         }
     }
-
 
     private initGeolocationSynapses(synapses: Array<Synapse>) {
         synapses.filter(syn => syn.signal.name == 'geolocation').forEach(this.initGeolocationTrigger.bind(this))
