@@ -75,8 +75,10 @@ The application is now running and accessible using your browser : "http://local
 
 Run the app on Android device directly
 ```
-ionic cordova run android -c
+ionic cordova run android
 ```
+Note: running the app with the option -c does not work !
+
 
 Create an APK
 ```
