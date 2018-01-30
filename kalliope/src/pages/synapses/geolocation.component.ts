@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {Settings} from './../settings/settings';
 import {Geolocation} from "../../models/Geolocation";
-import * as Leaflet from "leaflet";
+import * as Leaflet from 'leaflet';
 import { Meta } from '@angular/platform-browser';
 import {Synapse} from "../../models/Synapse";
 
@@ -90,8 +90,13 @@ export class GeolocationPage {
 
         this.map.locate({setView: true, maxZoom: 18});
         this.map.on('locationfound', this.onLocationFound.bind(this));
+        this.map.on('locationerror', this.onLocationError.bind(this));
 
         Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
+    }
+
+    onLocationError(e) {
+        alert("onLocationError :" + e.message);
     }
 
     onLocationFound(e) {
