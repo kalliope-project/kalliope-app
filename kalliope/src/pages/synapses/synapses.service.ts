@@ -39,13 +39,12 @@ export class SynapsesService {
         if (this.geofence == null) {
             this.geofence = new Geofence();
             this.geofence.initialize().then((initStatus) => {
-                console.log("Geofence Plugin has been initialized", initStatus);            
-                this.initGeolocationSynapses(synapses); 
-                this.geofence.onNotificationClicked = function (notificationData) {
-                console.log("App opened from Geo Notification!", notificationData);
-                };
+                console.log("[SynapsesService] Geofence Plugin has been initialized", initStatus);
+                this.initGeolocationSynapses(synapses);
+                this.geofence.onNotificationClicked().subscribe( notificationData =>
+                    console.log("App opened from Geo Notification!", notificationData));
             }).catch((error) => {
-                console.error(error);
+                console.error("[SynapsesService]" + error);
             });
         }
     }
@@ -64,7 +63,7 @@ export class SynapsesService {
             (err) => console.log('[Geolocation] Geofence ' + geolocationSynapse.name + ' failed to add')
         );
 
-        this.geofence.onTransitionReceived().forEach(function(geofences) {
+        this.geofence.onTransitionReceived().forEach(function (geofences) {
             geofences.forEach(geo => this.geofenceToLaunch.next(geo))
         }.bind(this));
     }
@@ -78,7 +77,8 @@ export class SynapsesService {
             transitionType: 1, // TransitionType.ENTER
             notification: { //notification settings
                 title: "You crossed a " + synapseName, //notification title
-                text: "[latitude -> " + geolocation._getLatitude() + ", longitude -> " + geolocation._getLongitude() + "]", //notification body
+                text: "[latitude -> " + geolocation._getLatitude() + ", longitude -> " + geolocation._getLongitude() +
+                ", radius -> " + geolocation._getRadius() + "]", //notification body
                 openAppOnClick: true //open app when notification is tapped
             }
         }
@@ -115,7 +115,7 @@ export class SynapsesService {
      * @return {Observable<OrderResponse>}
      */
     runSynapseByName(synapseName: string,
-               settings: Settings): Observable<OrderResponse> {
+                     settings: Settings): Observable<OrderResponse> {
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
