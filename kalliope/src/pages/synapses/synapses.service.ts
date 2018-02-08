@@ -22,7 +22,6 @@ export class SynapsesService {
     geofence: Geofence;
     settings: Settings;
     synapses: Array<Synapse>;
-    geofenceToLaunch: Subject<any> = new Subject<any>();
     subscritionDone: boolean = false; // True if synapse has already subscribed to geofence event.
 
     /**
@@ -62,10 +61,6 @@ export class SynapsesService {
             () => console.log('[Geolocation] Geofence ' + geolocationSynapse.name + ' added'),
             (err) => console.log('[Geolocation] Geofence ' + geolocationSynapse.name + ' failed to add')
         );
-
-        this.geofence.onTransitionReceived().forEach(function (geofences) {
-            geofences.forEach(geo => this.geofenceToLaunch.next(geo))
-        }.bind(this));
     }
 
     private buildGeofence(synapseName: string, geolocation: Geolocation) {
