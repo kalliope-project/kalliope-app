@@ -27,8 +27,6 @@ export class SynapsesPage {
     _geofenceSubscribtion: Subscription;
 
 
-    /*TODO manage  geolocation in other tab */
-
     /**
      * @constructor
      * @param public navCtrl {NavController}
@@ -47,19 +45,24 @@ export class SynapsesPage {
             this.navCtrl.setRoot(SettingsPage);
         } else {
             console.log("Settings loaded. Url: " + this.settings.url);
-            this.geofence = this.synapseService.geofence;
-            if (!this.synapseService.subscritionDone) {
-                this.synapseService.subscritionDone = true;
-                this._geofenceSubscribtion = this.synapseService.geofenceToLaunch.subscribe(
-                    geo => this.raiseGeolocationSynapse(geo),
-                    err => console.log("[SynapsesPage] Fail to raise the geolocation Synapse :"+ err));
-            }
+            this.geofenceSubscription();
         }
     }
 
     ngOnInit() {
         if (this.settings != null) {
             this.getSynapsesToDisplay();
+        }
+    }
+
+    private geofenceSubscription() {
+        this.geofence = this.synapseService.geofence;
+        if (!this.synapseService.subscritionDone) {
+            this.synapseService.subscritionDone = true;
+            this.geofence.onTransitionReceived().subscribe(function (geofences) {
+                    geofences.forEach(geo => this.raiseGeolocationSynapse(geo))
+                }.bind(this)),
+                err => console.log("[SynapsesPage] Fail to raise the geolocation Synapse :"+ err);
         }
     }
 
@@ -75,8 +78,8 @@ export class SynapsesPage {
                 geofence: geofence
             });
         console.log("[SynapsesPage] raiseGeolocationSynapse: Response from running synapse -> " + JSON.stringify(response));
-    }.bind(this));
-}
+        }.bind(this));
+    }
 
     /**
      * Retrieve the list of sysnapse from the Kalliope Core API
@@ -86,6 +89,8 @@ export class SynapsesPage {
             this.synapseService.getSynapses(this.settings).subscribe(response => {
                 if (this.settings.geolocation) {
                     this.synapseService.setGeofence(response);
+                    this.geofenceSubscription();
+                    console.debug("[debug] getSynapsesToDisplay");
                 }
                 this.synapsesToDisplay = response.filter(syn => SynapsesPage.selectSynapseToDisplay(this.settings, syn));
                 console.log("[SynapsesPage] getSynapsesToDisplay: fetched synapses list -> " + JSON.stringify(this.synapsesToDisplay));
@@ -151,6 +156,12 @@ export class SynapsesPage {
         console.log("[SynapsesPage] setting geolocation updated");
         this.getSynapsesToDisplay();
         this.settingsService.setDefaultSettings(this.settings);
+        if (!this.settings.geolocation) {
+            this.synapseService.geofence.removeAll();
+            this.synapseService.geofence = null;
+            this.synapseService.subscritionDone = false;
+            console.debug("[debug] geolocationSettingsUpdated");
+        }
     }
 
 }

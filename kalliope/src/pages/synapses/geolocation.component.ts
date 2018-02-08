@@ -70,6 +70,7 @@ export class GeolocationPage {
 
         this.map = Leaflet.map("map", {
             touchZoom: true,
+
         });
 
         this.circle = Leaflet.circle(this.latLng, {
@@ -88,7 +89,11 @@ export class GeolocationPage {
 
         Leaflet.marker(this.latLng, {icon: icon}).addTo(this.map).bindPopup(String(this.geolocationSynapse.name));
 
-        this.map.locate({setView: true, maxZoom: 18});
+        this.map.locate({setView: true,
+                                maxZoom: 18,
+                                timeout: 100000,
+                                maximumAge: 5000,
+        });
         this.map.on('locationfound', this.onLocationFound.bind(this));
         this.map.on('locationerror', this.onLocationError.bind(this));
 
