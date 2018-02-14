@@ -40,17 +40,14 @@ export class SynapsesPage {
 
         // load settings from storage
         this.settings = settingsService.getDefaultSettings();
-        if (this.settings == null) {
-            console.log("Settings not loaded. Redirect to settings page");
-            this.navCtrl.setRoot(SettingsPage);
-        } else {
-            console.log("Settings loaded. Url: " + this.settings.url);
-            this.geofenceSubscription();
-        }
     }
 
     ngOnInit() {
-        if (this.settings != null) {
+        if (this.settings == null) {
+            console.log("[SynapsesPage] Settings not loaded. Redirect to settings page");
+            this.navCtrl.setRoot(SettingsPage);
+        } else {
+            console.log("[SynapsesPage] Settings loaded. Url: " + this.settings.url);
             this.getSynapsesToDisplay();
         }
     }
