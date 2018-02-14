@@ -1,10 +1,12 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams, Platform} from 'ionic-angular';
 import {Settings} from './../settings/settings';
 import {Geolocation} from "../../models/Geolocation";
 import * as Leaflet from 'leaflet';
 import { Meta } from '@angular/platform-browser';
 import {Synapse} from "../../models/Synapse";
+import {SettingsPage} from "../settings/settings.component";
+import {SynapsesPage} from "./synapses.component";
 
 /**
  * UI Component and Behaviour for the Synapse page
@@ -36,12 +38,21 @@ export class GeolocationPage {
      */
     constructor(public navCtrl: NavController,
                 navParams: NavParams,
+                platform: Platform,
                 private meta: Meta) {
         this.meta.addTag({ name:"viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" });
         this.geolocationSynapse = navParams.get("geofenceSynapse");
         this.geolocationSignal = this.geolocationSynapse.signal as Geolocation;
         this._radius = this.geolocationSignal._getRadius();
         this._latLng = Leaflet.latLng(this.geolocationSignal._getLatitude(), this.geolocationSignal._getLongitude());
+
+        /*
+        * Back to Synapse page when pressing the "hard" back button on the phone.
+        * */
+        platform.registerBackButtonAction(() => {
+            console.log("back button");
+            this.navCtrl.setRoot(SynapsesPage);
+        },1);
     }
 
     ngOnInit() {
