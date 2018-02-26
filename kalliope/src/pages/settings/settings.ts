@@ -14,6 +14,6 @@ export class Settings {
     geolocation: Boolean = false;
 
     constructor(values: Object = {}) {
-        Object.assign(this, values);
+        Object.assign(values);
     }
 }
