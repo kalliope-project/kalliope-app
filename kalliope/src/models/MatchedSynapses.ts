@@ -17,6 +17,6 @@ export class MatchedSynapse {
      * @param values {Object}
      */
     constructor(values: Object = {}) {
-        Object.assign(this, values);
+        Object.assign(values);
     }
 }

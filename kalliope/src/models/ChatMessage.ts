@@ -11,6 +11,6 @@ export class ChatMessage{
      * @param values {Object} the corresponding Javascript Object
      */
     constructor(values: Object = {}) {
-        Object.assign(this, values);
+        Object.assign(values);
     }
 }
