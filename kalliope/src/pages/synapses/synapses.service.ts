@@ -43,7 +43,7 @@ export class SynapsesService {
                 this.geofence.onNotificationClicked().subscribe( notificationData =>
                     console.log("App opened from Geo Notification!", notificationData));
             }).catch((error) => {
-                console.error("[SynapsesService]" + error);
+                console.warn("[SynapsesService]" + error);
             });
         }
     }

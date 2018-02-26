@@ -1,6 +1,6 @@
 import { SettingsPage } from './../settings/settings.component';
 import {Component} from '@angular/core';
-import {NavController, ToastController} from 'ionic-angular';
+import {LoadingController, NavController, ToastController} from 'ionic-angular';
 import {SynapsesService} from './synapses.service';
 import {Settings} from './../settings/settings';
 import {Synapse} from "../../models/Synapse";
@@ -24,7 +24,7 @@ export class SynapsesPage {
     synapsesToDisplay: Array<Synapse> = [];
     geofence: Geofence;
     settings: Settings;
-    _geofenceSubscribtion: Subscription;
+    loader;
 
 
     /**
@@ -35,6 +35,7 @@ export class SynapsesPage {
      */
     constructor(public navCtrl: NavController,
                 public toastCtrl: ToastController,
+                public loadingCtrl: LoadingController,
                 private settingsService: SettingsService,
                 private synapseService: SynapsesService) {
 
@@ -113,9 +114,17 @@ export class SynapsesPage {
      * @param synapse {Synapse}
      */
     runSynapse(synapse: Synapse) {
+        // View
+        this.loader = this.loadingCtrl.create({
+            content: "Running Synapse !"
+        });
+        this.loader.present();
+
+        // Process
         this.synapseService.runSynapse(synapse, this.settings)
             .subscribe(response => {
-                    console.log("[SynapsesPage] runSynapse: Response from running synapse -> " + JSON.stringify(response));
+                console.log("[SynapsesPage] runSynapse: Response from running synapse -> " + JSON.stringify(response));
+                this.loader.dismiss();
             })
     }
 
