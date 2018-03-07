@@ -3,7 +3,7 @@ node_js:
   - "8.9"
 
 install:
-  - npm install
+  - npm install /home/travis/build/kalliope-project/kalliope-app/kalliope
 
 script:
   - npm run test-ci
