@@ -1,5 +1,7 @@
 # Kalliope-app
 
+[![Build Status](https://travis-ci.org/kalliope-project/kalliope-app.svg?branch=master)](https://travis-ci.org/kalliope-project/kalliope)
+
 The Ionic app code for [Kalliope](https://github.com/kalliope-project/kalliope)
 
 <p align="center">
