@@ -10,6 +10,7 @@ import {OrderResponse} from "../../models/orderResponse";
 import {Geofence} from "@ionic-native/geofence";
 import {SettingsService} from "../settings/settings.service";
 import {Geolocation} from "../../models/Geolocation";
+import {Signal} from "../../models/Signal";
 
 /**
  * Service to manage the Synapse operations using the Kalliope Core API
@@ -92,7 +93,7 @@ export class SynapsesService {
      */
     runSynapse(synapse: Synapse,
                settings: Settings): Observable<OrderResponse> {
-        return this.runSynapseByName(synapse.name, settings);
+        return this.runSynapseByName(synapse.name, settings, synapse.signal);
     }
 
     /**
@@ -102,18 +103,24 @@ export class SynapsesService {
      * @return {Observable<OrderResponse>}
      */
     runSynapseByName(synapseName: string,
-                     settings: Settings): Observable<OrderResponse> {
+                     settings: Settings,
+                     signal: Signal = undefined): Observable<OrderResponse> {
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
         const options = new RequestOptions({headers: headers});
-        // TODO kalliope Core v0.4.4 -> API does not handle Param POST !!
-        // let param_dict = {}
-        // for (let param of synapse.signal.params) {
-        //     param_dict[param.name] = param.value;
-        // }
-        // let body = JSON.stringify(param_dict); // Stringify payload
 
-        return this.http.post('http://' + settings.url + '/synapses/start/id/' + synapseName, undefined, options)
+
+        let param_dict = {
+            parameters: {}   // "parameters" defined by the kalliopeCore API
+        }
+        if (signal != undefined) {
+            for (let param of signal.params) {
+                param_dict.parameters[param.name] = param.value;
+            }
+        }
+        let body = JSON.stringify(param_dict); // Stringify payload
+
+        return this.http.post('http://' + settings.url + '/synapses/start/id/' + synapseName, body, options)
             .map(res => OrderResponse.responseToObject(res.json()))
     }
 }
