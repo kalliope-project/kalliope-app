@@ -10,7 +10,6 @@ import {OrderResponse} from "../../models/orderResponse";
 import {Geofence} from "@ionic-native/geofence";
 import {SettingsService} from "../settings/settings.service";
 import {Geolocation} from "../../models/Geolocation";
-import {Subject} from "rxjs/Subject";
 
 /**
  * Service to manage the Synapse operations using the Kalliope Core API
@@ -40,8 +39,7 @@ export class SynapsesService {
             this.geofence.initialize().then((initStatus) => {
                 console.log("[SynapsesService] Geofence Plugin has been initialized", initStatus);
                 this.initGeolocationSynapses(synapses);
-                this.geofence.onNotificationClicked().subscribe( notificationData =>
-                    console.log("App opened from Geo Notification!", notificationData));
+
             }).catch((error) => {
                 console.warn("[SynapsesService]" + error);
             });
@@ -70,12 +68,6 @@ export class SynapsesService {
             longitude: geolocation._getLongitude(),
             radius: geolocation._getRadius(), //radius to edge of geofence in meters
             transitionType: 1, // TransitionType.ENTER
-            notification: { //notification settings
-                title: "You crossed a " + synapseName, //notification title
-                text: "[latitude -> " + geolocation._getLatitude() + ", longitude -> " + geolocation._getLongitude() +
-                ", radius -> " + geolocation._getRadius() + "]", //notification body
-                openAppOnClick: true //open app when notification is tapped
-            }
         }
     }
 
