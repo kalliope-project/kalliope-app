@@ -23,6 +23,7 @@
     "@ionic-native/core": "^4.5.2",
     "@ionic-native/geofence": "^4.5.2",
     "@ionic-native/http": "^4.5.2",
+    "@ionic-native/local-notifications": "^4.6.0",
     "@ionic-native/media-capture": "^4.5.2",
     "@ionic-native/splash-screen": "^4.5.2",
     "@ionic-native/status-bar": "^4.5.2",
@@ -31,12 +32,14 @@
     "cordova-android": "7.0.0",
     "cordova-browser": "5.0.3",
     "cordova-plugin-add-swift-support": "^1.6.0",
+    "cordova-plugin-badge": "^0.8.7",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^1.1.7",
     "cordova-plugin-file": "^4.3.3",
     "cordova-plugin-geofence": "^0.7.0",
     "cordova-plugin-http": "^1.2.0",
+    "cordova-plugin-local-notification": "^0.9.0-beta.2",
     "cordova-plugin-media-capture": "^1.4.3",
     "cordova-plugin-splashscreen": "^4.1.0",
     "cordova-plugin-statusbar": "^2.4.1",
@@ -66,7 +69,8 @@
       "cordova-plugin-media-capture": {},
       "cordova-plugin-http": {},
       "cordova-plugin-geofence": {},
-      "cordova-plugin-compat": {}
+      "cordova-plugin-compat": {},
+      "cordova-plugin-local-notification": {}
     },
     "platforms": [
       "browser"
