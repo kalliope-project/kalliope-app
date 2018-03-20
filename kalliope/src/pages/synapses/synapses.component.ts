@@ -94,7 +94,6 @@ export class SynapsesPage {
                 if (this.settings.geolocation) {
                     this.synapseService.setGeofence(response);
                     this.geofenceSubscription();
-                    console.debug("[debug] getSynapsesToDisplay");
                 }
                 this.synapsesToDisplay = response.filter(syn => SynapsesPage.selectSynapseToDisplay(this.settings, syn));
                 console.log("[SynapsesPage] getSynapsesToDisplay: fetched synapses list -> " + JSON.stringify(this.synapsesToDisplay));
