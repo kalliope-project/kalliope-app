@@ -6,7 +6,7 @@ import {Settings} from './../settings/settings';
 import {Synapse} from "../../models/Synapse";
 import {Geofence} from "@ionic-native/geofence";
 import {SettingsService} from "../settings/settings.service";
-import {Subscription} from "rxjs/Subscription";
+import {LocalNotifications} from '@ionic-native/local-notifications';
 import {ChatPage} from "../chat/chat.component";
 import {GeolocationPage} from "./geolocation.component";
 
@@ -37,6 +37,7 @@ export class SynapsesPage {
                 public toastCtrl: ToastController,
                 public loadingCtrl: LoadingController,
                 private settingsService: SettingsService,
+                private localNotifications: LocalNotifications,
                 private synapseService: SynapsesService) {
 
         // load settings from storage
@@ -70,6 +71,11 @@ export class SynapsesPage {
      * @param geofence {geofenceObject}
      */
     private raiseGeolocationSynapse(geofence) {
+
+        this.localNotifications.schedule({
+            text: geofence.id
+        });
+
         this.synapseService.runSynapseByName(geofence.id, this.settings).subscribe(function (response) {
             this.navCtrl.setRoot(ChatPage, {
                 responseFromGeolocation: response,

@@ -14,7 +14,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 export class MyApp {
 
     @ViewChild(Nav) nav: Nav;
-    rootPage: any = ChatPage;
+    rootPage: any = SynapsesPage;
     pages: Array<{ title: string, component: any }>
 
     constructor(public platform: Platform,
@@ -30,7 +30,7 @@ export class MyApp {
             {title: 'Settings', component: SettingsPage}
         ];
 
-        // remove this in prod! for testing only in order to clean the local storage at every new load
+        // comment this in prod! for testing only in order to clean the local storage at every new load
         // localStorage.clear();
 
     }

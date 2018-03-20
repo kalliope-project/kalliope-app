@@ -26,6 +26,7 @@ import {VoiceService} from "../pages/chat/voice.service";
 // ionic Cordova plugins
 import {MediaCapture} from '@ionic-native/media-capture';
 import {HTTP} from '@ionic-native/http';
+import {LocalNotifications} from '@ionic-native/local-notifications';
 
 @NgModule({
     declarations: [
@@ -63,8 +64,8 @@ import {HTTP} from '@ionic-native/http';
         ChatService,
         MediaCapture,
         HTTP,
+        LocalNotifications,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
     ]
 })
-export class AppModule {
-}
+export class AppModule { }
