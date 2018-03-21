@@ -18,8 +18,7 @@ export class Param {
      * @return {string} The string corresponding to the Param
      */
     toString(): string {
-        return "Param : name -> " + this.name +
-            ", value -> " + this.value;
+        return this.name +"->" + this.value;
     }
 }
 
