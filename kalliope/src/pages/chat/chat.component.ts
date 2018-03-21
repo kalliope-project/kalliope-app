@@ -51,8 +51,9 @@ export class ChatPage {
                 private voiceService: VoiceService,
                 private chatService: ChatService) {
 
-        // debug line
         // chatService.clearStorage();
+
+        // TODO: idea -> for each message put date over the chat bubbles ?
 
         // load the default chatMessages
         this.chatMessages = chatService.loadChatMessages();
@@ -81,6 +82,13 @@ export class ChatPage {
             let geofence = navParams.get('geofence');
             let myOrder: string = new Date().toLocaleString()+" ***Geolocation signal*** "+geofence.id+" --> [latitude: "+ geofence.latitude+ ", longitude: "+geofence.longitude + ", radius: "+ geofence.radius+"]"
             this.loadNewMessage(responseFromGeolocation, myOrder);
+        }
+
+        let responseFromOrder = navParams.get('responseFromOrder');
+        if (responseFromOrder != null) {
+            let synapseOrder = navParams.get('synapseOrder');
+            let myOrder: string = synapseOrder.name + ':  [' +  synapseOrder.signal.params.join("][") + "]";
+            this.loadNewMessage(responseFromOrder, myOrder);
         }
     }
 

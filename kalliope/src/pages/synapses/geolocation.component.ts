@@ -50,7 +50,6 @@ export class GeolocationPage {
         * Back to Synapse page when pressing the "hard" back button on the phone.
         * */
         platform.registerBackButtonAction(() => {
-            console.log("back button");
             this.navCtrl.setRoot(SynapsesPage);
         },1);
     }
