@@ -130,7 +130,11 @@ export class SynapsesPage {
             .subscribe(response => {
                 console.log("[SynapsesPage] runSynapse: Response from running synapse -> " + JSON.stringify(response));
                 this.loader.dismiss();
-            })
+                this.navCtrl.setRoot(ChatPage, {
+                    responseFromOrder: response,
+                    synapseOrder: synapse
+                });
+            });
     }
 
     displayGeolocation(synapse: Synapse) {

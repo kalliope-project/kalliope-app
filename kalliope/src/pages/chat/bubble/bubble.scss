@@ -13,7 +13,7 @@
   height: 16px;
   position: absolute;
   top: 11px;
-  transform:             rotate( 29deg ) skew( -35deg );
+  transform:         rotate( 29deg ) skew( -35deg );
   -moz-transform:    rotate( 29deg ) skew( -35deg );
   -ms-transform:     rotate( 29deg ) skew( -35deg );
   -o-transform:      rotate( 29deg ) skew( -35deg );
@@ -45,4 +45,9 @@
   right: -9px;
 }
 
-.containerdivNewLine { clear: both; float: left; display: block; position: relative; }
+.containerdivNewLine {
+  clear: both;
+  float: left;
+  display: block;
+  position: relative;
+}
