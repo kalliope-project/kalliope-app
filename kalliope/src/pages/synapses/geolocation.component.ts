@@ -5,7 +5,6 @@ import {Geolocation} from "../../models/Geolocation";
 import * as Leaflet from 'leaflet';
 import { Meta } from '@angular/platform-browser';
 import {Synapse} from "../../models/Synapse";
-import {SettingsPage} from "../settings/settings.component";
 import {SynapsesPage} from "./synapses.component";
 
 /**
@@ -28,7 +27,7 @@ export class GeolocationPage {
     private marker: any;
 
 
-    /*TODO manage  geolocation in synapse page within a tab */
+    /*TODO manage geolocation in synapse page within a tab */
 
     /**
      * @constructor
@@ -83,6 +82,8 @@ export class GeolocationPage {
 
         });
 
+        Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
+
         this.circle = Leaflet.circle(this.latLng, {
             radius:this.radius,
             color: '#009688',
@@ -104,10 +105,10 @@ export class GeolocationPage {
                                 timeout: 100000,
                                 maximumAge: 5000,
         });
+
         this.map.on('locationfound', this.onLocationFound.bind(this));
         this.map.on('locationerror', this.onLocationError.bind(this));
 
-        Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
     }
 
     onLocationError(e) {

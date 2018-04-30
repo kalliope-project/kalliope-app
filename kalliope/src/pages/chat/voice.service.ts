@@ -34,7 +34,7 @@ export class VoiceService {
         console.log("[VoiceService] postVoice: voiceFile.fullpath -> " + voiceFile.fullPath);
 
         this.httpService.useBasicAuth(settings.username, settings.password);
-        this.httpService.setHeader("Content-Type", "multipart/form-data");
+        this.httpService.setHeader(settings.url, "Content-Type", "multipart/form-data");
 
         let url_to_call: string = "http://" + settings.url + "/synapses/start/audio";
         let data = this.httpService.uploadFile(url_to_call, {}, {}, voiceFile.fullPath, 'file');
