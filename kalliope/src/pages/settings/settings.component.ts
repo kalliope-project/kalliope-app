@@ -34,7 +34,7 @@ export class SettingsPage {
                 private app: App) {
 
         // get the nac controller used to switch pages
-        this.nav = this.app.getActiveNav();
+        this.nav = this.app.getActiveNavs()[0];
 
         this.settings = this.settingsService.getDefaultSettings();
         if (this.settings == null) {

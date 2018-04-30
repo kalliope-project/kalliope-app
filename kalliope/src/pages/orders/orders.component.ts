@@ -1,4 +1,4 @@
-import { SettingsPage } from './../settings/settings.component';
+import {SettingsPage} from './../settings/settings.component';
 import {NewOrderPage} from './../NewOrder/NewOrder.component';
 import {ChatPage} from './../chat/chat.component';
 import {OrdersService} from './orders.service';
@@ -10,9 +10,7 @@ import {
     App,
     MenuController,
     ModalController,
-    NavController,
-    ToastController,
-    LoadingController
+    NavController
 } from 'ionic-angular';
 
 /**
@@ -36,9 +34,7 @@ export class OrdersPage {
      * @param public menu {MenuController} Controller to manage the Menu
      * @param private app {App}
      * @param private ordersService {OrdersService} Service for orders
-     * @param public toastCtrl {ToastController} Controller to manage Toast
      * @param public actionSheetCtrl {ActionSheetController} Controller to manage ActionSheet
-     * @param public loadingCtrl {LoadingController} Controller to manage Loading
      */
     constructor(public navCtrl: NavController,
                 public settingsService: SettingsService,
@@ -46,9 +42,7 @@ export class OrdersPage {
                 public menu: MenuController,
                 private app: App,
                 private ordersService: OrdersService,
-                public toastCtrl: ToastController,
-                public actionSheetCtrl: ActionSheetController,
-                public loadingCtrl: LoadingController) {
+                public actionSheetCtrl: ActionSheetController) {
 
         // load settings from storage
         this.settings = settingsService.getDefaultSettings();
@@ -60,7 +54,7 @@ export class OrdersPage {
         }
 
         // get the nav controller used to switch pages
-        this.nav = this.app.getActiveNav();
+        this.nav = this.app.getActiveNavs()[0];
 
         // load orders
         this.refreshOrders();
