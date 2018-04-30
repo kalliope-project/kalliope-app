@@ -113,9 +113,9 @@ export class SettingsPage {
     }
 
     /**
-     * Show a toast to explain what is the no voice flag
+     * Show a toast to explain what is the mute flag
      */
-    showInfoNoVoice(){
+    showInfoMute(){
         let toast = this.toastCtrl.create({
             message: "If true, Kalliope will be muted on the server side",
             duration: 5000,
