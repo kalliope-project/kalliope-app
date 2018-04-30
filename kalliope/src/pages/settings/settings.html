@@ -41,8 +41,8 @@
         </ion-card-header>
         <ion-card-content>
             <ion-item>
-                <ion-label>No voice <ion-badge color="green_material" (click)="showInfoNoVoice()">?</ion-badge></ion-label>
-                <ion-toggle color="green_material" [(ngModel)]="settings.noVoice" (ionChange)="settingsUpdated()"></ion-toggle>
+                <ion-label>Mute <ion-badge color="green_material" (click)="showInfoMute()">?</ion-badge></ion-label>
+                <ion-toggle color="green_material" [(ngModel)]="settings.mute" (ionChange)="settingsUpdated()"></ion-toggle>
             </ion-item>
         </ion-card-content>
     </ion-card>

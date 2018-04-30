@@ -30,7 +30,7 @@ export class OrdersService {
         console.log("[OrdersService] call postOrder with URL: " + settings.url
         + ",user: " + settings.username,
         ",pass:" + settings.password,
-        ",no_voice:" + settings.noVoice);
+        ",mute:" + settings.mute);
 
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + btoa(settings.username + ':' + settings.password));
@@ -42,7 +42,7 @@ export class OrdersService {
 
         let order_dict = {
             "order": order,
-            "no_voice": settings.noVoice
+            "mute": settings.mute
         }
 
         let body = JSON.stringify(order_dict); // Stringify payload

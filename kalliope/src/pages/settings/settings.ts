@@ -8,8 +8,8 @@ export class Settings {
     username: string = '';
     password: string = '';
 
-    // no_voice flag to mute kalliope
-    noVoice: Boolean = false;
+    // mute flag to mute kalliope
+    mute: Boolean = false;
     // geolocation flag to manage geolocation signals from kalliope brain
     geolocation: Boolean = false;
 
