@@ -111,7 +111,7 @@ export class SynapsesService {
 
 
         let param_dict = {
-            no_voice: settings.noVoice,
+            mute: settings.mute,
             parameters: {}   // "parameters" defined by the kalliopeCore API
         }
         if (signal != undefined) {
