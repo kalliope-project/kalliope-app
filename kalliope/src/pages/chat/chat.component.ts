@@ -7,9 +7,11 @@ import {ChatMessage} from './../../models/ChatMessage';
 import {Component} from '@angular/core';
 import {NavController, LoadingController, ToastController} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
-import {CaptureError, MediaCapture, MediaFile} from "@ionic-native/media-capture";
+import {CaptureError, MediaCapture} from "@ionic-native/media-capture";
 import {VoiceService} from "./voice.service";
 import {OrderResponse} from "../../models/orderResponse";
+import { Media, MediaObject } from '@ionic-native/media';
+import { File} from '@ionic-native/file';
 
 /**
  * @class ChatPage: Components and behaviour Handlers of the Chat page.
@@ -26,6 +28,8 @@ export class ChatPage {
     loader;
     settings: Settings;
     nav: NavController;
+    recordFile: MediaObject;
+    isRecording: boolean = false;
 
     /**
      * Chat Page constructor
@@ -49,7 +53,9 @@ export class ChatPage {
                 private mediaCapture: MediaCapture,
                 public settingsService: SettingsService,
                 private voiceService: VoiceService,
-                private chatService: ChatService) {
+                private chatService: ChatService,
+                private media: Media,
+                private file: File) {
 
         // chatService.clearStorage();
 
@@ -207,31 +213,18 @@ export class ChatPage {
         this.loadNewMessage(orderResponse, sentMessage);
     }
 
-    /**
-     * Method to record the voice with the native mobile recorder.
-     * Using the cordova plugin mediaCapture
-     */
     recordVoice() {
-        this.mediaCapture.captureAudio()
-            .then(
-                (data: MediaFile[]) => {
-                    this.startLoader();
-                    return this.voiceService.postVoice(data[0], this.settings)
-                        .catch((error) => {
-                            console.log('[ChatPage] recordVoice: error -> ' + error.error);
-                            this.handleError(error);
-                            this.stopLoader();
-                        })
-                        .then(data => {
-                            console.log('[ChatPage] recordVoice: raw data -> ' + JSON.stringify(data));
-                            let orderResponse = OrderResponse.responseToObject(JSON.parse(data['data']));
-                            console.log('[ChatPage] recordVoice: orderResponse -> ' + JSON.stringify(orderResponse));
-                            this.loadNewMessage(orderResponse, undefined);
-                            this.stopLoader();
-                        });
-                },
-                (err: CaptureError) => this.handleErrorFromRecordVoice(err)
-            );
+        // Note : To be verified if it works on iOS : check official ionic doc
+        this.recordFile = this.media.create(this.file.externalCacheDirectory + 'sound_file.mp3');
+        this.isRecording = true;
+        this.recordFile.startRecord();
+    }
+
+    stopRecordVoice() {
+        this.recordFile.stopRecord();
+        this.isRecording = false;
+        //this.recordFile.play();
+        this.voiceService.postVoice(this.file.externalCacheDirectory + 'sound_file.mp3', this.settings);
     }
 
     handleErrorFromRecordVoice(err: CaptureError){
