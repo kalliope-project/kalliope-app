@@ -25,9 +25,12 @@
             <button ion-button icon-right color="green_material" (click)="sendMessage()">
                 <ion-icon name="send"></ion-icon>
             </button>
-            <button ion-button icon-only icon-right color="green_material" (click)="recordVoice()">
-                <ion-icon name="mic"></ion-icon>
-            </button>
+                <button *ngIf="isRecording" ion-button icon-only icon-right color="green_material" (click)="stopRecordVoice()">
+                    <ion-icon name="pause"></ion-icon>
+                </button>
+                <button *ngIf="!isRecording" ion-button icon-only icon-right color="green_material" (click)="recordVoice()">
+                    <ion-icon name="mic"></ion-icon>
+                </button>
         </ion-buttons>
     </ion-toolbar>
 </ion-footer>

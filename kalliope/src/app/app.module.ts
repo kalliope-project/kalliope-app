@@ -27,6 +27,8 @@ import {VoiceService} from "../pages/chat/voice.service";
 import {MediaCapture} from '@ionic-native/media-capture';
 import {HTTP} from '@ionic-native/http';
 import {LocalNotifications} from '@ionic-native/local-notifications';
+import {Media} from "@ionic-native/media";
+import {File} from "@ionic-native/file";
 
 @NgModule({
     declarations: [
@@ -63,6 +65,8 @@ import {LocalNotifications} from '@ionic-native/local-notifications';
         OrdersService,
         ChatService,
         MediaCapture,
+        Media,
+        File,
         HTTP,
         LocalNotifications,
         {provide: ErrorHandler, useClass: IonicErrorHandler}
