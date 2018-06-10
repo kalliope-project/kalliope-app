@@ -12,6 +12,7 @@ import {VoiceService} from "./voice.service";
 import {OrderResponse} from "../../models/orderResponse";
 import { Media, MediaObject } from '@ionic-native/media';
 import { File} from '@ionic-native/file';
+import {Observable} from "rxjs/Observable";
 
 /**
  * @class ChatPage: Components and behaviour Handlers of the Chat page.
@@ -30,6 +31,8 @@ export class ChatPage {
     nav: NavController;
     recordFile: MediaObject;
     isRecording: boolean = false;
+    currTimeout;
+    countDown: number = 10;
 
     /**
      * Chat Page constructor
@@ -218,9 +221,19 @@ export class ChatPage {
         this.recordFile = this.media.create(this.file.externalCacheDirectory + 'sound_file.mp3');
         this.isRecording = true;
         this.recordFile.startRecord();
+
+        this.currTimeout = Observable.interval(1000).subscribe(v => {
+            this.countDown--;
+            if(this.countDown == 0) {
+                this.stopRecordVoice();
+                this.presentToast("Stop recording after 10 seconds");
+            }
+        });
     }
 
     stopRecordVoice() {
+        this.currTimeout.unsubscribe();
+        this.countDown = 10;
         this.recordFile.stopRecord();
         this.isRecording = false;
         //this.recordFile.play();
