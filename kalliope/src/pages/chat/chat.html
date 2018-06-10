@@ -1,10 +1,11 @@
 <ion-header>
     <ion-toolbar color="green_material">
-        <button ion-button menuToggle>
+        <button *ngIf="!isRecording" ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Chats</ion-title>
-        <ion-buttons end>
+        <ion-title *ngIf="!isRecording">Chats</ion-title>
+        <ion-title *ngIf="isRecording" text-center>RECORDING</ion-title>
+        <ion-buttons *ngIf="!isRecording" end>
             <button ion-button icon-only color="royal" (click)="cleanMessages()">
                 <ion-icon name="trash"></ion-icon>
             </button>
@@ -12,23 +13,30 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content class="main_color" padding>
+<ion-content *ngIf="!isRecording" class="main_color" padding>
     <div *ngFor="let chatMessage of chatMessages" >
         <chat-bubble [chatMessage]="chatMessage"></chat-bubble>
     </div>
 </ion-content>
+<ion-grid fixed *ngIf="isRecording" style="height: 100%">
+    <ion-row justify-content-center align-items-center style="height: 100%">
+        <div style="font-size: 80px">{{this.countDown}}</div>
+    </ion-row>
+    <ion-row justify-content-center align-items-center style="height: 100%">
+        <button ion-button icon-only round large color="green_material" style="font-size: 60px" (click)="stopRecordVoice()">
+            <ion-icon name="pause"></ion-icon>
+        </button>
+    </ion-row>
+</ion-grid>
 
-<ion-footer>
+<ion-footer *ngIf="!isRecording">
     <ion-toolbar>
         <ion-input [(ngModel)]="newMessage" placeholder="Chat here"></ion-input>
         <ion-buttons end>
             <button ion-button icon-right color="green_material" (click)="sendMessage()">
                 <ion-icon name="send"></ion-icon>
             </button>
-                <button *ngIf="isRecording" ion-button icon-only icon-right color="green_material" (click)="stopRecordVoice()">
-                    <ion-icon name="pause"></ion-icon>
-                </button>
-                <button *ngIf="!isRecording" ion-button icon-only icon-right color="green_material" (click)="recordVoice()">
+                <button ion-button icon-only icon-right color="green_material" (click)="recordVoice()">
                     <ion-icon name="mic"></ion-icon>
                 </button>
         </ion-buttons>
