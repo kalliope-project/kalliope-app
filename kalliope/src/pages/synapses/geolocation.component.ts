@@ -49,7 +49,7 @@ export class GeolocationPage {
         * Back to Synapse page when pressing the "hard" back button on the phone.
         * */
         platform.registerBackButtonAction(() => {
-            this.navCtrl.setRoot(SynapsesPage);
+            this.navCtrl.push(SynapsesPage);
         },1);
     }
 

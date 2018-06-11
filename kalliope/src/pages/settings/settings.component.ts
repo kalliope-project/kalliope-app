@@ -17,7 +17,6 @@ export class SettingsPage {
     settings: Settings;
     loader;
     settingsOK: Boolean = false;
-    nav: NavController;
 
     /**
      * @constructor
@@ -25,16 +24,12 @@ export class SettingsPage {
      * @param public loadingCtrl {LoadingController} Controller to handle the Loading UI element
      * @param private SettingsService {SettingsService} Service to manage the Settings model
      * @param public toastCtrl {ToastController} Controller to handle the Toast UI Element.
-     * @param private app {App}
      */
     constructor(public navCtrl: NavController,
                 public loadingCtrl: LoadingController,
                 private settingsService: SettingsService,
                 public toastCtrl: ToastController,
-                private app: App) {
-
-        // get the nac controller used to switch pages
-        this.nav = this.app.getActiveNavs()[0];
+    ) {
 
         this.settings = this.settingsService.getDefaultSettings();
         if (this.settings == null) {
@@ -100,7 +95,7 @@ export class SettingsPage {
      */
     saveSettings() {
         this.settingsService.setDefaultSettings(this.settings);
-        this.nav.setRoot(OrdersPage);
+        this.navCtrl.push(OrdersPage);
     }
 
     /**
