@@ -221,6 +221,7 @@ export class ChatPage {
         this.recordFile = this.media.create(this.file.externalCacheDirectory + 'sound_file.mp3');
         this.isRecording = true;
         this.recordFile.startRecord();
+        this.presentToast("Start recording");
 
         this.currTimeout = Observable.interval(1000).subscribe(v => {
             this.countDown--;
@@ -237,7 +238,13 @@ export class ChatPage {
         this.recordFile.stopRecord();
         this.isRecording = false;
         //this.recordFile.play();
-        this.voiceService.postVoice(this.file.externalCacheDirectory + 'sound_file.mp3', this.settings);
+
+        //start the loader
+        this.startLoader();
+        this.voiceService.postVoice(this.file.externalCacheDirectory + 'sound_file.mp3', this.settings).then( response => {
+            console.log("[Chat] stopRecordVoice -> audio response :  " + response.data);
+            this.processOrderResponse(OrderResponse.responseToObject(JSON.parse(response.data)), undefined);
+        });
     }
 
     handleErrorFromRecordVoice(err: CaptureError){
