@@ -47,7 +47,7 @@ export class SynapsesPage {
     ngOnInit() {
         if (this.settings == null) {
             console.log("[SynapsesPage] Settings not loaded. Redirect to settings page");
-            this.navCtrl.setRoot(SettingsPage);
+            this.navCtrl.push(SettingsPage);
         } else {
             console.log("[SynapsesPage] Settings loaded. Url: " + this.settings.url);
             this.getSynapsesToDisplay();
@@ -77,7 +77,7 @@ export class SynapsesPage {
         });
 
         this.synapseService.runSynapseByName(geofence.id, this.settings).subscribe(function (response) {
-            this.navCtrl.setRoot(ChatPage, {
+            this.navCtrl.push(ChatPage, {
                 responseFromGeolocation: response,
                 geofence: geofence
             });
@@ -130,7 +130,7 @@ export class SynapsesPage {
             .subscribe(response => {
                 console.log("[SynapsesPage] runSynapse: Response from running synapse -> " + JSON.stringify(response));
                 this.loader.dismiss();
-                this.navCtrl.setRoot(ChatPage, {
+                this.navCtrl.push(ChatPage, {
                     responseFromOrder: response,
                     synapseOrder: synapse
                 });
@@ -138,7 +138,7 @@ export class SynapsesPage {
     }
 
     displayGeolocation(synapse: Synapse) {
-        this.navCtrl.setRoot(GeolocationPage, {
+        this.navCtrl.push(GeolocationPage, {
             geofenceSynapse: synapse
         });
     }

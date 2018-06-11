@@ -48,13 +48,10 @@ export class OrdersPage {
         this.settings = settingsService.getDefaultSettings();
         if (this.settings == null) {
             console.log("Settings not loaded. Redirect to settings page");
-            this.navCtrl.setRoot(SettingsPage);
+            this.navCtrl.push(SettingsPage);
         } else {
             console.log("Settings loaded. Url: " + this.settings.url);
         }
-
-        // get the nav controller used to switch pages
-        this.nav = this.app.getActiveNavs()[0];
 
         // load orders
         this.refreshOrders();
@@ -68,7 +65,7 @@ export class OrdersPage {
         /**
          * Execute the order on kalliope
          */
-        this.nav.setRoot(ChatPage, {
+        this.navCtrl.push(ChatPage, {
             orderFromOrderPage: order
         });
     }

@@ -5,7 +5,7 @@ import {OrdersService} from './../orders/orders.service';
 import {ChatService} from './chat.service';
 import {ChatMessage} from './../../models/ChatMessage';
 import {AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {NavController, LoadingController, ToastController} from 'ionic-angular';
+import {NavController, LoadingController, ToastController, Platform} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {CaptureError, MediaCapture} from "@ionic-native/media-capture";
 import {VoiceService} from "./voice.service";
@@ -13,6 +13,7 @@ import {OrderResponse} from "../../models/orderResponse";
 import { Media, MediaObject } from '@ionic-native/media';
 import { File} from '@ionic-native/file';
 import {Observable} from "rxjs/Observable";
+import {SynapsesPage} from "../synapses/synapses.component";
 
 /**
  * @class ChatPage: Components and behaviour Handlers of the Chat page.
@@ -61,8 +62,17 @@ export class ChatPage implements OnInit, AfterViewChecked{
                 private chatService: ChatService,
                 private media: Media,
                 private file: File,
+                private platform: Platform,
                 private changeDetector: ChangeDetectorRef, // ChangeDetector because of this : https://github.com/angular/angular/issues/17572
     ) {
+
+
+        /*
+        * Back to Synapse page when pressing the "hard" back button on the phone.
+        * */
+        platform.registerBackButtonAction(() => {
+            this.navCtrl.pop();
+        },1).bind(this);
 
         // chatService.clearStorage();
 
