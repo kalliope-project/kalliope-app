@@ -4,7 +4,7 @@ import {Settings} from './../settings/settings';
 import {OrdersService} from './../orders/orders.service';
 import {ChatService} from './chat.service';
 import {ChatMessage} from './../../models/ChatMessage';
-import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {NavController, LoadingController, ToastController} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {CaptureError, MediaCapture} from "@ionic-native/media-capture";
@@ -34,6 +34,7 @@ export class ChatPage implements OnInit, AfterViewChecked{
     isRecording: boolean = false;
     currTimeout;
     countDown: number = 10;
+    private chatInput: string = "";
 
     /**
      * Chat Page constructor
@@ -59,7 +60,9 @@ export class ChatPage implements OnInit, AfterViewChecked{
                 private voiceService: VoiceService,
                 private chatService: ChatService,
                 private media: Media,
-                private file: File) {
+                private file: File,
+                private changeDetector: ChangeDetectorRef, // ChangeDetector because of this : https://github.com/angular/angular/issues/17572
+    ) {
 
         // chatService.clearStorage();
 
@@ -112,6 +115,7 @@ export class ChatPage implements OnInit, AfterViewChecked{
      */
     ngAfterViewChecked() {
         this.scrollToBottom();
+        this.changeDetector.detectChanges();
     }
 
 
@@ -280,6 +284,12 @@ export class ChatPage implements OnInit, AfterViewChecked{
         }
     }
 
-
+    /**
+     *  When a chatMessage has been clicked it updates the value in the input
+     * @param {ChatMessage} chatMessage which is clicked
+     */
+    clickedChatMessage(chatMessage:ChatMessage) {
+        this.chatInput = chatMessage.message;
+    }
 
 }
