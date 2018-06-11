@@ -13,21 +13,24 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="!isRecording" class="main_color" padding>
-    <div *ngFor="let chatMessage of chatMessages" >
-        <chat-bubble [chatMessage]="chatMessage"></chat-bubble>
+<ion-content #content class="main_color" padding>
+    <div *ngIf="!isRecording" >
+        <div *ngFor="let chatMessage of chatMessages" >
+            <chat-bubble [chatMessage]="chatMessage"></chat-bubble>
+        </div>
     </div>
+    <ion-grid fixed *ngIf="isRecording" style="height: 100%">
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <div style="font-size: 80px">{{this.countDown}}</div>
+        </ion-row>
+        <ion-row justify-content-center align-items-center style="height: 100%">
+            <button ion-button icon-only round large color="green_material" style="font-size: 60px" (click)="stopRecordVoice()">
+                <ion-icon name="pause"></ion-icon>
+            </button>
+        </ion-row>
+    </ion-grid>
 </ion-content>
-<ion-grid fixed *ngIf="isRecording" style="height: 100%">
-    <ion-row justify-content-center align-items-center style="height: 100%">
-        <div style="font-size: 80px">{{this.countDown}}</div>
-    </ion-row>
-    <ion-row justify-content-center align-items-center style="height: 100%">
-        <button ion-button icon-only round large color="green_material" style="font-size: 60px" (click)="stopRecordVoice()">
-            <ion-icon name="pause"></ion-icon>
-        </button>
-    </ion-row>
-</ion-grid>
+
 
 <ion-footer *ngIf="!isRecording">
     <ion-toolbar>
