@@ -4,7 +4,7 @@ import {Settings} from './../settings/settings';
 import {OrdersService} from './../orders/orders.service';
 import {ChatService} from './chat.service';
 import {ChatMessage} from './../../models/ChatMessage';
-import {Component} from '@angular/core';
+import {AfterViewChecked, Component, OnInit, ViewChild} from '@angular/core';
 import {NavController, LoadingController, ToastController} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
 import {CaptureError, MediaCapture} from "@ionic-native/media-capture";
@@ -21,7 +21,8 @@ import {Observable} from "rxjs/Observable";
     selector: 'page-chat',
     templateUrl: 'chat.html'
 })
-export class ChatPage {
+export class ChatPage implements OnInit, AfterViewChecked{
+    @ViewChild('content') content:any;
 
     /** Variables */
     chatMessages: Array<ChatMessage>;
@@ -99,6 +100,28 @@ export class ChatPage {
             let myOrder: string = synapseOrder.name + ':  [' +  synapseOrder.signal.params.join("][") + "]";
             this.loadNewMessage(responseFromOrder, myOrder);
         }
+    }
+
+
+    ngOnInit() {
+        this.scrollToBottom();
+    }
+
+    /**
+     * Implement this interface to get notified after every check of your component's view.
+     */
+    ngAfterViewChecked() {
+        this.scrollToBottom();
+    }
+
+
+    /**
+     * Automatic scroll down the chat to last message
+     */
+    scrollToBottom(): void {
+        try {
+            this.content.scrollToBottom(300); // 150 ms animation to scroll
+        } catch(err) { }
     }
 
     /**
@@ -256,5 +279,7 @@ export class ChatPage {
             this.handleError("You need a voice recorder application");
         }
     }
+
+
 
 }
