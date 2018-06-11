@@ -16,7 +16,7 @@
 <ion-content #content class="main_color" padding>
     <div *ngIf="!isRecording" >
         <div *ngFor="let chatMessage of chatMessages" >
-            <chat-bubble [chatMessage]="chatMessage"></chat-bubble>
+            <chat-bubble [chatMessage]="chatMessage" (click)="clickedChatMessage(chatMessage)"></chat-bubble>
         </div>
     </div>
     <ion-grid fixed *ngIf="isRecording" style="height: 100%">
@@ -34,7 +34,7 @@
 
 <ion-footer *ngIf="!isRecording">
     <ion-toolbar>
-        <ion-input [(ngModel)]="newMessage" placeholder="Chat here"></ion-input>
+        <ion-input [(ngModel)]="newMessage" placeholder="Chat Here !" value="{{chatInput}}"></ion-input>
         <ion-buttons end>
             <button ion-button icon-right color="green_material" (click)="sendMessage()">
                 <ion-icon name="send"></ion-icon>
