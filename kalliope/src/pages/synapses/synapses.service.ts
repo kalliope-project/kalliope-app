@@ -42,7 +42,7 @@ export class SynapsesService {
                 this.initGeolocationSynapses(synapses);
 
             }).catch((error) => {
-                console.warn("[SynapsesService]" + error);
+                console.warn("[SynapsesService] failed to initialize geofence" + error);
             });
         }
     }

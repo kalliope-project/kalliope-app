@@ -58,6 +58,7 @@ export class SynapsesPage {
         this.geofence = this.synapseService.geofence;
         if (!this.synapseService.subscritionDone) {
             this.synapseService.subscritionDone = true;
+            // next line to be commented out on browser
             this.geofence.onTransitionReceived().subscribe(function (geofences) {
                     geofences.forEach(geo => this.raiseGeolocationSynapse(geo))
                 }.bind(this)),
