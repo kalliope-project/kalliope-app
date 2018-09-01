@@ -80,7 +80,7 @@ Run the app on Android device directly
 ionic cordova run android
 ```
 Note: running the app with the option -c does not work !
-Note: You might need to define the gralde wrapper version with:
+Note: You might need to define the gradle wrapper version with:
 
 ```
 export CORDOVA_ANDROID_GRADLE_DISTRIBUTION_URL=https\://services.gradle.org/distributions/gradle-4.4-all.zip

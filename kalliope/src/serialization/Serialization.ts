@@ -25,11 +25,7 @@ export module Serialization {
                         for (let signal of synap['signals']) {
                             if ('name' in signal) {
                                 if ('order' === signal.name) {
-                                    /*
-                                    * In this case,
-                                    * 1/ signal.parameters is the sentence we need to extract parameters.
-                                    * 2/ We don't use external parameters, just init a new array instead... to be continued
-                                    * */
+                                    if (signal.parameters )
                                     synapses.push(new Synapse(synap['name'], new Order(signal.parameters, new Array<Param>())));
                                 }
                                 else if ('geolocation' == signal.name) {

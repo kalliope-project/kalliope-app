@@ -15,7 +15,7 @@ export class Order extends Signal {
      * */
     public name;
     public params;
-    protected value;
+    public value;
 
 
     /**

@@ -12,7 +12,7 @@
     <div *ngFor="let synapse of synapsesToDisplay">
         <ion-card *ngIf="synapse.signal.name == 'order'" class="synapse-ion-card">
             <ion-card-header>
-                <button ion-button clear item-right icon-only (click)="runSynapse(synapse)" class="synapse">
+                <button ion-button clear item-right icon-only (click)="runSynapse(synapse, synapse.signal)" class="synapse">
                     {{synapse.name}}
                     <ion-icon name="play"></ion-icon>
                 </button>
