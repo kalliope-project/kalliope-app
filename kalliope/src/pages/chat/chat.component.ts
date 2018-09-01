@@ -78,13 +78,6 @@ export class ChatPage implements OnInit, AfterViewChecked{
 
         // TODO: idea -> for each message put date over the chat bubbles ?
 
-        // load the default chatMessages
-        this.chatMessages = chatService.loadChatMessages();
-        if (this.chatMessages == null) {
-            // no chat message yet. start a new list
-            this.chatMessages = [];
-        }
-
         // load settings from storage
         this.settings = settingsService.getDefaultSettings();
         if (this.settings == null) {
@@ -94,10 +87,11 @@ export class ChatPage implements OnInit, AfterViewChecked{
             console.log("Settings loaded. Url: " + this.settings.url);
         }
 
-        let orderFromOrderPage = navParams.get('orderFromOrderPage');
-        if (orderFromOrderPage != null) {    // we received an order to process
-            this.newMessage = orderFromOrderPage;
-            this.sendMessage();
+        // load the default chatMessages
+        this.chatMessages = chatService.loadChatMessages();
+        if (this.chatMessages == null) {
+            // no chat message yet. start a new list
+            this.chatMessages = [];
         }
 
         let responseFromGeolocation = navParams.get('responseFromGeolocation');
@@ -112,6 +106,12 @@ export class ChatPage implements OnInit, AfterViewChecked{
             let synapseOrder = navParams.get('synapseOrder');
             let myOrder: string = synapseOrder.name + ':  [' +  synapseOrder.signal.params.join("][") + "]";
             this.loadNewMessage(responseFromOrder, myOrder);
+        }
+
+        let orderFromOrderPage = navParams.get('orderFromOrderPage');
+        if (orderFromOrderPage != null) {    // we received an order to process
+            this.newMessage = orderFromOrderPage;
+            this.sendMessage();
         }
     }
 
@@ -134,7 +134,7 @@ export class ChatPage implements OnInit, AfterViewChecked{
      */
     scrollToBottom(): void {
         try {
-            this.content.scrollToBottom(300); // 150 ms animation to scroll
+            this.content.scrollToBottom(300); // ms animation to scroll
         } catch(err) { }
     }
 
@@ -183,14 +183,6 @@ export class ChatPage implements OnInit, AfterViewChecked{
 
         // start waiting gif
         this.loader.present();
-    }
-
-    /**
-     * Stopping the {LoadingCtrl} previously started by the 'startLoader' method
-     */
-    stopLoader() {
-        // stop the loader
-        this.loader.dismiss();
     }
 
     /**
@@ -246,9 +238,6 @@ export class ChatPage implements OnInit, AfterViewChecked{
      * @param sentMessage {string} the message written by the user
      */
     processOrderResponse(orderResponse: OrderResponse, sentMessage: string) {
-        this.stopLoader();
-        // clean the input
-        this.newMessage = "";
         // reload the list with the response
         this.loadNewMessage(orderResponse, sentMessage);
     }
