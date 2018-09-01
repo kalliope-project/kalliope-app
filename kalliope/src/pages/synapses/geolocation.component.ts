@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, NavParams, Platform} from 'ionic-angular';
 import {Settings} from './../settings/settings';
 import {Geolocation} from "../../models/Geolocation";
-import * as Leaflet from 'leaflet';
+import L from 'leaflet';
 import { Meta } from '@angular/platform-browser';
 import {Synapse} from "../../models/Synapse";
 import {SynapsesPage} from "./synapses.component";
@@ -39,21 +39,20 @@ export class GeolocationPage {
                 navParams: NavParams,
                 platform: Platform,
                 private meta: Meta) {
-        this.meta.addTag({ name:"viewport", content:"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" });
         this.geolocationSynapse = navParams.get("geofenceSynapse");
         this.geolocationSignal = this.geolocationSynapse.signal as Geolocation;
         this._radius = this.geolocationSignal._getRadius();
-        this._latLng = Leaflet.latLng(this.geolocationSignal._getLatitude(), this.geolocationSignal._getLongitude());
+        this._latLng = L.latLng(this.geolocationSignal._getLatitude(), this.geolocationSignal._getLongitude());
 
         /*
         * Back to Synapse page when pressing the "hard" back button on the phone.
         * */
         platform.registerBackButtonAction(() => {
-            this.navCtrl.push(SynapsesPage);
+            this.navCtrl.pop();
         },1);
     }
 
-    ngOnInit() {
+    ionViewDidEnter() {
         this.loadMap();
     }
 
@@ -77,28 +76,31 @@ export class GeolocationPage {
 
     loadMap() {
 
-        this.map = Leaflet.map("map", {
+        this.map = L.map("map", {
             touchZoom: true,
-
+            inertia: true,
+            dragging: true,
+            doubleClickZoom: true,
+            tap: true,
         });
 
-        Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this.map);
 
-        this.circle = Leaflet.circle(this.latLng, {
+        this.circle = L.circle(this.latLng, {
             radius:this.radius,
             color: '#009688',
             fillColor: '#009688',
             fillOpacity: 0.3})
             .addTo(this.map); // bindpopup does not work as expected for this circle ! :(
 
-        var icon = Leaflet.icon({
+        var icon = L.icon({
             iconUrl: "assets/marker/kalliopeBrain.png",
             shadowUrl: "assets/marker/marker-shadow.png",
             iconSize:     [100, 100], // size of the icon
             shadowSize:   [50, 64], // size of the shadow
         });
 
-        Leaflet.marker(this.latLng, {icon: icon}).addTo(this.map).bindPopup(String(this.geolocationSynapse.name));
+        L.marker(this.latLng, {icon: icon}).addTo(this.map).bindPopup(String(this.geolocationSynapse.name));
 
         this.map.locate({setView: true,
                                 maxZoom: 18,
@@ -116,13 +118,13 @@ export class GeolocationPage {
     }
 
     onLocationFound(e) {
-        var icon = Leaflet.icon({
+        var icon = L.icon({
             iconUrl: "assets/marker/user-marker.png",
             shadowUrl: "assets/marker/marker-shadow.png",
             iconSize:     [50, 50], // size of the icon
             shadowSize:   [30, 22], // size of the shadow
         });
-        this.marker = Leaflet.marker(e.latlng, {icon: icon}).addTo(this.map).bindPopup("You");
+        this.marker = L.marker(e.latlng, {icon: icon}).addTo(this.map).bindPopup("You");
     }
 }
 
