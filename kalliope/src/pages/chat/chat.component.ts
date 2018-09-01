@@ -14,6 +14,7 @@ import { Media, MediaObject } from '@ionic-native/media';
 import { File} from '@ionic-native/file';
 import {Observable} from "rxjs/Observable";
 import {SynapsesPage} from "../synapses/synapses.component";
+import {Order} from "../../models/Order";
 
 /**
  * @class ChatPage: Components and behaviour Handlers of the Chat page.
@@ -101,11 +102,11 @@ export class ChatPage implements OnInit, AfterViewChecked{
             this.loadNewMessage(responseFromGeolocation, myOrder);
         }
 
-        let responseFromOrder = navParams.get('responseFromOrder');
-        if (responseFromOrder != null) {
-            let synapseOrder = navParams.get('synapseOrder');
-            let myOrder: string = synapseOrder.name + ':  [' +  synapseOrder.signal.params.join("][") + "]";
-            this.loadNewMessage(responseFromOrder, myOrder);
+        let responseFromSynapsePage = navParams.get('responseFromSynapsePage');
+        if (responseFromSynapsePage != null) {
+            let synapseOrder: Order = navParams.get('synapseOrder');
+            let myOrder: string = synapseOrder.value + ':  [' +  synapseOrder.params.join("][") + "]";
+            this.loadNewMessage(responseFromSynapsePage, myOrder);
         }
 
         let orderFromOrderPage = navParams.get('orderFromOrderPage');

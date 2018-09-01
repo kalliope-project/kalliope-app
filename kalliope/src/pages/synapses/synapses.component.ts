@@ -9,6 +9,7 @@ import {SettingsService} from "../settings/settings.service";
 import {LocalNotifications} from '@ionic-native/local-notifications';
 import {ChatPage} from "../chat/chat.component";
 import {GeolocationPage} from "./geolocation.component";
+import {Order} from "../../models/Order";
 
 /**
  * UI Component and Behaviour for the Synapse page
@@ -92,12 +93,13 @@ export class SynapsesPage {
     getSynapsesToDisplay() {
         if (this.settings != null){
             this.synapseService.getSynapses(this.settings).subscribe(response => {
+                this.synapsesToDisplay = response.filter(syn => SynapsesPage.selectSynapseToDisplay(this.settings, syn));
+                console.log("[SynapsesPage] getSynapsesToDisplay: fetched synapses list -> " + JSON.stringify(this.synapsesToDisplay));
+
                 if (this.settings.geolocation) {
                     this.synapseService.setGeofence(response);
                     this.geofenceSubscription();
                 }
-                this.synapsesToDisplay = response.filter(syn => SynapsesPage.selectSynapseToDisplay(this.settings, syn));
-                console.log("[SynapsesPage] getSynapsesToDisplay: fetched synapses list -> " + JSON.stringify(this.synapsesToDisplay));
             },
             err => {
                 console.log("[SynapsesPage] getSynapsesToDisplay: Error fetching the synapses list ! -> " + err);
@@ -119,7 +121,7 @@ export class SynapsesPage {
      * Run a synapse calling the Kalliope Core API
      * @param synapse {Synapse}
      */
-    runSynapse(synapse: Synapse) {
+    runSynapse(synapse: Synapse, order : Order) {
         // View
         this.loader = this.loadingCtrl.create({
             content: "Running Synapse !"
@@ -132,8 +134,8 @@ export class SynapsesPage {
                 console.log("[SynapsesPage] runSynapse: Response from running synapse -> " + JSON.stringify(response));
                 this.loader.dismiss();
                 this.navCtrl.push(ChatPage, {
-                    responseFromOrder: response,
-                    synapseOrder: synapse
+                    responseFromSynapsePage: response,
+                    synapseOrder: order,
                 });
             });
     }
