@@ -25,7 +25,7 @@ export module Serialization {
                         for (let signal of synap['signals']) {
                             if ('name' in signal) {
                                 if ('order' === signal.name) {
-                                    if (signal.parameters )
+                                    if (signal.parameters)
                                     synapses.push(new Synapse(synap['name'], new Order(signal.parameters, new Array<Param>())));
                                 }
                                 else if ('geolocation' == signal.name) {
