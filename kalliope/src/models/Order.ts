@@ -24,7 +24,8 @@ export class Order extends Signal {
      * @param params {Array<Param>} the list of Param
      */
     constructor(value: string, params: Array<Param>) {
-        let extractedParams: Array<Param> = Order._getParamBetweenBracketsList(value);
+        let valueNotSpaceBracket: string = Order._RemoveSpacesInBrackets(value);
+        let extractedParams: Array<Param> = Order._getParamBetweenBracketsList(valueNotSpaceBracket);
         super("order", params.concat(extractedParams));
         this.value = value;
     }
@@ -55,6 +56,10 @@ export class Order extends Signal {
     toString(): string {
         return "Order : value -> " + this.value +
             ", params -> " + this.params;
+    }
+
+    private static _RemoveSpacesInBrackets(value: string) {
+        return value.replace(/\s+(?=[^{\}\}]*\}\})/g, '');
     }
 }
 
