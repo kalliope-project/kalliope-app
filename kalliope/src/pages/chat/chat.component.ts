@@ -7,13 +7,11 @@ import {ChatMessage} from './../../models/ChatMessage';
 import {AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {NavController, LoadingController, ToastController, Platform} from 'ionic-angular';
 import {NavParams} from 'ionic-angular';
-import {CaptureError, MediaCapture} from "@ionic-native/media-capture";
 import {VoiceService} from "./voice.service";
 import {OrderResponse} from "../../models/orderResponse";
 import { Media, MediaObject } from '@ionic-native/media';
 import { File} from '@ionic-native/file';
 import {Observable} from "rxjs/Observable";
-import {SynapsesPage} from "../synapses/synapses.component";
 import {Order} from "../../models/Order";
 
 /**
@@ -46,7 +44,6 @@ export class ChatPage implements OnInit, AfterViewChecked{
      * @param private ordersService {OrdersService} the service managing the orders
      * @param public loadingCtrl {LoadingController} the controller to provide the Loading component
      * @param public toastCtrl {ToastController} the controller to provide the toast component
-     * @param private mediaCapture {MediaCapture} the service to manage the media (audio) capture. (Cordova plugin)
      * @param public settingsService {SettingsService} the service managing the settings
      * @param private voiceService {VoiceService} the service managing the captured voice (audio)
      * @param private chatService {ChatService} the service managing the chat
@@ -57,7 +54,6 @@ export class ChatPage implements OnInit, AfterViewChecked{
                 private ordersService: OrdersService,
                 public loadingCtrl: LoadingController,
                 public toastCtrl: ToastController,
-                private mediaCapture: MediaCapture,
                 public settingsService: SettingsService,
                 private voiceService: VoiceService,
                 private chatService: ChatService,
@@ -272,16 +268,6 @@ export class ChatPage implements OnInit, AfterViewChecked{
             console.log("[Chat] stopRecordVoice -> audio response :  " + response.data);
             this.processOrderResponse(OrderResponse.responseToObject(JSON.parse(response.data)), undefined);
         });
-    }
-
-    handleErrorFromRecordVoice(err: CaptureError){
-        console.log('[ChatPage] handleErrorFromRecordVoice: ' + err);
-        const errorNoActivityFound = "No Activity found to handle Intent";
-        let errortoString : String = err.toString()
-        console.log("[ChatPage] err.code: " + errortoString);
-        if (errortoString.includes(errorNoActivityFound)){
-            this.handleError("You need a voice recorder application");
-        }
     }
 
     /**
