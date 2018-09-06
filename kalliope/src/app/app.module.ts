@@ -24,7 +24,6 @@ import {SettingsService} from './../pages/settings/settings.service';
 import {VoiceService} from "../pages/chat/voice.service";
 
 // ionic Cordova plugins
-import {MediaCapture} from '@ionic-native/media-capture';
 import {HTTP} from '@ionic-native/http';
 import {LocalNotifications} from '@ionic-native/local-notifications';
 import {Media} from "@ionic-native/media";
@@ -64,7 +63,6 @@ import {File} from "@ionic-native/file";
         VoiceService,
         OrdersService,
         ChatService,
-        MediaCapture,
         Media,
         File,
         HTTP,
