@@ -36,3 +36,5 @@ UserInterfaceState.xcuserstate
 *.map
 
 *.ts~dev
+
+kalliope/\.sourcemaps/
