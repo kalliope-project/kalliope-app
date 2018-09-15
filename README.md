@@ -5,7 +5,7 @@
 The Ionic app code for [Kalliope](https://github.com/kalliope-project/kalliope)
 
 <p align="center">
-    <img src="images/kalliope_app_presentation.png">
+    <img src="images/kalliope_app_presentation_5.png">
 </p>
 
 ## Installation
@@ -112,6 +112,15 @@ javac -version
 
 You can install them manually but it is strongly recommended to install Android Studio which brings most of them.
 "https://developer.android.com/studio/"
+
+Export env variables (add to your .bashrc):
+```bash
+ export ANDROID_HOME=~/Android/Sdk
+ export PATH=${PATH}:${ANDROID_HOME}/tools
+ export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+ export PATH=$PATH:$GRADLE_HOME/bin
+```
 
 ##### Run on your phone
 
