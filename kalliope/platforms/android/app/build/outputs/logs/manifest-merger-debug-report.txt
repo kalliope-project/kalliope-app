@@ -1,0 +1,360 @@
+-- Merging decision tree log ---
+provider#de.appplant.cordova.plugin.notification.util.AssetProvider
+INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:18:9-20:20
+	android:grantUriPermissions
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:18:92-126
+	android:authorities
+		INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:18:19-66
+	android:exported
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:18:67-91
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:18:127-200
+manifest
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:1-41:12
+MERGED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:2:1-52:12
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/fb3ed10dc6789353271b5130ddd9dbbc/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/f249fa567b1cdba045b32ad64cc99cd5/AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/f35d74aa2621af93faf6a5203a203a6b/AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/f142a7bb0c27814612001c9498d2c530/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:17:1-31:12
+MERGED from [:CordovaLib] /home/monf/Projects/kalliope-app/kalliope/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:20:1-27:12
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/85425194afcb06b775d4d07d1a1423b4/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/90c2318102adaa2f935652c82fd95c79/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/eaabcec54f5f829d1ee9df056b3365ce/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/901e850268d735087994e3eea03909df/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/647b1d0ac6330eb0797da31d6a56fe91/AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/monf/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7bfb53e3c330c5a2ce6edb275c8780ec/AndroidManifest.xml:17:1-30:12
+INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:1-41:12
+INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:1-41:12
+	package
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:98-124
+		INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:70-97
+		INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml
+	android:hardwareAccelerated
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:11-45
+	xmlns:android
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:125-183
+	android:versionCode
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:2:46-69
+		INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml
+		INJECTED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml
+supports-screens
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:3:5-191
+	android:largeScreens
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:3:49-76
+	android:smallScreens
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:3:132-159
+	android:normalScreens
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:3:77-105
+	android:xlargeScreens
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:3:160-188
+	android:resizeable
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:3:106-131
+	android:anyDensity
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:3:23-48
+uses-permission#android.permission.INTERNET
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:4:5-67
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:4:22-64
+application
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:5:5-30:19
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/fb3ed10dc6789353271b5130ddd9dbbc/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/fb3ed10dc6789353271b5130ddd9dbbc/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/f249fa567b1cdba045b32ad64cc99cd5/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/f249fa567b1cdba045b32ad64cc99cd5/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/f35d74aa2621af93faf6a5203a203a6b/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/f35d74aa2621af93faf6a5203a203a6b/AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/f142a7bb0c27814612001c9498d2c530/AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/f142a7bb0c27814612001c9498d2c530/AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/85425194afcb06b775d4d07d1a1423b4/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/85425194afcb06b775d4d07d1a1423b4/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/90c2318102adaa2f935652c82fd95c79/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/90c2318102adaa2f935652c82fd95c79/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/eaabcec54f5f829d1ee9df056b3365ce/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/eaabcec54f5f829d1ee9df056b3365ce/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/901e850268d735087994e3eea03909df/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/901e850268d735087994e3eea03909df/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/647b1d0ac6330eb0797da31d6a56fe91/AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/647b1d0ac6330eb0797da31d6a56fe91/AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/monf/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7bfb53e3c330c5a2ce6edb275c8780ec/AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/monf/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7bfb53e3c330c5a2ce6edb275c8780ec/AndroidManifest.xml:24:5-28:19
+	android:supportsRtl
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:5:114-140
+	android:label
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:5:81-113
+	android:hardwareAccelerated
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:5:18-52
+	android:icon
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:5:53-80
+activity#kalliope.project.MainActivity
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:6:9-11:20
+	android:label
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:6:97-134
+	android:launchMode
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:6:135-165
+	android:windowSoftInputMode
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:6:257-299
+	android:configChanges
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:6:19-96
+	android:theme
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:6:194-256
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:6:166-193
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:7:13-10:29
+	android:label
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:7:28-65
+action#android.intent.action.MAIN
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:8:17-69
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:8:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:9:17-77
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:9:27-74
+service#com.cowbell.cordova.geofence.ReceiveTransitionsIntentService
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:12:9-154
+	android:label
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:12:43-75
+	android:exported
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:12:18-42
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:12:76-151
+receiver#com.cowbell.cordova.geofence.BootReceiver
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:13:9-17:20
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:13:19-75
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:14:13-16:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:15:17-79
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:15:25-76
+receiver#de.appplant.cordova.plugin.localnotification.TriggerReceiver
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:21:9-122
+	android:exported
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:21:19-43
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:21:44-119
+receiver#de.appplant.cordova.plugin.localnotification.ClearReceiver
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:22:9-120
+	android:exported
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:22:19-43
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:22:44-117
+activity#de.appplant.cordova.plugin.localnotification.ClickReceiver
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:23:9-205
+	android:launchMode
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:23:44-79
+	android:exported
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:23:19-43
+	android:theme
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:23:154-202
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:23:80-153
+receiver#de.appplant.cordova.plugin.localnotification.RestoreReceiver
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:24:9-29:20
+	android:exported
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:24:50-74
+	android:directBootAware
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:24:19-49
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:24:75-150
+intent-filter#action:name:android.intent.action.BOOT_COMPLETED+action:name:android.intent.action.LOCKED_BOOT_COMPLETED
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:25:13-28:29
+action#android.intent.action.LOCKED_BOOT_COMPLETED
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:26:17-86
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:26:25-83
+uses-sdk
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:31:5-74
+MERGED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:7:5-9:41
+MERGED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/fb3ed10dc6789353271b5130ddd9dbbc/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-location:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-location-15.0.1.aar/fb3ed10dc6789353271b5130ddd9dbbc/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/f249fa567b1cdba045b32ad64cc99cd5/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-places-placereport-15.0.1.aar/f249fa567b1cdba045b32ad64cc99cd5/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/f35d74aa2621af93faf6a5203a203a6b/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-tasks-15.0.1.aar/f35d74aa2621af93faf6a5203a203a6b/AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/f142a7bb0c27814612001c9498d2c530/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/f142a7bb0c27814612001c9498d2c530/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:21:5-23:54
+MERGED from [:CordovaLib] /home/monf/Projects/kalliope-app/kalliope/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:25:5-44
+MERGED from [:CordovaLib] /home/monf/Projects/kalliope-app/kalliope/platforms/android/CordovaLib/build/intermediates/manifests/full/debug/AndroidManifest.xml:25:5-44
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/85425194afcb06b775d4d07d1a1423b4/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/85425194afcb06b775d4d07d1a1423b4/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/90c2318102adaa2f935652c82fd95c79/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/90c2318102adaa2f935652c82fd95c79/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/eaabcec54f5f829d1ee9df056b3365ce/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/eaabcec54f5f829d1ee9df056b3365ce/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/901e850268d735087994e3eea03909df/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/901e850268d735087994e3eea03909df/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/647b1d0ac6330eb0797da31d6a56fe91/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/647b1d0ac6330eb0797da31d6a56fe91/AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/monf/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7bfb53e3c330c5a2ce6edb275c8780ec/AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] /home/monf/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7bfb53e3c330c5a2ce6edb275c8780ec/AndroidManifest.xml:20:5-22:41
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:31:42-71
+	android:minSdkVersion
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:31:15-41
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:32:5-81
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:32:22-78
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:33:5-81
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:33:22-78
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:34:5-81
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:34:22-78
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:35:5-79
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:35:22-76
+uses-permission#android.permission.VIBRATE
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:36:5-66
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:36:22-63
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:37:5-68
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:37:22-65
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:38:5-71
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:38:22-68
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:39:5-80
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:39:22-77
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:40:5-75
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:40:22-72
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:19:13-134
+	android:resource
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:19:75-131
+	android:name
+		ADDED from /home/monf/Projects/kalliope-app/kalliope/platforms/android/app/src/main/AndroidManifest.xml:19:24-74
+uses-permission#com.sec.android.provider.badge.permission.READ
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:19:5-86
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:19:22-83
+uses-permission#com.sec.android.provider.badge.permission.WRITE
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:20:5-87
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:20:22-84
+uses-permission#com.htc.launcher.permission.READ_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:23:5-81
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:23:22-78
+uses-permission#com.htc.launcher.permission.UPDATE_SHORTCUT
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:24:5-83
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:24:22-80
+uses-permission#com.sonyericsson.home.permission.BROADCAST_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:27:5-88
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:27:22-85
+uses-permission#com.sonymobile.home.permission.PROVIDER_INSERT_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:28:5-92
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:28:22-89
+uses-permission#com.anddoes.launcher.permission.UPDATE_COUNT
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:31:5-84
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:31:22-81
+uses-permission#com.majeur.launcher.permission.UPDATE_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:34:5-83
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:34:22-80
+uses-permission#com.huawei.android.launcher.permission.CHANGE_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:37:5-91
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:37:22-88
+uses-permission#com.huawei.android.launcher.permission.READ_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:38:5-92
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:38:22-89
+uses-permission#com.huawei.android.launcher.permission.WRITE_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:39:5-93
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:39:22-90
+uses-permission#android.permission.READ_APP_BADGE
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:42:5-73
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:42:22-70
+uses-permission#com.oppo.launcher.permission.READ_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:45:5-82
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:45:22-79
+uses-permission#com.oppo.launcher.permission.WRITE_SETTINGS
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:46:5-83
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:46:22-80
+uses-permission#me.everything.badger.permission.BADGE_COUNT_READ
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:49:5-88
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:49:22-85
+uses-permission#me.everything.badger.permission.BADGE_COUNT_WRITE
+ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:50:5-89
+	android:name
+		ADDED from [me.leolin:ShortcutBadger:1.1.21] /home/monf/.gradle/caches/transforms-1/files-1.1/ShortcutBadger-1.1.21.aar/c3499c01d3d874de4fd69ef2fa82b30c/AndroidManifest.xml:50:22-86
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/2636eaa10e1857375bd55d06b347f87a/AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/f142a7bb0c27814612001c9498d2c530/AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/f142a7bb0c27814612001c9498d2c530/AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:15.0.1] /home/monf/.gradle/caches/transforms-1/files-1.1/play-services-basement-15.0.1.aar/f142a7bb0c27814612001c9498d2c530/AndroidManifest.xml:24:13-58
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/85425194afcb06b775d4d07d1a1423b4/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-media-compat-26.1.0.aar/85425194afcb06b775d4d07d1a1423b4/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/90c2318102adaa2f935652c82fd95c79/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-fragment-26.1.0.aar/90c2318102adaa2f935652c82fd95c79/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/eaabcec54f5f829d1ee9df056b3365ce/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-utils-26.1.0.aar/eaabcec54f5f829d1ee9df056b3365ce/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/901e850268d735087994e3eea03909df/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/901e850268d735087994e3eea03909df/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/647b1d0ac6330eb0797da31d6a56fe91/AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/647b1d0ac6330eb0797da31d6a56fe91/AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:support-v4:26.1.0] /home/monf/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/e91e51a20099c5203e81256006764799/AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/monf/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7bfb53e3c330c5a2ce6edb275c8780ec/AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/monf/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7bfb53e3c330c5a2ce6edb275c8780ec/AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] /home/monf/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/7bfb53e3c330c5a2ce6edb275c8780ec/AndroidManifest.xml:26:13-58

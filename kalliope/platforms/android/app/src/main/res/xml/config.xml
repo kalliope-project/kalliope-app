@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="kalliope.project" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <allow-navigation href="cdvfile:*" />
+    <feature name="CordovaHttpPlugin">
+        <param name="android-package" value="com.synconset.cordovahttp.CordovaHttpPlugin" />
+    </feature>
+    <feature name="Badge">
+        <param name="android-package" value="de.appplant.cordova.plugin.badge.Badge" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="LocalNotification">
+        <param name="android-package" value="de.appplant.cordova.plugin.localnotification.LocalNotification" />
+    </feature>
+    <feature name="Media">
+        <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="GeofencePlugin">
+        <param name="android-package" value="com.cowbell.cordova.geofence.GeofencePlugin" />
+    </feature>
+    <name>Kalliope</name>
+    <description>An awesome Ionic/Cordova app For The Kalliope Project</description>
+    <author email="kalliope.project@gmail.com" href="https://kalliope-project.github.io/">Kalliope Team</author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-navigation href="http://ionic.local/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
+    <allow-intent href="market:*" />
+    <icon density="ldpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
+    <icon density="mdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
+    <icon density="hdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
+    <icon density="xhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
+    <icon density="xxhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
+    <icon density="xxxhdpi" src="resources/android/kalliope_brain/drawable-xxxhdpi-kalliope_brain.png" />
+    <splash density="land-ldpi" src="resources/splash.png" />
+    <splash density="land-mdpi" src="resources/splash.png" />
+    <splash density="land-hdpi" src="resources/splash.png" />
+    <splash density="land-xhdpi" src="resources/splash.png" />
+    <splash density="land-xxhdpi" src="resources/splash.png" />
+    <splash density="land-xxxhdpi" src="resources/splash.png" />
+    <splash density="port-ldpi" src="resources/splash.png" />
+    <splash density="port-mdpi" src="resources/splash.png" />
+    <splash density="port-hdpi" src="resources/splash.png" />
+    <splash density="port-xhdpi" src="resources/splash.png" />
+    <splash density="port-xxhdpi" src="resources/splash.png" />
+    <splash density="port-xxxhdpi" src="resources/splash.png" />
+    <preference name="loglevel" value="DEBUG" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
+    <preference name="FadeSplashScreenDuration" value="300" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="3000" />
+</widget>

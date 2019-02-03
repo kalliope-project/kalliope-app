@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/monf/Projects/kalliope-app/kalliope/platforms/android/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/home/monf/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/647b1d0ac6330eb0797da31d6a56fe91/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}
