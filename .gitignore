@@ -21,8 +21,7 @@ dist/
 node_modules/
 tmp/
 temp/
-hooks/
-www/
+hooks/ld
 plugins/
 plugins/android.json
 plugins/ios.json
