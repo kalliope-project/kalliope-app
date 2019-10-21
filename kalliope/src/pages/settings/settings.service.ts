@@ -19,6 +19,16 @@ export class SettingsService {
 
     }
 
+    getUrlToCall(url_to_call: string){
+        if(!(url_to_call.startsWith("http://") || url_to_call.startsWith("https://"))){
+            url_to_call = "http://" + url_to_call;
+        }
+        if(!url_to_call.endsWith("/")) {
+            url_to_call += "/";
+        }
+        return url_to_call;
+    }
+
     /**
      * Provide the remote Kalliope Core version
      * @param settings {Settings} the model Settings to access API
@@ -35,13 +45,7 @@ export class SettingsService {
             headers: headers
         });
 
-        let url_to_call: string = settings.url;
-        if(!(url_to_call.startsWith("http://") || url_to_call.startsWith("https://"))){
-            url_to_call = "http://" + url_to_call;
-        }
-        if(!url_to_call.endsWith("/")) {
-            url_to_call += "/";
-        }
+        let url_to_call: string = this.getUrlToCall(settings.url);
         return this.httpService.get(url_to_call, options)
                                 .map(res => res.json())
                                 .timeout(5000) ;
