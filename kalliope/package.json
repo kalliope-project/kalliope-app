@@ -62,7 +62,7 @@
     "cordova-android": "~7.1.0"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.0.0",
+    "@ionic/app-scripts": "3.2.4",
     "@types/jasmine": "^2.8.7",
     "@types/node": "^9.6.18",
     "angular2-template-loader": "^0.6.2",
